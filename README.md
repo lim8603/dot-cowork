@@ -43,8 +43,10 @@ This framework keeps that context in persistent files so any compatible tool can
 ## Documentation Conventions
 
 - Framework source documents are Markdown-first.
-- Diagrams and charts embedded in Markdown should use Mermaid by default so visuals stay diffable, reviewable, and editable in the same repository flow.
-- Use static `SVG` or `PNG` assets only when Mermaid cannot express the content clearly enough or a required publishing target does not support Mermaid.
+- New projects start with Mermaid disabled. Enable it only when the project explicitly sets `Visualization Mode = Mermaid` in `.cowork/06_evolution/project_state.md`.
+- When Mermaid is enabled, use it for diagrams and charts embedded in Markdown so visuals stay diffable, reviewable, and editable in the same repository flow.
+- When Mermaid is disabled, prefer plain Markdown prose, lists, and tables instead of introducing diagrams automatically.
+- Use static `SVG` or `PNG` assets only when a visual is genuinely necessary and Mermaid is either insufficient for the content or unsupported by a required publishing target.
 
 ---
 

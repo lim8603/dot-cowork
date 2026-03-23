@@ -68,7 +68,8 @@ Instead, documents accumulate detail over time as the project moves through defi
 ### Markdown-native visuals
 
 Because the framework is Markdown-first, diagrams and charts should stay text-editable whenever possible.
-Mermaid is the default format for visuals embedded in Markdown so they can participate in normal diff, review, and AI-assisted editing flows.
+New projects start with `Visualization Mode = Disabled` and should prefer prose, lists, or tables until the project explicitly enables Mermaid in `project_state.md`.
+When `Visualization Mode = Mermaid`, Mermaid becomes the preferred format for visuals embedded in Markdown so they can participate in normal diff, review, and AI-assisted editing flows.
 Static `SVG` or `PNG` assets remain an exception path for cases where Mermaid is too limiting or a required publishing target does not support it.
 
 ### Minimal ceremony, durable traceability

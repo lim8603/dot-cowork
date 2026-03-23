@@ -58,7 +58,7 @@ For the first real session, these are the minimum pieces that should exist and b
 | --- | --- | --- |
 | One tool entrypoint | Gives the active AI tool the project-specific rules | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, or `.github/copilot-instructions.md` is installed in the project root as appropriate |
 | `.cowork/cowork.md` | Defines the shared operating model | Present and readable |
-| `.cowork/06_evolution/project_state.md` | Gives the session a shared resume index | Present with at least project type, active phase, language settings, and a short current-state summary |
+| `.cowork/06_evolution/project_state.md` | Gives the session a shared resume index | Present with at least project type, active phase, language and visualization settings, and a short current-state summary |
 | `.cowork/02_project_definition/deliverable_plan.md` | Prevents delivery scope from staying implicit | Present, even if still incomplete |
 | One contributor workspace | Gives the session a personal working area without polluting shared canon | `.cowork/members/<name>/workspace/` exists or is prepared to be created during the first session |
 | One live session log | Gives the session a default temporary capture point | A new `session_*.md` log is opened at session start |
@@ -77,7 +77,7 @@ Use this path when the project is new enough that the framework can establish th
 ### Recommended order
 
 1. Copy the framework files into the project root from the variant you plan to install, typically `frameworks/en/` for English or `frameworks/ko/` for Korean.
-2. Decide the initial conversation language, working document language, and export language.
+2. Decide the initial conversation language, working document language, export language, and visualization mode.
 3. Initialize `project_state.md` with `Greenfield`, the likely starting phase `Define`, and a short plain-language summary of the project.
 4. Initialize one contributor workspace under `.cowork/members/<name>/workspace/`.
 5. Start the first AI session from the tool entrypoint.
@@ -166,7 +166,7 @@ By the end of the first session, you should usually have:
 
 - the project classified as greenfield or brownfield
 - the active phase recorded in `project_state.md`
-- conversation, working-document, and export language aligned
+- conversation, working-document, export-language, and visualization-mode alignment recorded
 - a contributor workspace identified
 - a fresh session log opened
 - a first pass at deliverable scope in `deliverable_plan.md`

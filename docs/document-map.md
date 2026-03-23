@@ -33,7 +33,7 @@ Do not update it for routine content edits inside the mapped documents.
 | Tool entrypoints | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` | Installed with the framework | Tool instructions, loading guidance, or shared workflow wording changes | Every session start, especially after tool switching |
 | Framework root guide | `.cowork/README.md` | Installed with the framework | The top-level explanation or onboarding path changes | First-time adoption and framework orientation |
 | Framework master guide | `.cowork/cowork.md` | Installed with the framework | The framework's core operating model or structure changes | First session, major workflow confusion, or rule lookup |
-| Shared resume index | `.cowork/06_evolution/project_state.md` | Installed with the framework, then filled in during real use | Current phase, active work, next steps, language settings, or status changes | Every session start and every meaningful status change |
+| Shared resume index | `.cowork/06_evolution/project_state.md` | Installed with the framework, then filled in during real use | Current phase, active work, next steps, language or visualization settings, or status changes | Every session start and every meaningful status change |
 | Delivery scope anchor | `.cowork/02_project_definition/deliverable_plan.md` | Early Define work | Deliverable scope, required outputs, or omission decisions change | Early session loading, Define, Deliver, export planning |
 | Personal resume index | `.cowork/members/<name>/workspace/my_state.md` | When a contributor workspace is initialized | Personal carry-over work, blockers, or individual next steps change | When a named contributor resumes work |
 | Session log | `.cowork/members/<name>/workspace/session_logs/session_*.md` | At the start of each working session | Throughout the session as raw notes and outcomes accumulate | Session restoration, cleanup, and handoff |
@@ -47,7 +47,7 @@ Do not update it for routine content edits inside the mapped documents.
 | Decision authority matrix | `.cowork/01_cowork_protocol/decision_authority_matrix.md` | Installed with the framework | Approval boundaries or role ownership changes | Before structure changes, promotion, or approval-sensitive work |
 | Document role inventory | `.cowork/01_cowork_protocol/document_role_inventory.md` | Installed with the framework | Document types, routing rules, or role definitions change | Whenever a new document or destination is being chosen |
 | Document change impact matrix | `.cowork/01_cowork_protocol/document_change_impact_matrix.md` | Installed with the framework | Canonical relationships or sync obligations change | When adding or changing a canonical document |
-| Communication convention | `.cowork/01_cowork_protocol/communication_convention.md` | Installed with the framework | Language, formatting, or collaboration conventions change | Tool alignment, multilingual work, or output-style drift |
+| Communication convention | `.cowork/01_cowork_protocol/communication_convention.md` | Installed with the framework | Language, formatting, visualization-mode, or collaboration conventions change | Tool alignment, multilingual work, visualization-mode policy, or output-style drift |
 | Escalation policy | `.cowork/01_cowork_protocol/escalation_policy.md` | Installed with the framework | Escalation triggers or conflict-handling rules change | Ambiguity, disagreement, or blocked approval flow |
 
 ## Define

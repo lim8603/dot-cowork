@@ -18,7 +18,7 @@ AI 코딩 도구는 세션이 끊기면 맥락을 잃기 쉽다.
 
 ## 이 프레임워크가 하는 일
 
-- 세션 시작 시 AI가 `project_state.md`, `deliverable_plan.md`, 관련 `my_state.md`, 최신 세션 로그를 읽고 브리핑한다.
+- 세션 시작 시 AI가 `project_state.md`, `deliverable_plan.md`, 관련 `my_state.md`, 최신 세션 로그를 읽고 저장된 언어/시각화 설정을 복원한 뒤 브리핑한다.
 - 작업 중 결정은 목록 문서, 기준 본문, 상세 문서에 맞는 위치로 누적한다.
 - 현재 Phase에 맞는 문서만 우선 로드해 컨텍스트를 효율적으로 사용한다.
 - 릴리즈 시 `docs/`에 활성화된 기본 추천 14종과 승인된 확장 산출물(15+)을 생성한다.
@@ -81,7 +81,7 @@ AI 코딩 도구는 세션이 끊기면 맥락을 잃기 쉽다.
 | `cowork.md` | 구조와 원칙을 이해할 때 | 마스터 운영 기준 문서 |
 | `01_cowork_protocol/session_protocol.md` | 세션 절차를 확인할 때 | 세션 운영 기준 |
 | `01_cowork_protocol/tooling_environment_guide.md` | 도구 설정, 진입점 동기화, 업그레이드 운영이 필요할 때 | 환경 의존 운영 기준 |
-| `01_cowork_protocol/communication_convention.md` | 언어, 톤, 시각화 규칙이 필요할 때 | 표현 기준 문서 |
+| `01_cowork_protocol/communication_convention.md` | 언어, 톤, 시각화 모드 규칙이 필요할 때 | 표현 기준 문서 |
 | `01_cowork_protocol/document_role_inventory.md` | 문서 분류가 헷갈릴 때 | 역할 인벤토리 |
 
 ---
@@ -115,7 +115,7 @@ AI 코딩 도구는 세션이 끊기면 맥락을 잃기 쉽다.
 - 구조, 라이프사이클, 문서 역할 상위 원칙: [cowork.md](cowork.md)
 - 세션 시작/진행/종료 절차: [01_cowork_protocol/session_protocol.md](01_cowork_protocol/session_protocol.md)
 - 도구 설정, 진입점 동기화, 업그레이드 운영: [01_cowork_protocol/tooling_environment_guide.md](01_cowork_protocol/tooling_environment_guide.md)
-- 언어 정책, 톤, 시각화 규칙: [01_cowork_protocol/communication_convention.md](01_cowork_protocol/communication_convention.md)
+- 언어 정책, 톤, 시각화 모드 규칙: [01_cowork_protocol/communication_convention.md](01_cowork_protocol/communication_convention.md)
 - 문서 분류와 운영 인벤토리: [01_cowork_protocol/document_role_inventory.md](01_cowork_protocol/document_role_inventory.md)
 
 ---

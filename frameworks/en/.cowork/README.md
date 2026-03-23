@@ -18,7 +18,7 @@ The core idea is simple.
 
 ## What This Framework Does
 
-- At session start, the AI reads `project_state.md`, `deliverable_plan.md`, the relevant `my_state.md`, and the latest session log, then gives a briefing.
+- At session start, the AI reads `project_state.md`, `deliverable_plan.md`, the relevant `my_state.md`, and the latest session log, restores the saved language and visualization settings, then gives a briefing.
 - During the session, decisions are accumulated into the right registry, canonical document, or detail document.
 - The framework loads only the documents that match the current phase first so the context window is used efficiently.
 - At release time, it generates the active default 14 deliverables and approved extension deliverables (15+) into `docs/`.
@@ -81,7 +81,7 @@ For the full structure and lifecycle, read [cowork.md](cowork.md).
 | `cowork.md` | When you want to understand the structure and principles | Master operating document |
 | `01_cowork_protocol/session_protocol.md` | When you need the session procedure | Session operation standard |
 | `01_cowork_protocol/tooling_environment_guide.md` | When you need tool setup, entrypoint sync, or upgrade operations | Environment-specific operations |
-| `01_cowork_protocol/communication_convention.md` | When you need language, tone, or visualization rules | Expression standard |
+| `01_cowork_protocol/communication_convention.md` | When you need language, tone, or visualization-mode rules | Expression standard |
 | `01_cowork_protocol/document_role_inventory.md` | When document classification feels unclear | Role inventory |
 
 ---
@@ -115,7 +115,7 @@ to generate the active default 14 deliverables and approved extension deliverabl
 - High-level structure, lifecycle, and document-role principles: [cowork.md](cowork.md)
 - Session start / in-progress / end procedure: [01_cowork_protocol/session_protocol.md](01_cowork_protocol/session_protocol.md)
 - Tool setup, entrypoint sync, and framework upgrade operations: [01_cowork_protocol/tooling_environment_guide.md](01_cowork_protocol/tooling_environment_guide.md)
-- Language policy, tone, and visualization rules: [01_cowork_protocol/communication_convention.md](01_cowork_protocol/communication_convention.md)
+- Language policy, tone, and visualization-mode rules: [01_cowork_protocol/communication_convention.md](01_cowork_protocol/communication_convention.md)
 - Document classification and operating inventory: [01_cowork_protocol/document_role_inventory.md](01_cowork_protocol/document_role_inventory.md)
 
 ---

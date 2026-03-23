@@ -48,7 +48,7 @@ This file is the repository maintenance context that OpenAI Codex and Cursor rea
 - Default to editing `frameworks/ko`.
 - Keep `frameworks/en` synchronized when framework-facing structure, wording, or release contract changes.
 - Use semantic versioning starting from `1.0.0`.
-- For Markdown documents in this repository, use Mermaid by default for diagrams and charts. Use static `SVG` or `PNG` assets only when Mermaid is not practical or a required publishing target does not support it.
+- Do not assume Mermaid is enabled for Markdown documents in this repository. Use Mermaid only when the active framework variant or target project explicitly opts in; otherwise prefer plain Markdown prose, lists, or tables. Use static `SVG` or `PNG` assets only when a visual is necessary and Mermaid is either unsuitable or unsupported by the required publishing target.
 - Do not manually edit archives under `dist/`; always rebuild them from source.
 
 ## Common Tasks

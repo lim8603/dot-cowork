@@ -23,6 +23,7 @@
 | Conversation Language | |
 | Working Document Language | |
 | Official Deliverable Language | |
+| Visualization Mode | |
 | Last Updated | |
 | Last Updated By | |
 | Reference Session Log | |
@@ -33,6 +34,7 @@
 - `Collaboration Mode`: `Inactive (Setup)` / `Active (Tasks Assigned)`
 - `Current Phase`: `Define` / `Design` / `Build` / `Verify` / `Evolve` / `Deliver`
 - `Status`: `Green` / `Yellow` / `Red`
+- `Visualization Mode`: `Disabled` / `Mermaid` (default for a new project is `Disabled`)
 - For `Active Intent`, `Active Milestone`, and `Active Task`, write the actual current ID or `None`.
 - `Last Updated By`: `Human` / `AI`
 - `Reference Session Log`: latest `session_YYYY-MM-DD_NNN.md`

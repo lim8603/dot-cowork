@@ -16,12 +16,12 @@
 2. `.cowork/cowork.md`를 읽고 전체 산출물 체계와 협업 원칙을 확인한다. **(첫 세션에서 1회 숙지 — 이미 파악했으면 생략)**
 3. `.cowork/01_cowork_protocol/document_role_inventory.md`를 읽고 현재 문서가 Governance / Canonical / Registry / Instance / Template / Log 중 무엇인지 구분한다. **(첫 세션에서 1회 숙지 — 이미 파악했으면 생략)**
 4. `.cowork/06_evolution/project_state.md`를 읽고 현재 Phase, 활성 Intent, 활성 Milestone, 다음 시작점을 확인한다. `project_state.md` 안의 **Context Loading Guide** 섹션에 따라 현재 Phase에 필요한 registry/canonical 문서를 우선 로드한다.
-5. 대화 언어, 작업 문서 언어, export 문서 언어를 확인한다.
+5. 대화 언어, 작업 문서 언어, export 문서 언어, 시각화 모드를 확인한다.
 6. `.cowork/members/<이름>/workspace/session_logs/` 아래 최신 개인 세션 로그를 확인하여 이전 맥락을 복원한다.
 7. 필요 시 `.cowork/06_evolution/imported_context/`를 확인하되, 원문을 직접 기준 문서로 사용하지 않고 필요한 사실만 추출해 반영한다.
 8. `.cowork/members/`에 현재 사용자 폴더가 없으면 이름을 확인해 프로필과 `workspace/` 구조를 생성한다. 팀 프로젝트면 역할/담당 영역을 묻고, 1인 프로젝트면 solo default를 적용한다.
 9. `.cowork/members/*/proposals/`에 Pending 상태 Proposal이 있으면 Master 권한자에게 알린다.
-10. 사용 가능한 키워드 목록을 간략히 공지한다: `마무리`, `~로 가자`, `제안`, `~단계로 넘어가자`, `릴리즈`.
+10. 사용 가능한 키워드 목록을 간략히 공지한다: `마무리`, `~로 가자`, `제안`, `~단계로 넘어가자`, `릴리즈`, `업그레이드`.
 11. 프로젝트 현황과 활성 Intent / Milestone, 활성 Task 목록을 **브리핑으로 먼저 출력**한다. (§1D)
 12. Human의 응답(또는 최초 발화)을 브리핑 내용과 매칭하여 작업 모드를 판별한 뒤, **Plan → Approve → Execute** 사이클로 진행한다. (§1D)
 
@@ -35,8 +35,8 @@
 - 세션 로딩은 registry/canonical 우선, template/log/archive는 필요 시만 참조한다.
 - 문서 구조 변경과 Registry 승격은 Human 승인 후 진행한다.
 - 불확실하면 추측하지 말고 질문한다.
-- 대화 언어는 세션 시작 시 확인 (이 템플릿 기본: **한국어**), 코드/커밋은 **영문**.
-- 문서 표현 규칙은 `.cowork/01_cowork_protocol/communication_convention.md`를 따른다. 언어 정책, 톤, 시각화 기준은 해당 문서를 우선한다.
+- 대화 언어는 세션 시작 시 확인 (이 템플릿 기본: **한국어**), 시각화 모드 기본값은 `Disabled`, 코드/커밋은 **영문**.
+- 문서 표현 규칙은 `.cowork/01_cowork_protocol/communication_convention.md`를 따른다. 언어 정책, 톤, 시각화 모드 기준은 해당 문서를 우선한다.
 - 도구별 승인 방식, 진입점 동기화, 프레임워크 업그레이드 운영은 `.cowork/01_cowork_protocol/tooling_environment_guide.md`와 이 진입점 문서를 함께 따른다.
 - Human의 최종 결정을 존중하며, AI의 우려 표명은 1회로 제한한다.
 - 코딩 컨벤션은 `.cowork/04_implementation/coding_convention.md`를 따른다.
@@ -128,6 +128,7 @@ TASK-003 이어서 하자.
 - **프로젝트:**
 - **기술 스택:**
 - **주 언어:**
+- **시각화 모드:**
 - **핵심 문서:**
 - **현재 Phase:**
 - **마일스톤:**

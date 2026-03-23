@@ -33,7 +33,7 @@
 ## 2. Relationship Diagram
 
 ```text
-// ERD or relationship description (Mermaid recommended)
+// ERD or relationship description (use Mermaid only when visualization mode is Mermaid)
 ```
 
 ---

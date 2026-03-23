@@ -16,7 +16,7 @@ This file is the **project context entrypoint** that OpenAI Codex and Cursor rea
 2. Read `.cowork/cowork.md` and review the overall deliverable structure and collaboration principles. **(Learn once in the first session; skip if already familiar.)**
 3. Read `.cowork/01_cowork_protocol/document_role_inventory.md` and identify whether the current document is Governance / Canonical / Registry / Instance / Template / Log. **(Learn once in the first session; skip if already familiar.)**
 4. Read `.cowork/06_evolution/project_state.md` and confirm the current phase, active intent, active milestone, and next starting point. Follow the **Context Loading Guide** section in `project_state.md` to load the registry/canonical documents needed for the current phase first.
-5. Confirm the conversation language, working document language, and export document language.
+5. Confirm the conversation language, working document language, export document language, and visualization mode.
 6. Check the latest personal session log under `.cowork/members/<name>/workspace/session_logs/` to restore prior context.
 7. Review `.cowork/06_evolution/imported_context/` only when needed, and extract facts from it instead of using the raw text as an authoritative source.
 8. If the current user's folder does not exist under `.cowork/members/`, confirm the name and create the profile and `workspace/` structure. In a team project, ask for role/ownership; in a solo project, apply the solo default.
@@ -35,8 +35,8 @@ This file is the **project context entrypoint** that OpenAI Codex and Cursor rea
 - Load registry/canonical documents first; refer to templates/logs/archives only when needed.
 - Make structural document changes and registry promotion only after Human approval.
 - Do not guess when uncertain; ask.
-- Confirm the conversation language at session start (default for this template: **English**); keep code and commits in **English**.
-- Follow `.cowork/01_cowork_protocol/communication_convention.md` for language policy, tone, and visualization rules.
+- Confirm the conversation language at session start (default for this template: **English**); the default visualization mode is `Disabled`, and code and commits stay in **English**.
+- Follow `.cowork/01_cowork_protocol/communication_convention.md` for language policy, tone, and visualization-mode rules.
 - Follow `.cowork/01_cowork_protocol/tooling_environment_guide.md` together with this entrypoint for tool-specific approval flow, entrypoint sync, and framework upgrade handling.
 - Respect the Human's final decision; limit AI objections to one explicit expression of concern.
 - Follow `.cowork/04_implementation/coding_convention.md` for coding conventions.
@@ -118,6 +118,7 @@ Let's continue TASK-003.
 - **Project:**
 - **Tech Stack:**
 - **Primary Language:**
+- **Visualization Mode:**
 - **Core Documents:**
 - **Current Phase:**
 - **Milestone:**

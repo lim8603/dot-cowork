@@ -47,14 +47,14 @@ This framework defines the rules and deliverable system for software development
 | `cowork.md` | Master document that explains principles, structure, and lifecycle |
 | `01_cowork_protocol/session_protocol.md` | Session start, in-progress, end, and automation procedures |
 | `01_cowork_protocol/tooling_environment_guide.md` | Tool-specific approval, entrypoint sync, and upgrade operation |
-| `01_cowork_protocol/communication_convention.md` | Single source for language policy, tone, expression depth, and visualization rules |
+| `01_cowork_protocol/communication_convention.md` | Single source for language policy, tone, expression depth, and visualization-mode rules |
 | `01_cowork_protocol/decision_authority_matrix.md` | Decision-authority boundary between Human and AI |
 | `01_cowork_protocol/escalation_policy.md` | Disagreement and mediation rules |
 | `01_cowork_protocol/document_role_inventory.md` | Document-role classification and operating inventory |
 | `01_cowork_protocol/document_change_impact_matrix.md` | Cascading-impact check when structure changes |
 | `05_verification/quality_gate.md` | Phase-transition and release-decision criteria |
 
-Interpret language policy, tone, and visualization rules through `communication_convention.md`.
+Interpret language policy, tone, and visualization-mode rules through `communication_convention.md`, and restore the project-specific setting from `project_state.md`.
 
 ---
 
@@ -111,7 +111,7 @@ This framework distinguishes `Phase` and `Milestone`.
 │   ├── decision_authority_matrix.md         <- Decision authority matrix
 │   ├── session_protocol.md                  <- Session start / in-progress / end protocol
 │   ├── tooling_environment_guide.md         <- Tool- and environment-dependent operations
-│   ├── communication_convention.md          <- Language / tone / visualization rules
+│   ├── communication_convention.md          <- Language / tone / visualization-mode rules
 │   ├── escalation_policy.md                 <- Disagreement handling policy
 │   ├── document_role_inventory.md           <- Document role inventory
 │   └── document_change_impact_matrix.md     <- Change impact matrix
@@ -133,27 +133,23 @@ Use `document_role_inventory.md` as the authority for detailed document classifi
 
 `session_protocol.md` defines the detailed procedure, `tooling_environment_guide.md` defines tool- and environment-dependent operation, and this document keeps only the high-level flow.
 
-```mermaid
-flowchart TD
-    A["Session Start<br/>Context Handoff -> Briefing -> Mode Selection"] --> B["Project Tailoring<br/>Archetype Kickoff -> Team Mode -> Deliverable Negotiation"]
-    B --> C["DEFINE<br/>Intent -> Requirement Spec -> User Stories -> Deliverable Plan"]
-    C --> G1{"Gate 1<br/>Requirements aligned"}
-    G1 --> D["DESIGN<br/>Domain Model -> Interface Contract -> Data Model -> ADR -> Tech Stack"]
-    D --> G2{"Gate 2<br/>Design approved"}
-    G2 --> E["BUILD<br/>Milestone Planning -> Task Execution -> Review"]
-    E --> G3{"Gate 3<br/>Code review passed"}
-    G3 --> F["VERIFY<br/>Test Strategy -> Test Execution -> Quality Gate validation"]
-    F --> G4{"Gate 4<br/>Verification complete"}
-    G4 --> H["EVOLVE<br/>Session Log -> Retrospective -> Knowledge Base"]
-    H --> I["DELIVER<br/>Export -> Release Notes -> Operation Guide -> User Manual -> README"]
-    I --> G5{"Gate 5<br/>Official deliverables complete"}
-```
+| Step | Stage | Main Outputs / Activities | Gate Or Result |
+|------|-------|---------------------------|----------------|
+| 1 | Session Start | Context Handoff -> Briefing -> Mode Selection | Ready to resume work |
+| 2 | Project Tailoring | Archetype Kickoff -> Team Mode -> Deliverable Negotiation | Working contract aligned |
+| 3 | DEFINE | Intent -> Requirement Spec -> User Stories -> Deliverable Plan | Gate 1: Requirements aligned |
+| 4 | DESIGN | Domain Model -> Interface Contract -> Data Model -> ADR -> Tech Stack | Gate 2: Design approved |
+| 5 | BUILD | Milestone Planning -> Task Execution -> Review | Gate 3: Code review passed |
+| 6 | VERIFY | Test Strategy -> Test Execution -> Quality Gate validation | Gate 4: Verification complete |
+| 7 | EVOLVE | Session Log -> Retrospective -> Knowledge Base | Learning reflected |
+| 8 | DELIVER | Export -> Release Notes -> Operation Guide -> User Manual -> README | Gate 5: Official deliverables complete |
 
 ---
 
 ## Context Loading Principles
 
 - At session start, load `project_state.md`, `deliverable_plan.md`, the relevant registries, and the latest session log first.
+- Restore the saved conversation language, document language, and visualization mode from `project_state.md` at session start.
 - `project_state.md` is the shared resume index that is always loaded, so keep narrative sections short and keep tables focused on active or recent key items.
 - Load detail documents like `INT-*`, `MS-*`, `TASK-*`, and `ADR-*` only when deeper context is needed.
 - `templates/` and `imported_context/` are not default-loading targets.

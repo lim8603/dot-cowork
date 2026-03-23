@@ -1,6 +1,6 @@
 # Communication Convention
 
-> Single source of truth for language, tone, expression, and visualization rules
+> Single source of truth for language, tone, expression, and visualization-mode rules
 
 ---
 
@@ -62,8 +62,8 @@ This document defines the communication rules that reduce misunderstanding and i
 | Code / identifier notation | Use English by default if the team has no different rule. |
 
 - The framework does not force a particular natural language.
-- At session start, the AI confirms the conversation language, working document language, and official deliverable language.
-- Record the selected language settings in `project_state.md` so the next session can restore them.
+- At session start, the AI confirms the conversation language, working document language, official deliverable language, and visualization mode.
+- Record the selected language and visualization settings in `project_state.md` so the next session can restore them.
 - If you allow exceptions to the language rule, record the reason and scope in the relevant source documents.
 
 ---
@@ -111,11 +111,13 @@ Any AI model should keep the following posture.
 
 | Item | Default Rule |
 |------|--------------|
-| Markdown diagrams | Default to Mermaid. |
-| Markdown charts | Default to Mermaid. |
-| Static-image exceptions | Use `SVG` / `PNG` only when Mermaid would be inaccurate or the required publishing target cannot render Mermaid. |
+| Visualization Mode | Default to `Disabled`. Use Mermaid as the default visualization tool only when `project_state.md` explicitly records `Visualization Mode = Mermaid`. |
+| Markdown diagrams | Use Mermaid only when `Visualization Mode = Mermaid`. |
+| Markdown charts | Use Mermaid only when `Visualization Mode = Mermaid`. |
+| Disabled baseline | When `Visualization Mode = Disabled`, do not generate Mermaid automatically; explain with prose, lists, or tables first. |
+| Static-image exceptions | Use `SVG` / `PNG` only when a visual is genuinely necessary. When Mermaid is enabled, treat inaccurate Mermaid output or unsupported publishing targets as the primary exception path. |
 | Exception handling | If you use a static image, leave the source Mermaid or the generation basis when possible. |
 
-- Prefer Mermaid for flowcharts, sequence diagrams, state transitions, ERDs, and simple charts.
-- Use images only for UI mockups, screenshots, branding assets, or visuals that become unreadable in Mermaid.
+- When visualization mode is `Mermaid`, prefer Mermaid for flowcharts, sequence diagrams, state transitions, ERDs, and simple charts.
+- When visualization mode is `Disabled`, prefer text- or table-based explanation unless the document truly needs an image such as a UI mockup, screenshot, or branding asset.
 - Treat visual elements inside documents as part of Markdown review and version control.

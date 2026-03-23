@@ -54,7 +54,7 @@ AI session memory resets between sessions. This protocol defines context-preserv
 ### 1. Session Start
 
 - [ ] Check project existence, current phase, active intent, active milestone, open questions, and next starting point in `.cowork/06_evolution/project_state.md`.
-- [ ] Confirm project type, team-setup mode, conversation language, working document language, and official deliverable language in `project_state.md`.
+- [ ] Confirm project type, team-setup mode, conversation language, working document language, official deliverable language, and visualization mode in `project_state.md`.
 - [ ] Check whether the current user's `.cowork/members/<name>/` folder and workspace exist.
 - [ ] **Member confirmation and initialization**: if the current user folder does not exist, confirm the user's name / identifier and create `profile.md`, `workspace/`, `my_state.md`, and `session_logs/` first. In a team project, confirm role and ownership area; in a solo project, apply the solo default.
 - [ ] If the current user workspace already exists, restore personal work context from `members/<name>/workspace/my_state.md`.
@@ -88,7 +88,7 @@ If session-start diagnosis matches one of the cases below, the AI should lock th
 - What is the real current phase, or where should this session start? (`Define / Design / Build / Verify / Evolve / Deliver`)
 - What is the highest-priority goal that must be achieved in this session?
 - What is currently blocked, what needs a decision, and what special constraints exist?
-- When needed, what are the conversation language, working document language, and official deliverable language?
+- When needed, what are the conversation language, working document language, official deliverable language, and visualization mode?
 
 #### Minimum Onboarding Rules
 
@@ -690,7 +690,7 @@ Natural language is enough; no special prefix is required.
 At the start of a new session, the AI automatically checks the following.
 
 1. current phase, active Intent, active Milestone, and next starting point in `project_state.md`
-2. project type, team setup mode, conversation language, working document language, and official deliverable language in `project_state.md`
+2. project type, team setup mode, conversation language, working document language, official deliverable language, and visualization mode in `project_state.md`
 3. whether the current user's `members/<name>/` workspace exists
 4. if the workspace does not exist, create `profile.md`, `my_state.md`, and `session_logs/` first
 5. if the workspace exists, restore personal work context from `my_state.md`

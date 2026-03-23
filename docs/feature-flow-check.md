@@ -59,11 +59,11 @@ Check against: `06_evolution/project_state.md`, `02_project_definition/deliverab
 - [ ] Behavior: The AI expands loading first into only the registry and canonical documents relevant to the phase, and defers unrelated areas.
 - [ ] Result: The reading scope stays focused and repeatable, so restoration quality is consistently similar within the same phase.
 
-### Language alignment
+### Language and visualization alignment
 Check against: root entrypoint files, project context fields, delivery planning docs
-- [ ] Start: There are early clues that make it possible to confirm the conversation language, working document language, and export language.
-- [ ] Behavior: When contributor language and output language diverge, the AI aligns document language and delivery language early.
-- [ ] Result: Silent language drift does not happen, such as the conversation staying in Korean while the documents quietly drift into English.
+- [ ] Start: There are early clues that make it possible to confirm the conversation language, working document language, export language, and visualization mode.
+- [ ] Behavior: When contributor language, output language, and visualization expectations diverge, the AI aligns document language, delivery language, and visualization mode early.
+- [ ] Result: Silent drift does not happen, such as the conversation staying in Korean while the documents quietly drift into English or Mermaid appearing even though the project left visualization disabled.
 
 ### Personal workspace recall
 Check against: `members/<name>/workspace/session_logs/`, `members/<name>/workspace/my_state.md`, root entrypoint files

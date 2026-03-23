@@ -23,6 +23,7 @@
 | 대화 언어 | |
 | 작업 문서 언어 | |
 | 공식 산출물 문서 언어 | |
+| 시각화 모드 | |
 | 마지막 갱신일 | |
 | 마지막 갱신자 | |
 | 참조 세션 로그 | |
@@ -33,6 +34,7 @@
 - `협업 모드`: `Inactive(준비 중)` / `Active(Task 할당 완료)`
 - `현재 Phase`: `Define` / `Design` / `Build` / `Verify` / `Evolve` / `Deliver`
 - `상태`: `Green` / `Yellow` / `Red`
+- `시각화 모드`: `Disabled` / `Mermaid` (신규 프로젝트 기본값은 `Disabled`)
 - `활성 Intent`, `활성 Milestone`, `활성 Task`는 현재 실제 ID를 적고, 없으면 `없음`으로 적는다.
 - `마지막 갱신자`: `Human` / `AI`
 - `참조 세션 로그`: 최신 `session_YYYY-MM-DD_NNN.md`

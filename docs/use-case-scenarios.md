@@ -64,7 +64,7 @@ She wants the second session to begin faster than the first.
 
 1. Mina starts a session through the tool entrypoint and asks the AI to restore the framework state.
 2. The AI reads the smallest useful set first: `AGENTS.md`, `.cowork/cowork.md`, `.cowork/06_evolution/project_state.md`, and `.cowork/02_project_definition/deliverable_plan.md`.
-3. Because this is a first greenfield session, the AI does not demand every document up front. It asks only enough questions to establish project type, language choices, likely scope shape, and the first useful objective.
+3. Because this is a first greenfield session, the AI does not demand every document up front. It asks only enough questions to establish project type, language choices, visualization mode, likely scope shape, and the first useful objective.
 4. The first durable project purpose lands in `.cowork/02_project_definition/intent_registry.md` and, if needed, the first `INT-*` instance.
 5. Rough needs settle into early entries in `.cowork/02_project_definition/requirement_spec.md` and possibly `.cowork/02_project_definition/functional_spec.md`.
 6. A fresh session log is opened under `.cowork/members/<name>/workspace/session_logs/` so temporary thinking, open questions, and loose notes have a home that is not mistaken for canon.
@@ -190,7 +190,7 @@ The framework only works if all three sessions feel like the same project rather
 1. Codex begins by restoring from `AGENTS.md`, `.cowork/cowork.md`, `.cowork/06_evolution/project_state.md`, and the latest session log.
 2. During the session, meaningful outcomes are written back into the right phase documents instead of staying trapped in the Codex conversation alone.
 3. When Mina later opens Gemini, Gemini reads `GEMINI.md` but lands on the same `.cowork/` state, not on a Gemini-specific memory store.
-4. The same active phase, active task, language settings, and next-start point appear again because they live in files, not only in the previous assistant's context window.
+4. The same active phase, active task, language and visualization settings, and next-start point appear again because they live in files, not only in the previous assistant's context window.
 5. If Claude Code joins later, Claude sees the same durable state and continues from the same project memory model.
 
 ### Primary artifacts that visibly matter

@@ -47,14 +47,14 @@
 | `cowork.md` | 원칙, 구조, 라이프사이클을 설명하는 마스터 문서 |
 | `01_cowork_protocol/session_protocol.md` | 세션 시작, 진행, 종료, 자동화 절차 |
 | `01_cowork_protocol/tooling_environment_guide.md` | 도구별 승인, 진입점 동기화, 업그레이드 운영 |
-| `01_cowork_protocol/communication_convention.md` | 언어 정책, 톤, 표현 수준, 시각화 규칙의 단일 기준 |
+| `01_cowork_protocol/communication_convention.md` | 언어 정책, 톤, 표현 수준, 시각화 모드 규칙의 단일 기준 |
 | `01_cowork_protocol/decision_authority_matrix.md` | Human / AI 의사결정 권한 경계 |
 | `01_cowork_protocol/escalation_policy.md` | 의견 불일치와 중재 규칙 |
 | `01_cowork_protocol/document_role_inventory.md` | 문서 역할 분류와 운영 인벤토리 |
 | `01_cowork_protocol/document_change_impact_matrix.md` | 구조 변경 시 연쇄 영향 점검 |
 | `05_verification/quality_gate.md` | 단계 전환과 릴리즈 판정 기준 |
 
-언어 정책, 톤, 시각화 기준은 `communication_convention.md`를 기준으로 해석한다.
+언어 정책, 톤, 시각화 모드 기준은 `communication_convention.md`를 기준으로 해석하고, 프로젝트별 선택값은 `project_state.md`에서 복원한다.
 
 ---
 
@@ -111,7 +111,7 @@
 │   ├── decision_authority_matrix.md         ← 의사결정 권한 매트릭스
 │   ├── session_protocol.md                  ← 세션 시작/진행/종료 프로토콜
 │   ├── tooling_environment_guide.md         ← 도구/환경 의존 운영 가이드
-│   ├── communication_convention.md          ← 언어/톤/시각화 기준
+│   ├── communication_convention.md          ← 언어/톤/시각화 모드 기준
 │   ├── escalation_policy.md                 ← 의견 불일치 해결 정책
 │   ├── document_role_inventory.md           ← 문서 역할 인벤토리
 │   └── document_change_impact_matrix.md     ← 수정 영향 추적 매트릭스
@@ -133,27 +133,23 @@
 
 세부 절차는 `session_protocol.md`, 도구/환경 의존 운영은 `tooling_environment_guide.md`가 기준이고, 이 문서는 상위 흐름만 유지한다.
 
-```mermaid
-flowchart TD
-    A["Session Start<br/>Context Handoff -> Briefing -> Mode Selection"] --> B["Project Tailoring<br/>Archetype Kickoff -> Team Mode -> Deliverable Negotiation"]
-    B --> C["DEFINE<br/>Intent -> Requirement Spec -> User Stories -> Deliverable Plan"]
-    C --> G1{"Gate 1<br/>요구사항 확정"}
-    G1 --> D["DESIGN<br/>Domain Model -> Interface Contract -> Data Model -> ADR -> Tech Stack"]
-    D --> G2{"Gate 2<br/>설계 승인"}
-    G2 --> E["BUILD<br/>Milestone Planning -> Task Execution -> Review"]
-    E --> G3{"Gate 3<br/>코드 리뷰 통과"}
-    G3 --> F["VERIFY<br/>Test Strategy -> Test Execution -> Quality Gate 검증"]
-    F --> G4{"Gate 4<br/>검증 완료"}
-    G4 --> H["EVOLVE<br/>Session Log -> Retrospective -> Knowledge Base"]
-    H --> I["DELIVER<br/>Export -> Release Note -> Operation Guide -> User Manual -> README"]
-    I --> G5{"Gate 5<br/>공식 산출물 완성"}
-```
+| 순서 | 단계 | 핵심 산출물/활동 | 게이트 또는 결과 |
+|------|------|------------------|------------------|
+| 1 | Session Start | Context Handoff -> Briefing -> Mode Selection | 작업 재개 준비 |
+| 2 | Project Tailoring | Archetype Kickoff -> Team Mode -> Deliverable Negotiation | 작업 계약 정렬 |
+| 3 | DEFINE | Intent -> Requirement Spec -> User Stories -> Deliverable Plan | Gate 1: 요구사항 확정 |
+| 4 | DESIGN | Domain Model -> Interface Contract -> Data Model -> ADR -> Tech Stack | Gate 2: 설계 승인 |
+| 5 | BUILD | Milestone Planning -> Task Execution -> Review | Gate 3: 코드 리뷰 통과 |
+| 6 | VERIFY | Test Strategy -> Test Execution -> Quality Gate 검증 | Gate 4: 검증 완료 |
+| 7 | EVOLVE | Session Log -> Retrospective -> Knowledge Base | 학습 내용 반영 |
+| 8 | DELIVER | Export -> Release Note -> Operation Guide -> User Manual -> README | Gate 5: 공식 산출물 완성 |
 
 ---
 
 ## 컨텍스트 로딩 원칙
 
 - 세션 시작 시에는 `project_state.md`, `deliverable_plan.md`, 관련 목록 문서, 최신 세션 로그를 우선 로드한다.
+- `project_state.md`에 저장된 대화 언어, 문서 언어, 시각화 모드도 세션 시작 시 함께 복원한다.
 - `project_state.md`는 항상 로드되는 공유 인덱스이므로, 서술형 섹션은 짧게 유지하고 표도 활성/최근 핵심 항목 위주로 관리한다.
 - 상세 맥락이 필요할 때만 `INT-*`, `MS-*`, `TASK-*`, `ADR-*` 같은 상세 문서를 추가 로드한다.
 - `templates/`와 `imported_context/`는 기본 로딩 대상이 아니다.
