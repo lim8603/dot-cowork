@@ -55,7 +55,7 @@
 | Absorb into existing canonical document | A section or table addition solves the problem within the document's responsibility | Roles would mix or a key always-loaded document would become unnecessarily large |
 | Registry + instance | Many items with ID, state, owner, and lifecycle are repeatedly created | A one-off explanation is fully handled in a single body document |
 | Delivery-only | Needed only in the final output, such as release deliverables, public docs, or generated official documents | The project needs a working source document before the final output exists |
-| New canonical document | It will be referenced across multiple sessions and absorption into existing documents causes role collision or overgrowth | It is a one-off note, temporary整理, or a structure expansion without Human approval |
+| New canonical document | It will be referenced across multiple sessions and absorption into existing documents causes role collision or overgrowth | It is a one-off note, temporary cleanup, or a structure expansion without Human approval |
 
 ### Before Proposing A New Canonical Document
 

@@ -19,7 +19,7 @@
 
 ## Change Summary
 
-- First official baseline of the `cowork-context-framework` repository
+- Hygiene / collaboration-model self-improvement (1.1.0) — triggered diet (R1/R2), `state_archive.md`, Carryover Backlog SSOT, Back-Port Queue, no-untriggered-accumulation, live state-document size budget, Collaboration Execution Mode (solo/team), role realization guide
 - The `.cowork` structure follows the `Governance / Canonical / Registry / Instance / Template / Log-Archive` model
 - The default work-breakdown axis is `Intent -> Milestone -> Task`
 - Tool- and environment-dependent operating rules are managed separately in `tooling_environment_guide.md`
@@ -203,5 +203,5 @@
 | Version | Key Change Summary |
 |---------|--------------------|
 | 1.0.0 | First official baseline of the `cowork-context-framework` repository |
-| 1.1.0 | Hygiene / collaboration-model self-improvement — triggered diet (R1/R2), `state_archive.md`, Carryover Backlog SSOT, Back-Port Queue, no-untriggered-accumulation, live state-document size budget, Collaboration Execution Mode (solo/team), role realization guide |
+| 1.1.0 | Hygiene / collaboration-model self-improvement (1.1.0) — triggered diet (R1/R2), `state_archive.md`, Carryover Backlog SSOT, Back-Port Queue, no-untriggered-accumulation, live state-document size budget, Collaboration Execution Mode (solo/team), role realization guide |
 <!-- CUMULATIVE:END -->

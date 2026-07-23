@@ -19,11 +19,11 @@
 
 ## 변경 요약
 
-- `cowork-context-framework` 저장소의 첫 공식 기준선
+- 위생·협업 모델 자기개선(1.1.0) — 트리거형 다이어트(R1/R2)·`state_archive.md`·이월 백로그 SSOT·Back-Port Queue·무트리거 축적 금지·상태문서 크기 예산·협업 실행 모드(solo/team)·역할 물성화 가이드
 - `.cowork` 구조는 `운영 기준 문서 / 기준 본문 / 목록 문서 / 상세 문서 / 템플릿 / 로그·아카이브` 모델을 따른다
 - 기본 작업 분해 축은 `Intent -> Milestone -> Task`를 사용한다
 - 도구·환경 의존 운영 규칙은 `tooling_environment_guide.md`에서 별도 관리한다
-- 이후 `v1.1.0+`부터는 `From` 기반 순차 업그레이드를 사용한다
+- `v1.1.0+`부터는 `From` 기반 순차 업그레이드를 사용한다
 
 ---
 
@@ -203,5 +203,5 @@
 | Version | Key Change Summary |
 |---------|--------------------|
 | 1.0.0 | `cowork-context-framework` 저장소의 첫 공식 기준선 |
-| 1.1.0 | 위생·협업 모델 자기개선 — 트리거형 다이어트(R1/R2)·`state_archive.md`·이월 백로그 SSOT·Back-Port Queue·무트리거 축적 금지·상태문서 크기 예산·협업 실행 모드(solo/team)·역할 물성화 가이드 |
+| 1.1.0 | 위생·협업 모델 자기개선(1.1.0) — 트리거형 다이어트(R1/R2)·`state_archive.md`·이월 백로그 SSOT·Back-Port Queue·무트리거 축적 금지·상태문서 크기 예산·협업 실행 모드(solo/team)·역할 물성화 가이드 |
 <!-- CUMULATIVE:END -->
