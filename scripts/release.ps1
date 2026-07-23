@@ -1,4 +1,4 @@
-param(
+﻿param(
     [Parameter(Mandatory = $true, Position = 0)]
     [ValidateSet('prepare', 'verify', 'publish')]
     [string]$Action,
@@ -123,15 +123,17 @@ function Upsert-ManifestTableField {
         throw "Could not find manifest version table to insert field '$FieldName'."
     }
 
-    return [regex]::Replace(
-        $ManifestText,
-        $headerTablePattern,
-        [System.Text.RegularExpressions.MatchEvaluator]{
-            param($match)
-            $match.Value + "`r`n| $FieldName | $FieldValue |"
-        },
-        1
-    )
+    # Replace only the FIRST header table (the version-info table).
+    # NOTE: the static [regex]::Replace(input, pattern, evaluator, <int>) overload
+    # interprets the trailing int as RegexOptions (1 = IgnoreCase), NOT a match
+    # count — so it would insert the row into EVERY table in the file. Use the
+    # instance .Replace(input, evaluator, count) overload to limit to one.
+    $tableRegex = [regex]::new($headerTablePattern)
+    $evaluator = [System.Text.RegularExpressions.MatchEvaluator]{
+        param($match)
+        $match.Value + "`r`n| $FieldName | $FieldValue |"
+    }
+    return $tableRegex.Replace($ManifestText, $evaluator, 1)
 }
 
 function Get-ManifestTableField {
@@ -279,7 +281,9 @@ function Invoke-Prepare {
     }
 
     $previousVersion = Get-PreviousReleaseVersion -TargetVersion $VersionValue
-    Set-Content -Path $versionFile -Value $VersionValue -Encoding utf8
+    # Write VERSION as BOM-less UTF-8 with LF. WinPS 5.1's `Set-Content -Encoding utf8`
+    # prepends a BOM, which shows up as spurious churn; pin the encoding explicitly.
+    [System.IO.File]::WriteAllText($versionFile, "$VersionValue`n", (New-Object System.Text.UTF8Encoding($false)))
     foreach ($manifest in $frameworkManifests) {
         Update-ManifestHeader -Path $manifest.Path -VersionValue $VersionValue -FromVersionValue $previousVersion -DateFieldName $manifest.DateField
         & (Join-Path $scriptRoot 'update-manifest-cumulative.ps1') -Lang $manifest.Lang -TargetVersion $VersionValue

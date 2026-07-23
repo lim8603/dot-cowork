@@ -1,4 +1,4 @@
-param(
+﻿param(
     [ValidateSet('ko', 'en')]
     [string]$Lang = 'ko',
 
