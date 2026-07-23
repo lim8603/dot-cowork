@@ -68,3 +68,5 @@ When the instance produces a new operating rule, document structure, diet rule, 
 3. Completed items are removed from the queue, leaving one line noting which version they landed in (for example, `-> 1.1.0`).
 
 > This queue is itself the execution mechanism of framework principle #6 ("improve the rules themselves through retrospectives"). Keep the section even when the queue is empty.
+
+---
