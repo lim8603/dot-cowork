@@ -8,8 +8,8 @@
 
 | Item | Value |
 |------|------|
-| Version | 1.1.0 |
-| From | 1.0.0 |
+| Version | 1.2.0 |
+| From | 1.1.0 |
 | Date | 2026-07-23 |
 > The `ADD` table under `## File Classification` below is still the full list for a **fresh baseline install** (including the 1.1.0 new file `state_archive.md`).
 > A sequential `1.0.0 -> 1.1.0` upgrade follows the `## 1.1.0 Upgrade (from 1.0.0)` delta table.
@@ -19,6 +19,7 @@
 
 ## Change Summary
 
+- Onboarding / decision integrity / enforcement self-improvement (1.2.0) — teammate onboarding runbook (F-08), decision reversal / drift detection (F-09), session discipline enforcement hooks (F-10)
 - Hygiene / collaboration-model self-improvement (1.1.0) — triggered diet (R1/R2), `state_archive.md`, Carryover Backlog SSOT, Back-Port Queue, no-untriggered-accumulation, live state-document size budget, Collaboration Execution Mode (solo/team), role realization guide
 - The `.cowork` structure follows the `Governance / Canonical / Registry / Instance / Template / Log-Archive` model
 - The default work-breakdown axis is `Intent -> Milestone -> Task`
@@ -64,6 +65,7 @@
 | `.cowork/01_cowork_protocol/communication_convention.md` | ADD | Communication rules |
 | `.cowork/01_cowork_protocol/decision_authority_matrix.md` | ADD | Decision authority matrix (1.1.0: Collaboration Execution Mode solo/team) |
 | `.cowork/01_cowork_protocol/role_realization.md` | ADD | Role-seat realization guide (1.1.0 new, F-07) |
+| `.cowork/01_cowork_protocol/onboarding_runbook.md` | ADD | Teammate onboarding runbook (1.2.0 new, F-08) |
 | `.cowork/01_cowork_protocol/escalation_policy.md` | ADD | Escalation policy |
 | `.cowork/01_cowork_protocol/document_role_inventory.md` | ADD | Document role inventory |
 | `.cowork/01_cowork_protocol/document_change_impact_matrix.md` | ADD | Change impact matrix |
@@ -151,6 +153,31 @@
 
 ---
 
+## 1.2.0 Upgrade (from 1.1.0)
+
+> The delta applied on a sequential `1.1.0 -> 1.2.0` upgrade. A P2 self-improvement release that adds the onboarding, decision-integrity, and enforcement layers.
+
+### 1.2.0 Change Summary
+
+- **Teammate onboarding runbook (F-08)** — new `onboarding_runbook.md`. The procedure for a person joining a seat (seat selection -> mode transition -> assignment -> handoff). Turns the `solo` seat definition into a prepaid onboarding path.
+- **Decision reversal & drift detection (F-09)** — new section in `decision_authority_matrix.md` + a trigger in `session_protocol.md` §6. Catches ungrounded reversals / drift by comparing Accepted ADRs vs code / documents, with a decision-cohort review principle.
+- **Session discipline enforcement hooks (F-10)** — new section in `tooling_environment_guide.md`. Mechanically enforce the session-start self-checks through tool / git / CI hooks (easing the reliance on voluntary compliance).
+
+### 1.2.0 File Classification
+
+| File | Class | Change |
+|------|------|--------|
+| `.cowork/01_cowork_protocol/onboarding_runbook.md` | ADD | New runbook. Add if absent |
+| `.cowork/01_cowork_protocol/decision_authority_matrix.md` | REPLACE | Rule document. Add the §Decision Reversal & Drift Detection (F-09) section |
+| `.cowork/01_cowork_protocol/tooling_environment_guide.md` | REPLACE | Rule document. Add the §Session Discipline Enforcement (F-10) section |
+| `.cowork/01_cowork_protocol/session_protocol.md` | REPLACE | Rule document. Reflect the F-09 gate trigger, the F-10 hook note, and the 1B-3 runbook pointer |
+| `.cowork/cowork.md` | REPLACE | Rule document. Register `onboarding_runbook.md` in the governance map |
+| `.cowork/01_cowork_protocol/document_role_inventory.md` | REPLACE | Rule document. Register `onboarding_runbook.md` |
+
+> `REPLACE` items are framework-owned rule documents. If an instance has customized such a document, treat it as MERGE and apply only after Human approval.
+
+---
+
 ## 1.1.0 Upgrade (from 1.0.0)
 
 > The delta applied on a sequential `1.0.0 -> 1.1.0` upgrade. A self-improvement release that promotes state-document hygiene rules proven in instance operation into framework defaults.
@@ -204,4 +231,5 @@
 |---------|--------------------|
 | 1.0.0 | First official baseline of the `cowork-context-framework` repository |
 | 1.1.0 | Hygiene / collaboration-model self-improvement (1.1.0) — triggered diet (R1/R2), `state_archive.md`, Carryover Backlog SSOT, Back-Port Queue, no-untriggered-accumulation, live state-document size budget, Collaboration Execution Mode (solo/team), role realization guide |
+| 1.2.0 | Onboarding / decision integrity / enforcement self-improvement (1.2.0) — teammate onboarding runbook (F-08), decision reversal / drift detection (F-09), session discipline enforcement hooks (F-10) |
 <!-- CUMULATIVE:END -->

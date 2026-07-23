@@ -64,6 +64,7 @@ AI session memory resets between sessions. This protocol defines context-preserv
 - [ ] **Selective context loading**: according to the Context Loading Guide in `project_state.md`, load the registries and canonical documents needed for the current phase first. Rule documents such as `cowork.md` and `session_protocol.md` are learned once in the first session and then reopened only when needed.
 - [ ] **Live state-document size self-check (F-05)**: check whether the net body of the always-loaded `project_state.md` + active `my_state.md` has swollen. If completion narratives have accumulated beyond the last 3 sessions, or table cells have puffed up with multiple sessions of narrative, run the R1/R2 harvest before this session's work (§Shared State Index Management). The metric is not the docs-to-code ratio but the **absolute size of the live state documents**.
 - [ ] **Collaboration Execution Mode check (F-06)**: confirm the `Collaboration Execution Mode` (solo/team) in `project_state.md`. In solo, skip per-role bookkeeping and run centered on project_state, but keep the seat definitions (§`decision_authority_matrix.md` Collaboration Execution Mode).
+- [ ] The session-start self-checks above (log creation, size budget, mode) rely on voluntary compliance, so hard-to-undo items can be mechanically enforced with tool hooks (F-10, §`tooling_environment_guide.md` Session Discipline Enforcement).
 - [ ] Review `06_evolution/imported_context/` only when necessary, and extract the needed facts rather than using raw text as a source document.
 - [ ] **Automatically create the session log file** only after member confirmation and prior-log review are complete: `members/<name>/workspace/session_logs/session_YYYY-MM-DD_NNN.md`.
 - [ ] **Automatically configure `.gitignore`** if the session-log ignore rule is missing.
@@ -139,6 +140,8 @@ Once team setup is known through Session Start or §1A, align the team situation
 4. Leave the assignee field blank in the form `(Role-A assignee)` until a real person takes it.
 
 **B-3) Matching When New Members Join**
+
+> For the detailed execution procedure, follow `onboarding_runbook.md` (F-08) — seat selection -> switch the Collaboration Execution Mode `solo -> team` -> team_board assignment -> reflect Task assignees -> member folder / authority / role realization -> handoff briefing.
 
 1. When a new member joins, the AI shows the unassigned role list from the role registry.
 2. Compare the member's capability to role requirements and propose a match.
@@ -438,6 +441,7 @@ When context-window quality starts to degrade, the AI should guide the work into
 ### 6. Automatic Quality Gate Check (Quality Gate)
 
 - When the Human says `let's move to ... phase`, run Pre-Gate Harvest before gate judgment.
+- **Decision reversal & drift check (F-09)** — compare the Accepted decisions in `adr_registry.md` against code, `tech_stack.md`, and the body of the design canonical documents to find ungrounded reversals / drift. If real, issue a corrective ADR or roll back (§`decision_authority_matrix.md` Decision Reversal & Drift Detection).
 - Check the relevant gate in `quality_gate.md` and report whether the gate is ready, blocked, or partial.
 - If the gate is blocked, list the blocking items and the source documents that need attention.
 - If the Human still wants to move forward with an exception, record the reason and follow-up plan in the session log and relevant state documents.

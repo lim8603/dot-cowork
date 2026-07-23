@@ -74,3 +74,30 @@ This document makes authority levels explicit so the team can **reduce unnecessa
 
 - Even a solo project should actively maintain seat definitions **if a teammate joining is within realistic sight** (team definition + solo bookkeeping is the default combination).
 - If the prospect of anyone joining is vague, keep seats minimal or maintain only a single Master seat — do not manage an org chart you will not use every session.
+
+---
+
+## Decision Reversal & Drift Detection — F-09
+
+> Actively catch states where a decision confirmed in an ADR is **silently overturned without an ADR** (reversal), or where documents / code have drifted out of line with the decision (drift). This is the defense line for decision traceability (principles #1 and #4).
+
+### Why It Is Needed
+
+- When a confirmed decision is overturned without grounds, later decisions pile up on a collapsed foundation. Yet a reversal usually surfaces **only when a question happens to touch it** — without an automatic detector, you are relying on luck.
+- This rule replaces that luck with a **review trigger**.
+
+### Reversal Detection
+
+- **Trigger**: at phase transitions (together with Pre-Gate Harvest) and before a release.
+- **Check**: compare the Accepted decisions in `adr_registry.md` against the actual state (code, `tech_stack.md`, the body of the design canonical documents). Find items implemented or documented differently from the decision.
+- **Action**: if a reversal is real, either (a) roll it back or (b) **issue a corrective ADR** to update the decision (promote the ungrounded reversal to a legitimate decision after the fact, or roll it back). Preserve the history through commits and session logs (the ADR body carries only the current decision).
+
+### Decision Cohort Review
+
+- If there are **systematic grounds to suspect** decisions made in a particular window or condition (e.g. a known tool quality-degradation window, a hastily rushed sprint), flag that cohort as a review candidate.
+- Look at it at the **cohort level**, not the individual decision — if one is wrong, suspect the other decisions from the same window too.
+- Close each review as one of normal / corrected / reversed; corrections and reversals follow the procedure above.
+
+### Authority
+
+- Judging whether a reversal occurred and issuing a corrective ADR are **J** (AI proposes -> Human approves). When the AI finds an ungrounded reversal, it raises its concern once and follows the Human's decision.

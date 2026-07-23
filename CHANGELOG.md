@@ -4,6 +4,19 @@ All notable changes to `cowork-context-framework` will be documented in this fil
 
 The project follows semantic versioning.
 
+## [1.2.0] - 2026-07-23
+
+Second self-improvement release (P2). Adds the onboarding, decision-integrity, and enforcement mechanisms that 1.1.0 left open. Applies to `frameworks/ko` and `frameworks/en` on the same release line.
+
+### Added
+- `01_cowork_protocol/onboarding_runbook.md` (F-08) — the detailed procedure for bringing a human into a role seat: seat selection → `solo → team` mode switch → team_board assignment → Task reassignment → member folder / permissions / execution mode → handoff briefing. Turns the `solo`-mode seat definitions into a prepaid onboarding path.
+- Decision Reversal & Drift Detection section in `decision_authority_matrix.md` (F-09) — a triggered check (on phase transition and before release) that compares Accepted ADRs against code / `tech_stack.md` / design canon to catch un-ADR'd reversals and drift, plus a decision-cohort review principle; wired into `session_protocol.md` §6.
+- Session Discipline Enforcement (Enforcement Hooks) section in `tooling_environment_guide.md` (F-10) — which self-checks (session-log creation, live-state size budget, carryover-table-in-briefing, schema drift, commit convention) can be mechanically enforced via tool/git/CI hooks, so discipline no longer depends only on the AI voluntarily complying; referenced from the `session_protocol.md` session-start checklist.
+
+### Changed
+- `cowork.md` Governance Map and `document_role_inventory.md` register `onboarding_runbook.md`.
+- `session_protocol.md` 1B-3 (teammate matching) points to the onboarding runbook; the session-start checklist notes hook-enforceability of the self-checks.
+
 ## [1.1.0] - 2026-07-23
 
 First self-improvement release: hygiene and collaboration-model rules proven in real instance operation are promoted into the framework baseline. Applies to `frameworks/ko` and `frameworks/en` (release line kept in sync).

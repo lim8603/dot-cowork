@@ -60,6 +60,7 @@
 | `01_cowork_protocol/communication_convention.md` | 언어 정책, 톤, 표현 수준, 시각화 규칙의 단일 기준 |
 | `01_cowork_protocol/decision_authority_matrix.md` | Human / AI 의사결정 권한 경계, 협업 실행 모드(solo/team) |
 | `01_cowork_protocol/role_realization.md` | 역할 좌석의 실행 방식(사람/AI 페르소나/독립 서브에이전트) |
+| `01_cowork_protocol/onboarding_runbook.md` | 사람이 역할 좌석에 합류할 때의 온보딩 절차 |
 | `01_cowork_protocol/escalation_policy.md` | 의견 불일치와 중재 규칙 |
 | `01_cowork_protocol/document_role_inventory.md` | 문서 역할 분류와 운영 인벤토리 |
 | `01_cowork_protocol/document_change_impact_matrix.md` | 구조 변경 시 연쇄 영향 점검 |

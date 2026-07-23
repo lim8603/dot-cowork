@@ -60,6 +60,7 @@ The point: the value of a seat is in "the definition exists", not in "recording 
 | `01_cowork_protocol/communication_convention.md` | Single source for language policy, tone, expression depth, and visualization rules |
 | `01_cowork_protocol/decision_authority_matrix.md` | Decision-authority boundary between Human and AI, and Collaboration Execution Mode (solo/team) |
 | `01_cowork_protocol/role_realization.md` | How role seats are realized (person / AI persona / independent sub-agent) |
+| `01_cowork_protocol/onboarding_runbook.md` | Onboarding procedure when a person joins a role seat |
 | `01_cowork_protocol/escalation_policy.md` | Disagreement and mediation rules |
 | `01_cowork_protocol/document_role_inventory.md` | Document-role classification and operating inventory |
 | `01_cowork_protocol/document_change_impact_matrix.md` | Cascading-impact check when structure changes |
