@@ -29,6 +29,7 @@
 - `.cowork/` 문서는 프로젝트의 공유 기준 문서다.
 - 확정된 사실, 가정, 미확정 사항은 구분하여 기록한다.
 - 주요 결정과 릴리즈 산출물은 추적 가능한 근거를 남긴다.
+- **무트리거 축적 금지 (F-04).** 누적되는 모든 로딩 문서(상태 인덱스, KB, 회고, 완료 서사 등)는 **하베스트/분리 트리거를 명시적으로 선언**해야 한다. "길어지면 정리한다"처럼 트리거 없는 규칙은 실제로 발동하지 않아 문서가 append-only로 비대해진다. 각 문서는 "무엇이 참이면 무엇을 어디로 옮기는가"를 규칙으로 갖는다(예: 완료 서사 R1, 표 셀 R2, KB 15항목, 회고 4개). 위생의 목표는 "안 쌓기"(불가능)가 아니라 "갚을 트리거를 갖기"다.
 
 ### AI 재량 영역
 
@@ -36,6 +37,15 @@
 - AI 성능이 향상되면 더 높은 품질의 계획, 문서화, 공식 산출물 생성을 시도할 수 있다.
 - 다만 위 불변 규칙을 깨지 않는 범위에서만 자율성을 행사한다.
 - 더 나은 협업 방식이 발견되면 Human 승인 후 프레임워크 자체를 갱신한다.
+
+### 협업 실행 모드 (Collaboration Execution Mode) — F-06
+
+역할 좌석(Forge/Lux/Sage 같은 Role-ID)의 **정의**와 매 세션 **부기(bookkeeping)** 는 분리한다. `project_state.md`에 `협업 실행 모드 = solo | team`을 둔다.
+
+- **team** — 실제 사람이 여러 좌석에 배정됨. 역할별 `my_state.md`, `team_board.md`, 상향 동기화 등 팀 부기를 전부 운영한다.
+- **solo** — 1인이 여러 좌석을 겸하거나 AI 페르소나로 운영. **좌석 정의(역할 경계·권한·소유 영역)는 유지**하되, 매 세션 역할별 부기는 생략하고 `project_state.md` 중심으로 단순 운영한다. 좌석은 미래 동료 온보딩용 스캐폴드로 보존된다(사람이 합류하면 그 좌석에 그대로 배정).
+
+핵심: 좌석의 값은 "정의가 존재함"에 있지 "매 세션 역할로 기록함"에 있지 않다. 동료 합류 시야가 막연한 1인 프로젝트가 team 부기를 매 세션 돌리는 것은 보험료만 내는 것이다. 상세 경계와 전환 규칙은 `decision_authority_matrix.md` §협업 실행 모드.
 
 ---
 
@@ -48,7 +58,8 @@
 | `01_cowork_protocol/session_protocol.md` | 세션 시작, 진행, 종료, 자동화 절차 |
 | `01_cowork_protocol/tooling_environment_guide.md` | 도구별 승인, 진입점 동기화, 업그레이드 운영 |
 | `01_cowork_protocol/communication_convention.md` | 언어 정책, 톤, 표현 수준, 시각화 규칙의 단일 기준 |
-| `01_cowork_protocol/decision_authority_matrix.md` | Human / AI 의사결정 권한 경계 |
+| `01_cowork_protocol/decision_authority_matrix.md` | Human / AI 의사결정 권한 경계, 협업 실행 모드(solo/team) |
+| `01_cowork_protocol/role_realization.md` | 역할 좌석의 실행 방식(사람/AI 페르소나/독립 서브에이전트) |
 | `01_cowork_protocol/escalation_policy.md` | 의견 불일치와 중재 규칙 |
 | `01_cowork_protocol/document_role_inventory.md` | 문서 역할 분류와 운영 인벤토리 |
 | `01_cowork_protocol/document_change_impact_matrix.md` | 구조 변경 시 연쇄 영향 점검 |
@@ -156,8 +167,9 @@ flowchart TD
 - 세션 시작 시에는 `project_state.md`, `deliverable_plan.md`, 관련 목록 문서, 최신 세션 로그를 우선 로드한다.
 - `project_state.md`는 항상 로드되는 공유 인덱스이므로, 서술형 섹션은 짧게 유지하고 표도 활성/최근 핵심 항목 위주로 관리한다.
 - 상세 맥락이 필요할 때만 `INT-*`, `MS-*`, `TASK-*`, `ADR-*` 같은 상세 문서를 추가 로드한다.
-- `templates/`와 `imported_context/`는 기본 로딩 대상이 아니다.
+- `templates/`와 `imported_context/`, `state_archive.md`는 기본 로딩 대상이 아니다.
 - imported context는 필요한 사실을 목록 문서, 기준 본문, 상세 문서로 추출한 뒤 보조 근거로만 남긴다.
+- **라이브 상태 문서 크기 예산 (F-05).** 문서 위생의 건강 지표는 "문서:코드 비율"이 아니다(세션 로그·아카이브는 코드와 무관하게 누적되므로 오해를 부른다). 진짜 지표는 **매 세션 항상 로드되는 라이브 상태 문서의 절대 크기**다 — `project_state.md` + 활성 `my_state.md`. 이 둘은 컨텍스트 창이 커져도 신호밀도·비용·사람 가독성 때문에 얇게 유지해야 한다. 세션 시작 시 이 크기를 자체 점검하고, 예산(권장: 각 파일 헤더 제외 순 본문이 눈에 띄게 비대)을 넘기면 R1/R2 하베스트를 먼저 돌린다. 상세 점검 절차는 `session_protocol.md` 세션 시작 체크리스트.
 
 ---
 

@@ -18,6 +18,7 @@
 |------|----------------|------|
 | 세션 시작, 브리핑, 모드 선택, 종료 | `session_protocol.md` | 도구 공통 프로토콜 |
 | 도구별 시작 프롬프트, 설정 예시, 승인 UX | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` | 현재 사용 중인 도구 문서만 직접 따른다 |
+| 역할 좌석 실행 방식(페르소나/독립 서브에이전트), 사용 모델 | `role_realization.md` + 현재 도구 진입점 문서 | 독립 서브에이전트·다중 모델 지원은 도구 역량에 따라 다름 |
 | 4대 진입점 동기화 기준 | `tooling_environment_guide.md` | 공통 컨텍스트가 바뀔 때 함께 검토 |
 | 프레임워크 업그레이드 실행 경로 | `tooling_environment_guide.md` | 네트워크/오프라인 분기 포함 |
 | 버전 체인, 파일 분류, 단계별 적용 기준 | `upgrade_manifest.md` | 릴리즈별 authoritative source |

@@ -29,6 +29,7 @@ This framework defines the rules and deliverable system for software development
 - `.cowork/` documents are the project's shared source documents.
 - Record confirmed facts, working assumptions, and open items separately.
 - Major decisions and release deliverables must leave traceable evidence.
+- **No untriggered accumulation (F-04).** Every accumulating loading document (state index, KB, retrospective, completion narratives, and so on) **must declare an explicit harvest/split trigger**. A triggerless rule such as "clean it up when it gets long" never actually fires, so the document swells append-only. Each document carries a rule of the form "when what is true, move what to where" (for example, completion narratives R1, table cells R2, KB 15 items, retrospectives 4). The goal of hygiene is not "never accumulate" (impossible) but "always have a trigger that pays it down".
 
 ### AI Discretion Area
 
@@ -36,6 +37,15 @@ This framework defines the rules and deliverable system for software development
 - As AI capabilities improve, it may attempt better planning, documentation, and official deliverable generation.
 - It may use that autonomy only without violating the invariant rules above.
 - When a better collaboration pattern is discovered, the framework itself can be updated after Human approval.
+
+### Collaboration Execution Mode (F-06)
+
+Separate the **definition** of a role seat (a Role-ID such as Forge/Lux/Sage) from the per-session **bookkeeping**. Keep a `Collaboration Execution Mode = solo | team` field in `project_state.md`.
+
+- **team** — real people are assigned to multiple seats. Run all team bookkeeping: per-role `my_state.md`, `team_board.md`, upward sync, and so on.
+- **solo** — one person covers multiple seats, or the project runs on AI personas. **Keep the seat definitions (role boundaries, authority, ownership areas)**, but skip per-session per-role bookkeeping and run simply, centered on `project_state.md`. The seats are preserved as scaffolding for onboarding future teammates (when a person joins, they are assigned directly to that seat).
+
+The point: the value of a seat is in "the definition exists", not in "recording it as a role every session". A solo project with no realistic near-term joiner running team bookkeeping every session is just paying premiums. For detailed boundaries and transition rules, see `decision_authority_matrix.md` §Collaboration Execution Mode.
 
 ---
 
@@ -48,7 +58,8 @@ This framework defines the rules and deliverable system for software development
 | `01_cowork_protocol/session_protocol.md` | Session start, in-progress, end, and automation procedures |
 | `01_cowork_protocol/tooling_environment_guide.md` | Tool-specific approval, entrypoint sync, and upgrade operation |
 | `01_cowork_protocol/communication_convention.md` | Single source for language policy, tone, expression depth, and visualization rules |
-| `01_cowork_protocol/decision_authority_matrix.md` | Decision-authority boundary between Human and AI |
+| `01_cowork_protocol/decision_authority_matrix.md` | Decision-authority boundary between Human and AI, and Collaboration Execution Mode (solo/team) |
+| `01_cowork_protocol/role_realization.md` | How role seats are realized (person / AI persona / independent sub-agent) |
 | `01_cowork_protocol/escalation_policy.md` | Disagreement and mediation rules |
 | `01_cowork_protocol/document_role_inventory.md` | Document-role classification and operating inventory |
 | `01_cowork_protocol/document_change_impact_matrix.md` | Cascading-impact check when structure changes |
@@ -156,8 +167,9 @@ flowchart TD
 - At session start, load `project_state.md`, `deliverable_plan.md`, the relevant registries, and the latest session log first.
 - `project_state.md` is the shared resume index that is always loaded, so keep narrative sections short and keep tables focused on active or recent key items.
 - Load detail documents like `INT-*`, `MS-*`, `TASK-*`, and `ADR-*` only when deeper context is needed.
-- `templates/` and `imported_context/` are not default-loading targets.
+- `templates/`, `imported_context/`, and `state_archive.md` are not default-loading targets.
 - Imported context should remain only as supporting evidence after the required facts are extracted into registries, canonical documents, or instance documents.
+- **Live state-document size budget (F-05).** The health metric for document hygiene is *not* the "docs-to-code ratio" (session logs and archives accumulate independently of code, so that ratio misleads). The real metric is the **absolute size of the live state documents that are always loaded every session** — `project_state.md` + the active `my_state.md`. These two must stay thin even as the context window grows, for signal density, cost, and human readability. Self-check this size at session start, and if it exceeds the budget (recommended: the net body of each file, excluding headers, is noticeably swollen), run the R1/R2 harvest first. The detailed check procedure is in the `session_protocol.md` session-start checklist.
 
 ---
 

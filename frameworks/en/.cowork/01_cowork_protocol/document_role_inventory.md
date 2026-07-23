@@ -99,7 +99,8 @@
 | Path | Class | Accumulation Scale | Notes |
 |------|------|--------------------|------|
 | `01_cowork_protocol/communication_convention.md` | Governance | Low | Single source for language, tone, and visualization |
-| `01_cowork_protocol/decision_authority_matrix.md` | Governance | Low | Rarely changes |
+| `01_cowork_protocol/decision_authority_matrix.md` | Governance | Low | Rarely changes. Includes Collaboration Execution Mode (solo/team) |
+| `01_cowork_protocol/role_realization.md` | Governance | Low | Role-seat realization guide (F-07) |
 | `01_cowork_protocol/escalation_policy.md` | Governance | Low | Rarely changes |
 | `01_cowork_protocol/session_protocol.md` | Governance | Medium | Shared session protocol |
 | `01_cowork_protocol/tooling_environment_guide.md` | Governance | Low to Medium | Split-out document for tool/environment-dependent operation |
@@ -157,7 +158,8 @@
 | Path | Class | Accumulation Scale | Notes |
 |------|------|--------------------|------|
 | `06_evolution/knowledge_base.md` | Canonical | High | Consider topic-based split if real items exceed 15 or recent sessions repeatedly reference only the same topic |
-| `06_evolution/project_state.md` | Canonical | Medium | Default-loading target |
+| `06_evolution/project_state.md` | Canonical | Medium | Default-loading target. Narrative completion history stays in-body for the last 3 sessions only (R1) |
+| `06_evolution/state_archive.md` | Log / Archive | High (cumulative) | R1 harvest target. Append-only, not a default-loading target, never compressed |
 | `06_evolution/retrospective.md` | Canonical | Medium to High | Consider split by round or scope when accumulation patterns appear |
 | `06_evolution/templates/session_log_template.md` | Template | Low | Real logs are created under `members/<name>/workspace/session_logs/` |
 
@@ -186,4 +188,5 @@
 - Areas that already require a `Registry + Instance` structure are `Intent`, `User Story`, `ADR`, `Milestone`, and `Task`.
 - Among the remaining documents, the first candidates for renewed structure review are `functional_spec.md`, `ui_spec.md`, `test_case.md`, `knowledge_base.md`, `release_note.md`, and `team_board.md`.
 - Register-like documents such as `risk_register.md` and `tech_stack.md` usually work well as a single canonical document.
-- Keep raw accumulated logs in `members/<name>/workspace/session_logs/` and `imported_context/`, and keep the rule that only refined results are promoted into canonical documents.
+- Keep raw accumulated logs in `members/<name>/workspace/session_logs/`, `imported_context/`, and `06_evolution/state_archive.md`, and keep the rule that only refined results are promoted into canonical documents.
+- `project_state.md` and `my_state.md` are loading documents where completion narratives easily accumulate append-only. Continuously manage their loading size with the triggered diet rules (R1: keep the last 3 sessions in-body + on `wrap up` move the overflow to `state_archive.md`; R2: when a table cell swells, split the detail into a detail document or a session-log pointer). Details in `session_protocol.md` §Shared State Index Management.

@@ -15,6 +15,7 @@
 | 팀 구성 | |
 | 팀 규모 | |
 | 협업 모드 | |
+| 협업 실행 모드 | |
 | 현재 Phase | |
 | 활성 Intent | |
 | 활성 Milestone | |
@@ -31,6 +32,7 @@
 - `팀 구성`: `1인` / `확정팀` / `사전배분`
 - `팀 규모`: `1인` / `소규모(2~5)` / `중규모(6~15)` / `대규모(16+)`
 - `협업 모드`: `Inactive(준비 중)` / `Active(Task 할당 완료)`
+- `협업 실행 모드`: `solo`(좌석 정의 유지 + 역할별 부기 생략) / `team`(역할별 부기 전부 운영) — 상세는 `decision_authority_matrix.md` §협업 실행 모드 (F-06)
 - `현재 Phase`: `Define` / `Design` / `Build` / `Verify` / `Evolve` / `Deliver`
 - `상태`: `Green` / `Yellow` / `Red`
 - `활성 Intent`, `활성 Milestone`, `활성 Task`는 현재 실제 ID를 적고, 없으면 `없음`으로 적는다.
