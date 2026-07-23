@@ -45,5 +45,26 @@ State the scope first, then record what worked and what should improve.
 
 ---
 
-## 4. Needed Updates To Cowork Rules
+## 4. Needed Updates To Cowork Rules (Framework Back-Port Queue)
+
+> This section is the single queue for **instance learning -> framework back-port**. Add here the rules/patterns discovered while running the project that would help other projects too if reflected into the framework itself.
+
 - None
+
+### Back-Port Trigger
+
+When the instance produces a new operating rule, document structure, diet rule, tripwire, and so on during a session, the AI asks itself:
+
+- Is this rule **specific to this project**, or **generally valid for other projects too**?
+- Does it **fill a gap/defect in the framework 1.0 defaults** (for example, giving a trigger to a triggerless rule, adding a missing artifact)?
+- Has this rule been applied/referenced repeatedly in 2 or more of the last 3 sessions (a stabilization signal)?
+
+**If any answer is "yes"**, register that rule as `[candidate]` in this queue. If it stays only in the instance and is not flowed into the framework, the next project rediscovers the same thing.
+
+### Promotion Path
+
+1. The Human reviews the queue item and **approves reflection into the framework**.
+2. Approved items are reflected into the framework repo's next minor version and registered in the version chain / file classification of `.cowork/upgrade_manifest.md` (§`session_protocol.md` 16 Framework Upgrade).
+3. Completed items are removed from the queue, leaving one line noting which version they landed in (for example, `-> 1.1.0`).
+
+> This queue is itself the execution mechanism of framework principle #6 ("improve the rules themselves through retrospectives"). Keep the section even when the queue is empty.

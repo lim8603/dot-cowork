@@ -18,6 +18,7 @@
 |------|-------------------------|------|
 | Session start, briefing, mode selection, end | `session_protocol.md` | Shared protocol across tools |
 | Tool-specific startup prompts, setting examples, approval UX | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` | Follow only the document for the tool currently in use |
+| How role seats are realized (persona / independent sub-agent), model used | `role_realization.md` + current tool entrypoint document | Independent sub-agent and multi-model support vary by tool capability |
 | Sync rules across the four entrypoints | `tooling_environment_guide.md` | Review together when shared context changes |
 | Framework upgrade execution path | `tooling_environment_guide.md` | Includes network/offline branching |
 | Version chain, file classes, per-release application rules | `upgrade_manifest.md` | Release-specific authoritative source |

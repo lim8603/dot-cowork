@@ -99,7 +99,8 @@
 | 경로 | 분류 | 누적 규모 | 비고 |
 |------|------|----------|------|
 | `01_cowork_protocol/communication_convention.md` | 운영 기준 문서 | 낮음 | 언어, 톤, 시각화의 단일 기준 |
-| `01_cowork_protocol/decision_authority_matrix.md` | 운영 기준 문서 | 낮음 | 변동 적음 |
+| `01_cowork_protocol/decision_authority_matrix.md` | 운영 기준 문서 | 낮음 | 변동 적음. 협업 실행 모드(solo/team) 포함 |
+| `01_cowork_protocol/role_realization.md` | 운영 기준 문서 | 낮음 | 역할 좌석 실행 방식 가이드(F-07) |
 | `01_cowork_protocol/escalation_policy.md` | 운영 기준 문서 | 낮음 | 변동 적음 |
 | `01_cowork_protocol/session_protocol.md` | 운영 기준 문서 | 중간 | 세션 공통 프로토콜 |
 | `01_cowork_protocol/tooling_environment_guide.md` | 운영 기준 문서 | 낮음~중간 | 도구/환경 의존 운영 분리 문서 |
@@ -156,7 +157,8 @@
 | 경로 | 분류 | 누적 규모 | 비고 |
 |------|------|----------|------|
 | `06_evolution/knowledge_base.md` | 기준 본문 | 높음 | 실항목 15개 초과 또는 최근 3세션 편중 참조 시 분리 검토 |
-| `06_evolution/project_state.md` | 기준 본문 | 중간 | 기본 로딩 대상 |
+| `06_evolution/project_state.md` | 기준 본문 | 중간 | 기본 로딩 대상. 서술형 완료 서사는 최근 3세션만 본문 유지(R1) |
+| `06_evolution/state_archive.md` | 로그 / 아카이브 | 높음(누적) | R1 하베스트 대상. append-only, 기본 로딩 대상 아님. 압축하지 않음 |
 | `06_evolution/retrospective.md` | 기준 본문 | 중간~높음 | 완료 회고 4개 이상 또는 최근 3세션 최신 회고 편중 참조 시 분리 검토 |
 | `06_evolution/templates/session_log_template.md` | 템플릿 | 낮음 | 실제 로그는 `members/<이름>/workspace/session_logs/`에 생성 |
 
@@ -185,4 +187,5 @@
 - 이미 `목록 문서 + 상세 문서` 구조가 필요한 영역은 `Intent`, `User Story`, `ADR`, `Milestone`, `Task`로 정리되었다.
 - 나머지 문서 중 당장 구조 분리를 다시 검토할 우선 후보는 `functional_spec.md`, `ui_spec.md`, `test_case.md`, `knowledge_base.md`, `release_note.md`, `team_board.md`다.
 - `risk_register.md`, `tech_stack.md`처럼 register 성격이 강한 문서는 단일 기준 본문으로도 충분히 운영 가능하다.
-- 실제 누적 로그 원문은 `members/<이름>/workspace/session_logs/`, `imported_context/`에 두고, 기준 본문에는 정제된 결과만 승격하는 원칙을 유지한다.
+- 실제 누적 로그 원문은 `members/<이름>/workspace/session_logs/`, `imported_context/`, `06_evolution/state_archive.md`에 두고, 기준 본문에는 정제된 결과만 승격하는 원칙을 유지한다.
+- `project_state.md`·`my_state.md`는 완료 서사가 append-only로 누적되기 쉬운 로딩 문서다. 트리거형 다이어트 규칙(R1: 최근 3세션 본문 + `마무리` 시 초과분 `state_archive.md` 이관 / R2: 표 셀 비대 시 상세 문서·세션 로그 포인터로 분리)으로 로딩 크기를 상시 관리한다. 상세는 `session_protocol.md` §공유 상태 인덱스 관리.

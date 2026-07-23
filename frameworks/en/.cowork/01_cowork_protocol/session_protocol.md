@@ -62,6 +62,8 @@ AI session memory resets between sessions. This protocol defines context-preserv
 - [ ] In a team project, review role and task assignment status in `.cowork/members/team_board.md`.
 - [ ] Check confirmed deliverables and missing data in `deliverable_plan.md`.
 - [ ] **Selective context loading**: according to the Context Loading Guide in `project_state.md`, load the registries and canonical documents needed for the current phase first. Rule documents such as `cowork.md` and `session_protocol.md` are learned once in the first session and then reopened only when needed.
+- [ ] **Live state-document size self-check (F-05)**: check whether the net body of the always-loaded `project_state.md` + active `my_state.md` has swollen. If completion narratives have accumulated beyond the last 3 sessions, or table cells have puffed up with multiple sessions of narrative, run the R1/R2 harvest before this session's work (§Shared State Index Management). The metric is not the docs-to-code ratio but the **absolute size of the live state documents**.
+- [ ] **Collaboration Execution Mode check (F-06)**: confirm the `Collaboration Execution Mode` (solo/team) in `project_state.md`. In solo, skip per-role bookkeeping and run centered on project_state, but keep the seat definitions (§`decision_authority_matrix.md` Collaboration Execution Mode).
 - [ ] Review `06_evolution/imported_context/` only when necessary, and extract the needed facts rather than using raw text as a source document.
 - [ ] **Automatically create the session log file** only after member confirmation and prior-log review are complete: `members/<name>/workspace/session_logs/session_YYYY-MM-DD_NNN.md`.
 - [ ] **Automatically configure `.gitignore`** if the session-log ignore rule is missing.
@@ -215,6 +217,8 @@ the AI first determines the start path, then matches the utterance after the bri
 
 The AI reads the available source documents discovered during Session Start (`project_state.md`, `team_board.md` for team projects, `my_state.md` when it exists, and the latest session log) and prints the briefing in the following form.
 
+The briefing's `Carry-over` line is drawn from the **`Carryover Backlog` table (single SSOT)** in `project_state.md`. If there are multiple carry-over items or any trigger-waiting entries, do not shrink them to a one-line summary — **include the table itself in the briefing**. Watching carry-over triggers is the AI's responsibility: before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work, and **raises on its own** any trigger that has arrived or any item now ready to start.
+
 **Shown to a Master:**
 ```text
 Project: [Project Name]
@@ -313,8 +317,9 @@ In a solo project, the briefing is simplified.
 
 - When the Human says `wrap up`, run the Session End Enrichment Check first.
 - Close the current session log with summary, carry-over items, decisions, and next-session context.
-- Sync `project_state.md` with next starting point, Human confirmation items, and current high-signal status.
-- Sync the member's `my_state.md` with assigned work, carry-over items, and referenced session log.
+- Sync `project_state.md` with next starting point, Human confirmation items, and current high-signal status (harvest completion narratives beyond the last 3 sessions into `state_archive.md` — R1).
+- Sync the `Carryover Backlog` table in `project_state.md` — remove resolved items, add new carry-overs / triggers.
+- Sync the member's `my_state.md` with assigned work, carry-over items, and referenced session log (harvest overflow completion narratives — R1).
 - In team projects, sync `team_board.md` as needed when task state or assignee state changed.
 
 #### Missing-Input Handling Before The First Session Ends
@@ -347,7 +352,14 @@ Instead:
 
 - Update it whenever the active phase, active Intent, active Milestone, active Task, next starting point, or current risk level changes in a meaningful way.
 - Keep only the high-signal summary there; push deeper context into registries, detail documents, or session logs.
-- If a section becomes long, compress it into summary form and point to the relevant source documents.
+- **Triggered diet rule (R1 — completion-narrative harvest).** "Compress when it gets long" has no trigger, so completion narratives easily accumulate append-only every session. To prevent that:
+  - Keep the narrative completion history (the ✅-done and handoff blocks) of `Next Starting Point` and `AI Handoff Memo` **in-body for the last N sessions only (default 3)**.
+  - On `wrap up`, **move (append-only) the raw text** of older completion narratives into the `#NNN harvest` section of `06_evolution/state_archive.md`, and leave only a one-line pointer of the form `[state_archive.md](state_archive.md) #NNN harvest` in the body.
+  - Harvest the `Session Intent` and `recent decision/work notes` of `my_state.md` under the same rule into the `my_state.md harvest` section of `state_archive.md`.
+  - The move is **lossless** — it is a raw-text relocation, not a summary or deletion. Refinement happens only on the body side.
+  - N is adjustable per project, but the default is 3.
+- **Triggered diet rule (R2 — table-cell overgrowth split).** When a specific table cell such as `Active Task Summary` swells with multiple sessions of narrative, split the detail into `tasks/TASK-*.md` (in progress) or a session-log pointer (Done + time elapsed / no longer affecting current-work context), and keep only the **resume essentials** in the cell.
+  - However, **keep an item in the cell even when it is large if it still affects the current work's context** (no churn). The cleanup gate is "does it no longer affect the current-work context?".
 
 #### Imported Context Management (`imported_context/`)
 
@@ -434,6 +446,7 @@ When context-window quality starts to degrade, the AI should guide the work into
 
 - Promote reusable insights only when they are stable enough to help future sessions or future work.
 - Promote retrospective findings only when the scope is clear and the follow-up actions are concrete.
+- **Framework back-port (Back-Port).** If during a session the instance produced a new operating rule, document structure, diet rule, or tripwire, and it is not specific to this project but generally valid for other projects too or fills a gap in the framework 1.0 defaults, register it as `[candidate]` in the `Framework Back-Port Queue` (§4) of `retrospective.md`. On Human approval, reflect it into the next minor version and register it in `upgrade_manifest.md`. If it stays only in the instance, the next project rediscovers the same thing.
 - Leave unconfirmed hypotheses, copied raw notes, one-off debugging traces, and duplicated content in the session log.
 - Before promotion, check whether a similar item already exists to avoid duplication.
 - Keep `knowledge_base.md` and `retrospective.md` summary-first, and review splitting when their accumulation thresholds are hit.
@@ -535,6 +548,9 @@ Before the session ends on `wrap up`:
 - if empty items remain, add them to the carry-over list and ask the Human whether to fill them now or later
 - synchronize the next starting point, Human confirmation items, and key risks in `project_state.md`
 - synchronize assigned work, next starting point, carry-over items, and referenced session log in the member's `my_state.md`
+- **Completion-narrative harvest (R1)** — when the completion narratives in `project_state.md` / `my_state.md` exceed the last N sessions (default 3), move the overflow raw text into `06_evolution/state_archive.md` and leave only a one-line pointer in the body (§Shared State Index Management R1).
+- **Carryover Backlog table sync** — in the `Carryover Backlog` table of `project_state.md`, remove items resolved this session and add newly arisen carry-overs / triggers (§1D briefing's single SSOT).
+
 ### 13. Proactive Elicitation
 
 The AI should naturally ask for information that is still missing from the current phase's source documents even when the Human does not ask first.
@@ -709,6 +725,7 @@ At the start of a new session, the AI automatically checks the following.
 .cowork/
 ├── 06_evolution/
 │   ├── project_state.md             <- shared state index (tracked in VCS)
+│   ├── state_archive.md             <- harvested completion-narrative archive (append-only, tracked in VCS, excluded from default loading)
 │   ├── imported_context/            <- copied conversations / raw transcripts
 │   ├── templates/
 │   │   └── session_log_template.md  <- session log form (reference)
