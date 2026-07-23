@@ -101,6 +101,7 @@
 | `01_cowork_protocol/communication_convention.md` | 운영 기준 문서 | 낮음 | 언어, 톤, 시각화의 단일 기준 |
 | `01_cowork_protocol/decision_authority_matrix.md` | 운영 기준 문서 | 낮음 | 변동 적음. 협업 실행 모드(solo/team) 포함 |
 | `01_cowork_protocol/role_realization.md` | 운영 기준 문서 | 낮음 | 역할 좌석 실행 방식 가이드(F-07) |
+| `01_cowork_protocol/onboarding_runbook.md` | 운영 기준 문서 | 낮음 | 동료 온보딩 절차(F-08) |
 | `01_cowork_protocol/escalation_policy.md` | 운영 기준 문서 | 낮음 | 변동 적음 |
 | `01_cowork_protocol/session_protocol.md` | 운영 기준 문서 | 중간 | 세션 공통 프로토콜 |
 | `01_cowork_protocol/tooling_environment_guide.md` | 운영 기준 문서 | 낮음~중간 | 도구/환경 의존 운영 분리 문서 |

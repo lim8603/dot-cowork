@@ -8,8 +8,8 @@
 
 | 항목 | 내용 |
 |------|------|
-| Version | 1.1.0 |
-| From | 1.0.0 |
+| Version | 1.2.0 |
+| From | 1.1.0 |
 | 날짜 | 2026-07-23 |
 > 아래 `## 파일 분류`의 `ADD` 표는 여전히 **신규 프레임워크 기준선 설치용** 전체 목록이다(1.1.0 신규 파일 `state_archive.md` 포함).
 > `1.0.0 → 1.1.0` 순차 업그레이드는 `## 1.1.0 업그레이드 (from 1.0.0)` 델타 표를 따른다.
@@ -19,6 +19,7 @@
 
 ## 변경 요약
 
+- 온보딩·결정 무결성·강제 자기개선(1.2.0) — 동료 온보딩 런북(F-08)·결정 반전/드리프트 감지(F-09)·세션 규율 강제 훅(F-10)
 - 위생·협업 모델 자기개선(1.1.0) — 트리거형 다이어트(R1/R2)·`state_archive.md`·이월 백로그 SSOT·Back-Port Queue·무트리거 축적 금지·상태문서 크기 예산·협업 실행 모드(solo/team)·역할 물성화 가이드
 - `.cowork` 구조는 `운영 기준 문서 / 기준 본문 / 목록 문서 / 상세 문서 / 템플릿 / 로그·아카이브` 모델을 따른다
 - 기본 작업 분해 축은 `Intent -> Milestone -> Task`를 사용한다
@@ -64,6 +65,7 @@
 | `.cowork/01_cowork_protocol/communication_convention.md` | ADD | 소통 규칙 |
 | `.cowork/01_cowork_protocol/decision_authority_matrix.md` | ADD | 의사결정 권한 매트릭스 (1.1.0: 협업 실행 모드 solo/team) |
 | `.cowork/01_cowork_protocol/role_realization.md` | ADD | 역할 좌석 실행 방식 가이드 (1.1.0 신규, F-07) |
+| `.cowork/01_cowork_protocol/onboarding_runbook.md` | ADD | 동료 온보딩 런북 (1.2.0 신규, F-08) |
 | `.cowork/01_cowork_protocol/escalation_policy.md` | ADD | 에스컬레이션 정책 |
 | `.cowork/01_cowork_protocol/document_role_inventory.md` | ADD | 문서 역할 인벤토리 |
 | `.cowork/01_cowork_protocol/document_change_impact_matrix.md` | ADD | 수정 영향 매트릭스 |
@@ -151,6 +153,31 @@
 
 ---
 
+## 1.2.0 업그레이드 (from 1.1.0)
+
+> `1.1.0 → 1.2.0` 순차 업그레이드 시 적용하는 델타. 온보딩·결정 무결성·강제 계층을 추가하는 P2 자기개선 릴리즈.
+
+### 1.2.0 변경 요약
+
+- **동료 온보딩 런북(F-08)** — `onboarding_runbook.md` 신규. 사람이 좌석에 합류하는 절차(좌석 선택→모드 전환→배정→인계). `solo` 좌석 정의를 선불 온보딩 경로로 전환.
+- **결정 반전·드리프트 감지(F-09)** — `decision_authority_matrix.md` 신규 섹션 + `session_protocol.md` §6 트리거. Accepted ADR vs 코드/문서 대조로 무근거 반전·드리프트 적발, 결정 코호트 재검토 원칙.
+- **세션 규율 강제 훅(F-10)** — `tooling_environment_guide.md` 신규 섹션. 세션 시작 자체 점검을 도구/git/CI 훅으로 기계적 강제(자발적 준수 의존 완화).
+
+### 1.2.0 파일 분류
+
+| 파일 | 분류 | 변경 내용 |
+|------|------|----------|
+| `.cowork/01_cowork_protocol/onboarding_runbook.md` | ADD | 신규 런북. 없으면 추가 |
+| `.cowork/01_cowork_protocol/decision_authority_matrix.md` | REPLACE | 규칙 문서. §결정 반전·드리프트 감지(F-09) 추가 |
+| `.cowork/01_cowork_protocol/tooling_environment_guide.md` | REPLACE | 규칙 문서. §세션 규율 강제(F-10) 추가 |
+| `.cowork/01_cowork_protocol/session_protocol.md` | REPLACE | 규칙 문서. F-09 게이트 트리거·F-10 훅 주석·1B-3 런북 포인터 반영 |
+| `.cowork/cowork.md` | REPLACE | 규칙 문서. 거버넌스 맵에 `onboarding_runbook.md` 등재 |
+| `.cowork/01_cowork_protocol/document_role_inventory.md` | REPLACE | 규칙 문서. `onboarding_runbook.md` 등재 |
+
+> `REPLACE` 항목은 프레임워크 소유 규칙 문서다. 인스턴스가 해당 문서를 커스터마이즈했으면 MERGE로 취급하고 Human 승인 후 적용한다.
+
+---
+
 ## 1.1.0 업그레이드 (from 1.0.0)
 
 > `1.0.0 → 1.1.0` 순차 업그레이드 시 적용하는 델타. 자기개선(self-improvement) 릴리즈로, 인스턴스 운영에서 검증된 상태 문서 위생 규칙을 프레임워크 기본값으로 승격한다.
@@ -204,4 +231,5 @@
 |---------|--------------------|
 | 1.0.0 | `cowork-context-framework` 저장소의 첫 공식 기준선 |
 | 1.1.0 | 위생·협업 모델 자기개선(1.1.0) — 트리거형 다이어트(R1/R2)·`state_archive.md`·이월 백로그 SSOT·Back-Port Queue·무트리거 축적 금지·상태문서 크기 예산·협업 실행 모드(solo/team)·역할 물성화 가이드 |
+| 1.2.0 | 온보딩·결정 무결성·강제 자기개선(1.2.0) — 동료 온보딩 런북(F-08)·결정 반전/드리프트 감지(F-09)·세션 규율 강제 훅(F-10) |
 <!-- CUMULATIVE:END -->

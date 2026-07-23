@@ -88,3 +88,26 @@
 - When tool-specific setting examples change: update the relevant entrypoint first.
 - When the shared operating boundary changes: review `session_protocol.md`, this document, `document_role_inventory.md`, `document_change_impact_matrix.md`, and `upgrade_manifest.md` when needed.
 - When paths or file structure change: synchronize the four entrypoints and `upgrade_manifest.md` together.
+
+---
+
+## 5. Session Discipline Enforcement (Enforcement Hooks) — F-10
+
+> The session-start checks and auto-recording rules in `session_protocol.md` mostly rely on the **AI's voluntary compliance** (which can silently break depending on the model and context). Discipline that is hard to undo can be mechanically enforced through the tool's **hooks**.
+
+### Enforceable Checks (Examples)
+
+| Check | Source Rule | Enforcement Idea |
+|-------|-------------|------------------|
+| Session log created | `session_protocol.md` §Auto-Recording 1 | A session-start hook confirms today's `session_logs/session_*.md` exists, and creates / warns if missing |
+| Live state-document size budget | F-05 | A hook measures the size of `project_state.md` + `my_state.md` and shows an R1/R2 harvest recommendation when the budget is exceeded |
+| Carryover Backlog table in briefing | F-02 | Lint the briefing output for the presence of the `Carryover Backlog` table |
+| openapi / schema drift | Per project | A pre-commit hook confirms the regeneration diff = 0 (for projects with a contract) |
+| Commit message convention | decision matrix | A commit-msg hook validates the prefix |
+
+### Operating Principles
+
+- **Enforcement means differ by tool and environment.** Keep the concrete implementation (agent hooks, git hooks, CI jobs) in the current tool's entrypoint document (`CLAUDE.md`, etc.) and the repository settings. This document defines only the list of "what can be enforced" and the placement principles.
+- Examples (tool-independent): git `pre-commit` / `commit-msg` hooks, CI jobs, agent session start / end hooks.
+- Hooks start as **a default recommendation, not a block** (block only the items that must be fail-closed). If false positives block a session, the discipline gets bypassed.
+- When enforcement items are added or changed, update the session log, and update the four entrypoints together if the tool-common contract changed.

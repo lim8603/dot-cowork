@@ -101,6 +101,7 @@
 | `01_cowork_protocol/communication_convention.md` | Governance | Low | Single source for language, tone, and visualization |
 | `01_cowork_protocol/decision_authority_matrix.md` | Governance | Low | Rarely changes. Includes Collaboration Execution Mode (solo/team) |
 | `01_cowork_protocol/role_realization.md` | Governance | Low | Role-seat realization guide (F-07) |
+| `01_cowork_protocol/onboarding_runbook.md` | Governance | Low | Teammate onboarding procedure (F-08) |
 | `01_cowork_protocol/escalation_policy.md` | Governance | Low | Rarely changes |
 | `01_cowork_protocol/session_protocol.md` | Governance | Medium | Shared session protocol |
 | `01_cowork_protocol/tooling_environment_guide.md` | Governance | Low to Medium | Split-out document for tool/environment-dependent operation |
