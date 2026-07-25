@@ -65,6 +65,7 @@
 | 핵심 Task 완료 기준 충족 | `task_registry.md` 기준 검증 대상 Task가 Review 이상 상태 | `05_verification/verification_evidence.md`, `04_implementation/task_registry.md`, 관련 `04_implementation/tasks/TASK-*.md` |
 | 단위 테스트 통과 | 핵심 범위 기준 통과 | `05_verification/verification_evidence.md`, `05_verification/test_case.md`, 관련 `04_implementation/tasks/TASK-*.md` |
 | 코딩 컨벤션 준수 | Lint 통과 | `05_verification/verification_evidence.md`, `04_implementation/review_checklist.md`, 관련 `04_implementation/tasks/TASK-*.md` |
+| 게이트·불변식 변경 시 종단 재검증 (F-11) | 조인 판정의 소비자 목록이 작성되고 종단 스위트로 확인됨 | `05_verification/verification_evidence.md`, 최신 세션 로그(소비자 목록), `05_verification/test_case.md` |
 
 #### 게이트 4 판정 규칙
 
@@ -89,6 +90,29 @@
 - Integration / E2E / NFR / 문서 / 산출물 준비 상태는 evidence, `test_case.md`, `test_strategy.md`, `project_state.md`, `deliverable_plan.md`, `07_delivery/*`가 서로 일치해야 한다.
 - 미충족이면 Release를 보류하고 실패 범위, 누락 문서, 누락 산출물, 재검증 계획을 기록한다.
 - 예외는 Human 승인 후 미충족 항목, 수용 사유, 후속 보완 계획을 남긴다.
+
+---
+
+## 게이트·불변식 변경의 종단 재검증 (F-11)
+
+> 검증 규칙·게이트·불변식·계약을 **조이는** 변경은 자기 자신만 바꾸지 않는다. 그 관문을 이미 지나다니던 **기존 경로의 의미**를 바꾸므로, 조인 코드가 아니라 다른 곳에서 터진다.
+
+### 왜 필요한가
+
+- 조인 변경에는 대개 그것을 증명하는 새 테스트가 붙는다. 그 테스트는 통과한다 — 새 규칙이 새 규칙대로 동작하는지만 보기 때문이다.
+- 정작 깨지는 것은 **그 관문을 지나던 기존 경로**다. 이전에는 통과하던 것이 이제 걸리고, 그 사실은 종단 경로를 실제로 밟아봐야 드러난다.
+- 단위·통합 테스트가 전부 초록인 채로 기능 하나가 조용히 죽고, 다음 세션이 그것을 다시 밟기 전까지 아무도 모른다. **다른 세션이 남긴 결함이 이번 세션의 게이트 강화로 승격되는** 형태라 책임 소재도 흐려진다.
+
+### 규칙
+
+- **조인 시점에 소비자 목록을 적는다.** "이 판정을 통과해야 하는 것이 무엇인가" — 코드 경로, 화면, 계약/스키마, 시드/픽스처, 기존 데이터까지 포함해 세션 로그에 남긴다.
+- **세션 종료 전 그 목록을 종단 스위트로 확인한다.** E2E·통합 등 실제 경로를 밟는 검증이어야 하며, 단위 테스트 통과는 이 항목을 대체하지 못한다.
+- **미검증분은 침묵하지 않는다.** 실행하지 못했으면 소비자별로 무엇이 미검증인지 명시하고 `project_state.md` 이월과 세션 로그에 등재한다. Human이 사전 승인한 예외라도 **공지 없이 넘기는 것은 예외의 범위가 아니다.**
+- 이 항목은 Phase 전환 게이트 4 판정에 포함된다(위 표).
+
+### 적용 대상 예시
+
+- 승격/배포 게이트의 판정 조건 강화, 스키마·API 계약 변경, 유일성·참조 무결성 제약 추가, 검증 함수의 허용 범위 축소, 권한 판정 강화, 기본값·폴백의 보수화.
 
 ---
 

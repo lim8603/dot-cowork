@@ -65,6 +65,7 @@
 | Core Task completion criteria met | Target Tasks are at least `Review` in `task_registry.md` | `05_verification/verification_evidence.md`, `04_implementation/task_registry.md`, related `04_implementation/tasks/TASK-*.md` |
 | Unit tests passed | Passed for the core scope | `05_verification/verification_evidence.md`, `05_verification/test_case.md`, related `04_implementation/tasks/TASK-*.md` |
 | Coding convention followed | Lint passed | `05_verification/verification_evidence.md`, `04_implementation/review_checklist.md`, related `04_implementation/tasks/TASK-*.md` |
+| End-to-end re-verification after a gate or invariant change (F-11) | Consumer list written for the tightened judgment and confirmed by the end-to-end suite | `05_verification/verification_evidence.md`, latest session log (consumer list), `05_verification/test_case.md` |
 
 #### Gate 4 Decision Rules
 
@@ -89,6 +90,29 @@
 - Integration / E2E / NFR / documentation / deliverable readiness should be aligned across evidence, `test_case.md`, `test_strategy.md`, `project_state.md`, `deliverable_plan.md`, and `07_delivery/*`.
 - If not satisfied, hold the release and record the failed scope, missing documents, missing deliverables, and re-verification plan.
 - Exceptions require Human approval and must leave the unsatisfied item, the acceptance rationale, and the follow-up plan in writing.
+
+---
+
+## End-To-End Re-Verification After A Gate Or Invariant Change (F-11)
+
+> A change that **tightens** a verification rule, gate, invariant, or contract does not only change itself. It changes **the meaning of the existing paths that already ran through that gate**, so the breakage lands somewhere other than the tightening code.
+
+### Why It Is Needed
+
+- A tightening change usually ships with a new test proving it. That test passes — it only checks that the new rule behaves like the new rule.
+- What actually breaks is **the existing path through that gate**. What used to pass now gets stopped, and that only surfaces when the end-to-end path is actually walked.
+- So a feature can die quietly with every unit and integration test green, and nobody knows until a later session happens to walk it again. Because the fallout is **an existing defect promoted by this session's tightening**, ownership gets blurred too.
+
+### Rules
+
+- **Write the consumer list at the moment of tightening.** "What has to pass this judgment" — code paths, screens, contracts / schemas, seeds / fixtures, and existing data.
+- **Confirm that list with the end-to-end suite before the session closes.** It must be verification that walks the real path (E2E / integration); passing unit tests does not substitute.
+- **Never stay silent about what went unverified.** If it could not be run, state per consumer what remains unverified and register it in the `project_state.md` carry-over and the session log. Even under a Human-approved exception, **passing it by without notice is outside the scope of that exception.**
+- This item is part of the Gate 4 judgment at phase transition (table above).
+
+### Typical Triggers
+
+- Strengthening the conditions of a promotion / deployment gate, schema or API contract changes, adding uniqueness or referential-integrity constraints, narrowing what a validator accepts, tightening authorization checks, making a default or fallback more conservative.
 
 ---
 
