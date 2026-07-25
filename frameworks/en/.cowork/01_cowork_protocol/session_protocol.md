@@ -309,6 +309,7 @@ In a solo project, the briefing is simplified.
 - When information satisfies the current phase's Phase Document Map, the AI reflects it into the relevant source documents immediately or at the end of the Execute cycle.
 - If work splits across multiple Tasks, keep the active Task summary in `project_state.md`, `task_registry.md`, and the related Task detail documents aligned.
 - When a blocker, major risk, or approval point appears, pause and ask the Human rather than guessing.
+- **When you tighten a gate or invariant, write down its consumers on the spot (F-11)** — a change that strengthens a verification rule, gate, invariant, or contract does not only change itself; it changes **the meaning of the existing paths that already run through that gate**. At the moment of tightening, list "what has to pass this judgment" in the session log, and confirm that list with end-to-end verification before the session closes (§4). Details: `05_verification/quality_gate.md` — End-To-End Re-Verification After A Gate Or Invariant Change.
 
 ### 3. Session Pause
 
@@ -319,6 +320,7 @@ In a solo project, the briefing is simplified.
 ### 4. Session End
 
 - When the Human says `wrap up`, run the Session End Enrichment Check first.
+- **End-to-end re-verification after a gate or invariant change (F-11)** — if this session tightened a verification rule, gate, invariant, or contract, take the **consumer list** written in §2, re-run the end-to-end suite (E2E / integration), and report the result per consumer. Passing unit tests does not substitute for this item — the fallout of a tightened judgment usually lands not in the tightening code but in **the other paths that run through that gate**. If it could not be run, record explicitly **what remains unverified** in the session log and in the `project_state.md` carry-over (silence is not an option).
 - Close the current session log with summary, carry-over items, decisions, and next-session context.
 - Sync `project_state.md` with next starting point, Human confirmation items, and current high-signal status (harvest completion narratives beyond the last 3 sessions into `state_archive.md` — R1).
 - Sync the `Carryover Backlog` table in `project_state.md` — remove resolved items, add new carry-overs / triggers.
@@ -442,6 +444,7 @@ When context-window quality starts to degrade, the AI should guide the work into
 
 - When the Human says `let's move to ... phase`, run Pre-Gate Harvest before gate judgment.
 - **Decision reversal & drift check (F-09)** — compare the Accepted decisions in `adr_registry.md` against code, `tech_stack.md`, and the body of the design canonical documents to find ungrounded reversals / drift. If real, issue a corrective ADR or roll back (§`decision_authority_matrix.md` Decision Reversal & Drift Detection).
+- **Divergence-over-open-question check (F-12)** — compare the documents that reference each open Open Question: **are they all writing the same answer?** If different answers are written down, that OQ has already been decided twice, implicitly — pin it down before the transition or the start of work (§`decision_authority_matrix.md` Divergence Over An Open Question). Where F-09 watches drift in *what was decided*, this watches divergence over *what was not*, so F-09 never catches it.
 - Check the relevant gate in `quality_gate.md` and report whether the gate is ready, blocked, or partial.
 - If the gate is blocked, list the blocking items and the source documents that need attention.
 - If the Human still wants to move forward with an exception, record the reason and follow-up plan in the session log and relevant state documents.

@@ -8,9 +8,9 @@
 
 | Item | Value |
 |------|------|
-| Version | 1.2.0 |
-| From | 1.1.0 |
-| Date | 2026-07-23 |
+| Version | 1.3.0 |
+| From | 1.2.0 |
+| Date | 2026-07-25 |
 > The `ADD` table under `## File Classification` below is still the full list for a **fresh baseline install** (including the 1.1.0 new file `state_archive.md`).
 > A sequential `1.0.0 -> 1.1.0` upgrade follows the `## 1.1.0 Upgrade (from 1.0.0)` delta table.
 > If you newly introduce it into a project that already contains an arbitrary `.cowork/` structure, treat that as a **migration**, not an automatic upgrade, and confirm with the Human first.
@@ -19,6 +19,7 @@
 
 ## Change Summary
 
+- Verification-fallout / open-question-divergence self-improvement (1.3.0) — end-to-end re-verification after a gate or invariant change (F-11), divergence-over-an-open-question check (F-12)
 - Onboarding / decision integrity / enforcement self-improvement (1.2.0) — teammate onboarding runbook (F-08), decision reversal / drift detection (F-09), session discipline enforcement hooks (F-10)
 - Hygiene / collaboration-model self-improvement (1.1.0) — triggered diet (R1/R2), `state_archive.md`, Carryover Backlog SSOT, Back-Port Queue, no-untriggered-accumulation, live state-document size budget, Collaboration Execution Mode (solo/team), role realization guide
 - The `.cowork` structure follows the `Governance / Canonical / Registry / Instance / Template / Log-Archive` model
@@ -153,6 +154,27 @@
 
 ---
 
+## 1.3.0 Upgrade (from 1.2.0)
+
+> The delta applied on a sequential `1.2.0 → 1.3.0` upgrade. A P3 self-improvement release closing **two classes verification keeps missing**: fallout from a tightened gate landing on a different path (F-11), and documents diverging over an open question (F-12).
+
+### 1.3.0 Change Summary
+
+- **End-to-end re-verification after a gate or invariant change (F-11)** — new section in `quality_gate.md` plus a Gate 4 judgment row, and `session_protocol.md` §2 (write the consumer list) / §4 (session-end checklist). A change that **tightens** a verification rule, gate, invariant, or contract changes not itself but **the meaning of the existing paths through that gate**. Write the consumer list at the moment of tightening, confirm it with the end-to-end suite before closing, and register anything left unverified in the carry-over rather than staying silent.
+- **Divergence over an open question (F-12)** — new section in `decision_authority_matrix.md` plus a `session_protocol.md` §6 gate trigger. An open Open Question is not a blank; it is **the place where two documents harden around different answers**. Because neither violates an ADR, the F-09 reversal check never catches it — so at phase transitions, before releases, and immediately before work starts in that area, compare whether the referencing documents are writing the same answer.
+
+### 1.3.0 File Classification
+
+| File | Class | Change |
+|------|-------|--------|
+| `.cowork/05_verification/quality_gate.md` | REPLACE | Rule document. Adds the End-To-End Re-Verification (F-11) section plus one Gate 4 judgment row |
+| `.cowork/01_cowork_protocol/decision_authority_matrix.md` | REPLACE | Rule document. Adds the Divergence Over An Open Question (F-12) section plus one authority row |
+| `.cowork/01_cowork_protocol/session_protocol.md` | REPLACE | Rule document. §2 F-11 consumer list, §4 session-end F-11 item, §6 gate F-12 trigger |
+
+> `REPLACE` entries are framework-owned rule documents. If an instance has customized one, treat it as MERGE and apply after Human approval.
+
+---
+
 ## 1.2.0 Upgrade (from 1.1.0)
 
 > The delta applied on a sequential `1.1.0 -> 1.2.0` upgrade. A P2 self-improvement release that adds the onboarding, decision-integrity, and enforcement layers.
@@ -232,4 +254,5 @@
 | 1.0.0 | First official baseline of the `cowork-context-framework` repository |
 | 1.1.0 | Hygiene / collaboration-model self-improvement (1.1.0) — triggered diet (R1/R2), `state_archive.md`, Carryover Backlog SSOT, Back-Port Queue, no-untriggered-accumulation, live state-document size budget, Collaboration Execution Mode (solo/team), role realization guide |
 | 1.2.0 | Onboarding / decision integrity / enforcement self-improvement (1.2.0) — teammate onboarding runbook (F-08), decision reversal / drift detection (F-09), session discipline enforcement hooks (F-10) |
+| 1.3.0 | Verification-fallout / open-question-divergence self-improvement (1.3.0) — end-to-end re-verification after a gate or invariant change (F-11), divergence-over-an-open-question check (F-12) |
 <!-- CUMULATIVE:END -->

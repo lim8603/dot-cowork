@@ -98,6 +98,15 @@ This document makes authority levels explicit so the team can **reduce unnecessa
 - Look at it at the **cohort level**, not the individual decision — if one is wrong, suspect the other decisions from the same window too.
 - Close each review as one of normal / corrected / reversed; corrections and reversals follow the procedure above.
 
+### Divergence Over An Open Question — F-12
+
+- Where the two sections above watch **what has been decided** for reversal and drift, this one watches the divergence that happens **over what has not been decided yet**. An open Open Question is not a blank in a document — two or more documents that reference it each fill in a different provisional answer and **each hardens around its own**. Neither violates an ADR, so the F-09 reversal check never catches it.
+- **Trigger**: at phase transitions, before a release, and **immediately before implementation starts in an area that hangs on an open OQ**.
+- **Check**: walk the open OQ list and compare the canonical documents, design documents, and mockups that reference each OQ or depend on its answer — **do they all assume the same answer?** If different answers are written down, that OQ has already been decided twice, implicitly.
+- **Action**: pin it down with a Human decision before starting (issue an ADR), then align the diverged documents to that decision. Implementing over a live divergence means **which document you read decides what the code does**, and every derived premise stacked on top (hashes, contracts, identifiers) collapses with it.
+- If the decision is genuinely premature, at minimum **record the divergence itself on the OQ entry** so the next session does not leave the same fork to chance.
+
 ### Authority
 
 - Judging whether a reversal occurred and issuing a corrective ADR are **J** (AI proposes -> Human approves). When the AI finds an ungrounded reversal, it raises its concern once and follows the Human's decision.
+- Resolving a divergence over an open question (F-12) is also **J** — the AI reports the divergence and proposes the alignment; the Human makes the pinning decision.

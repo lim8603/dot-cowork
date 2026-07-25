@@ -4,6 +4,17 @@ All notable changes to `cowork-context-framework` will be documented in this fil
 
 The project follows semantic versioning.
 
+## [1.3.0] - 2026-07-25
+
+Third self-improvement release (P3). Closes two classes of failure that the existing checklists never ask about: fallout from a tightened gate landing somewhere other than the tightening code, and documents hardening around different answers to a still-open question. Both were promoted from real instance operation. Applies to `frameworks/ko` and `frameworks/en` on the same release line.
+
+### Added
+- End-To-End Re-Verification After A Gate Or Invariant Change section in `quality_gate.md` (F-11) — a change that **tightens** a verification rule, gate, invariant, or contract does not only change itself; it changes the meaning of the existing paths that already ran through that gate. The rule: write the consumer list at the moment of tightening, confirm it with the end-to-end suite before the session closes, and never pass over unverified consumers silently. Wired into `session_protocol.md` §2 / §4 and the Gate 4 judgment table.
+- Divergence Over An Open Question section in `decision_authority_matrix.md` (F-12) — where F-09 watches drift in what *was* decided, this watches divergence over what was *not*. An open Open Question is a place where two documents each fill in a provisional answer and harden separately; because neither violates an ADR, the reversal check cannot see it. Triggered at phase transitions, before releases, and immediately before implementation starts in the affected area; wired into `session_protocol.md` §6.
+
+### Changed
+- `session_protocol.md` §2 (in-progress rules), §4 (session-end checklist), and §6 (automatic quality gate check) carry the F-11 and F-12 triggers.
+
 ## [1.2.0] - 2026-07-23
 
 Second self-improvement release (P2). Adds the onboarding, decision-integrity, and enforcement mechanisms that 1.1.0 left open. Applies to `frameworks/ko` and `frameworks/en` on the same release line.
