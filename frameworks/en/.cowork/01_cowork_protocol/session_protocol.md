@@ -62,7 +62,7 @@ AI session memory resets between sessions. This protocol defines context-preserv
 - [ ] In a team project, review role and task assignment status in `.cowork/members/team_board.md`.
 - [ ] Check confirmed deliverables and missing data in `deliverable_plan.md`.
 - [ ] **Selective context loading**: according to the Context Loading Guide in `project_state.md`, load the registries and canonical documents needed for the current phase first. Rule documents such as `cowork.md` and `session_protocol.md` are learned once in the first session and then reopened only when needed.
-- [ ] **Live state-document size self-check (F-05)**: check whether the net body of the always-loaded `project_state.md` + active `my_state.md` has swollen. If completion narratives have accumulated beyond the last 3 sessions, or table cells have puffed up with multiple sessions of narrative, run the R1/R2 harvest before this session's work (§Shared State Index Management). The metric is not the docs-to-code ratio but the **absolute size of the live state documents**.
+- [ ] **Live-state size check (F-05)** — measure total UTF-8 size against R1/R2 budgets (default warnings: shared 24 KiB / member 12 KiB) and inspect long rows. Preserve constraints and evidence during cleanup. See Shared State Index Management.
 - [ ] **Collaboration Execution Mode check (F-06)**: confirm the `Collaboration Execution Mode` (solo/team) in `project_state.md`. In solo, skip per-role bookkeeping and run centered on project_state, but keep the seat definitions (§`decision_authority_matrix.md` Collaboration Execution Mode).
 - [ ] The session-start self-checks above (log creation, size budget, mode) rely on voluntary compliance, so hard-to-undo items can be mechanically enforced with tool hooks (F-10, §`tooling_environment_guide.md` Session Discipline Enforcement).
 - [ ] Review `06_evolution/imported_context/` only when necessary, and extract the needed facts rather than using raw text as a source document.
@@ -322,7 +322,7 @@ In a solo project, the briefing is simplified.
 - When the Human says `wrap up`, run the Session End Enrichment Check first.
 - **End-to-end re-verification after a gate or invariant change (F-11)** — if this session tightened a verification rule, gate, invariant, or contract, take the **consumer list** written in §2, re-run the end-to-end suite (E2E / integration), and report the result per consumer. Passing unit tests does not substitute for this item — the fallout of a tightened judgment usually lands not in the tightening code but in **the other paths that run through that gate**. If it could not be run, record explicitly **what remains unverified** in the session log and in the `project_state.md` carry-over (silence is not an option).
 - Close the current session log with summary, carry-over items, decisions, and next-session context.
-- Sync `project_state.md` with next starting point, Human confirmation items, and current high-signal status (harvest completion narratives beyond the last 3 sessions into `state_archive.md` — R1).
+- Sync `project_state.md` — replace current values, shorten completion summaries, relocate details, and remeasure size (R1/R2).
 - Sync the `Carryover Backlog` table in `project_state.md` — remove resolved items, add new carry-overs / triggers.
 - Sync the member's `my_state.md` with assigned work, carry-over items, and referenced session log (harvest overflow completion narratives — R1).
 - In team projects, sync `team_board.md` as needed when task state or assignee state changed.
@@ -357,14 +357,10 @@ Instead:
 
 - Update it whenever the active phase, active Intent, active Milestone, active Task, next starting point, or current risk level changes in a meaningful way.
 - Keep only the high-signal summary there; push deeper context into registries, detail documents, or session logs.
-- **Triggered diet rule (R1 — completion-narrative harvest).** "Compress when it gets long" has no trigger, so completion narratives easily accumulate append-only every session. To prevent that:
-  - Keep the narrative completion history (the ✅-done and handoff blocks) of `Next Starting Point` and `AI Handoff Memo` **in-body for the last N sessions only (default 3)**.
-  - On `wrap up`, **move (append-only) the raw text** of older completion narratives into the `#NNN harvest` section of `06_evolution/state_archive.md`, and leave only a one-line pointer of the form `[state_archive.md](state_archive.md) #NNN harvest` in the body.
-  - Harvest the `Session Intent` and `recent decision/work notes` of `my_state.md` under the same rule into the `my_state.md harvest` section of `state_archive.md`.
-  - The move is **lossless** — it is a raw-text relocation, not a summary or deletion. Refinement happens only on the body side.
-  - N is adjustable per project, but the default is 3.
-- **Triggered diet rule (R2 — table-cell overgrowth split).** When a specific table cell such as `Active Task Summary` swells with multiple sessions of narrative, split the detail into `tasks/TASK-*.md` (in progress) or a session-log pointer (Done + time elapsed / no longer affecting current-work context), and keep only the **resume essentials** in the cell.
-  - However, **keep an item in the cell even when it is large if it still affects the current work's context** (no churn). The cleanup gate is "does it no longer affect the current-work context?".
+- **R1 — replace with current state.** Core fields and next actions contain current values only. Keep completion summaries for at most 3 sessions across the whole document, one sentence and evidence link per session. Do not append previous versions or archive pointers to date, status, or active-task cells. Move completion detail as raw text into `state_archive.md` and keep one pointer in the history section. If the same text already exists in a log/archive, link it instead of duplicating it.
+- **R2 — preserve current constraints, separate detail.** Relevance to current work does not justify retaining a long narrative. Each active item retains its ID, status, current constraint/blocker, next action, and evidence link; details belong in existing Task/ADR/source documents. Review splitting any table row or paragraph over 800 characters. Never drop unresolved conditions, approvals, or evidence gaps, or mark them complete during cleanup. Verify destinations and links after moving content.
+- **Measurable size budget (F-05).** Use the entire UTF-8 file size, including headers: 24 KiB for `project_state.md` and 12 KiB for each active `my_state.md` as default warning thresholds. These are initial operating defaults, not token counts or a quality guarantee. Record project-specific budgets and reasons in the state document. Measure at session start and close; use R1/R2 when exceeded. Size alone does not block work or release.
+- In solo mode, `my_state.md` contains personal carryover, current task IDs, a shared-state link, and the latest log. Do not duplicate shared narratives or the backlog.
 
 #### Imported Context Management (`imported_context/`)
 
@@ -441,6 +437,8 @@ When context-window quality starts to degrade, the AI should guide the work into
 - Whenever the same state appears across multiple layers, keep the meaning aligned and let the deeper context live only once.
 
 ### 6. Automatic Quality Gate Check (Quality Gate)
+
+- Update relevant EV/GAP entries and the current decision in `verification_evidence.md` at the end of execution cycles that change verification results or deferral conditions, not only at gate transitions. Record target revision, environment, and unverified scope; keep only a short result and link in `project_state.md`.
 
 - When the Human says `let's move to ... phase`, run Pre-Gate Harvest before gate judgment.
 - **Decision reversal & drift check (F-09)** — compare the Accepted decisions in `adr_registry.md` against code, `tech_stack.md`, and the body of the design canonical documents to find ungrounded reversals / drift. If real, issue a corrective ADR or roll back (§`decision_authority_matrix.md` Decision Reversal & Drift Detection).
@@ -555,7 +553,7 @@ Before the session ends on `wrap up`:
 - if empty items remain, add them to the carry-over list and ask the Human whether to fill them now or later
 - synchronize the next starting point, Human confirmation items, and key risks in `project_state.md`
 - synchronize assigned work, next starting point, carry-over items, and referenced session log in the member's `my_state.md`
-- **Completion-narrative harvest (R1)** — when the completion narratives in `project_state.md` / `my_state.md` exceed the last N sessions (default 3), move the overflow raw text into `06_evolution/state_archive.md` and leave only a one-line pointer in the body (§Shared State Index Management R1).
+- **Completion-narrative harvest (R1/R2)** — retain at most 3 session summaries of one sentence plus a link each, preserving raw details elsewhere. Check current fields, long rows, duplicate pointers, and file sizes (Shared State Index Management).
 - **Carryover Backlog table sync** — in the `Carryover Backlog` table of `project_state.md`, remove items resolved this session and add newly arisen carry-overs / triggers (§1D briefing's single SSOT).
 
 ### 13. Proactive Elicitation

@@ -8,9 +8,9 @@
 
 | Item | Value |
 |------|------|
-| Version | 1.3.0 |
-| From | 1.2.0 |
-| Date | 2026-07-25 |
+| Version | 1.4.0 |
+| From | 1.3.0 |
+| Date | 2026-09-20 |
 > The `ADD` table under `## File Classification` below is still the full list for a **fresh baseline install** (including the 1.1.0 new file `state_archive.md`).
 > A sequential `1.0.0 -> 1.1.0` upgrade follows the `## 1.1.0 Upgrade (from 1.0.0)` delta table.
 > If you newly introduce it into a project that already contains an arbitrary `.cowork/` structure, treat that as a **migration**, not an automatic upgrade, and confirm with the Human first.
@@ -18,6 +18,8 @@
 ---
 
 ## Change Summary
+
+- Field-driven improvements (1.4.0) — measurable state budgets and R1/R2 cleanup, shared-state entrypoint links, scoped verification evidence, and learning provenance
 
 - Verification-fallout / open-question-divergence self-improvement (1.3.0) — end-to-end re-verification after a gate or invariant change (F-11), divergence-over-an-open-question check (F-12)
 - Onboarding / decision integrity / enforcement self-improvement (1.2.0) — teammate onboarding runbook (F-08), decision reversal / drift detection (F-09), session discipline enforcement hooks (F-10)
@@ -154,6 +156,34 @@
 
 ---
 
+## 1.4.0 Upgrade (from 1.3.0)
+
+> Sequential upgrade that updates operating rules while preserving project state and verification records.
+
+### 1.4.0 File Classification
+
+| File | Class | Change |
+|------|------|--------|
+| `.cowork/01_cowork_protocol/document_role_inventory.md` | REPLACE | Current-state and archive responsibilities |
+| `.cowork/01_cowork_protocol/session_protocol.md` | REPLACE | Session size checks, lossless state cleanup, solo links, and evidence updates |
+| `.cowork/01_cowork_protocol/tooling_environment_guide.md` | REPLACE | Stable entrypoints referencing shared state |
+| `.cowork/05_verification/quality_gate.md` | REPLACE | Revision/environment applicability for gate decisions |
+| `.cowork/05_verification/verification_evidence.md` | MERGE | Merge scope rules and evidence/gap columns; preserve all EV/GAP records and gate history |
+| `.cowork/06_evolution/knowledge_base.md` | MERGE | Merge concise-promotion rules; preserve existing lessons and source links |
+| `.cowork/06_evolution/project_state.md` | MERGE | Merge maintenance rules only; preserve active IDs, approvals, constraints, backlog, and current state |
+| `.cowork/06_evolution/retrospective.md` | MERGE | Merge provenance and candidate criteria; preserve existing retrospectives and queue |
+| `.cowork/06_evolution/state_archive.md` | MERGE | Merge operating rules only; preserve all archived raw text |
+| `.cowork/cowork.md` | REPLACE | R1/R2 and measurable state budgets |
+| `.cowork/members/my_state_template.md` | MERGE | Merge solo guidance; preserve template customization; existing member states remain untouched |
+| `.github/copilot-instructions.md` | MERGE | Replace phase/milestone copies with the shared-state reference; preserve project identity and tool-specific instructions |
+| `AGENTS.md` | MERGE | Replace phase/milestone copies with the shared-state reference; preserve project identity and tool-specific instructions |
+| `CLAUDE.md` | MERGE | Replace phase/milestone copies with the shared-state reference; preserve project identity and tool-specific instructions |
+| `GEMINI.md` | MERGE | Replace phase/milestone copies with the shared-state reference; preserve project identity and tool-specific instructions |
+
+> MERGE preserves project data, approvals, and evidence while merging rules/fields. Do not invent missing revisions/environments for historical evidence. Treat customized REPLACE documents as MERGE. State cleanup and existing-member updates are separate from upgrade file replacement and follow the new R1/R2 with evidence checks. The repository-only audit script and field review are not included in consumer archives.
+
+---
+
 ## 1.3.0 Upgrade (from 1.2.0)
 
 > The delta applied on a sequential `1.2.0 → 1.3.0` upgrade. A P3 self-improvement release closing **two classes verification keeps missing**: fallout from a tightened gate landing on a different path (F-11), and documents diverging over an open question (F-12).
@@ -255,4 +285,5 @@
 | 1.1.0 | Hygiene / collaboration-model self-improvement (1.1.0) — triggered diet (R1/R2), `state_archive.md`, Carryover Backlog SSOT, Back-Port Queue, no-untriggered-accumulation, live state-document size budget, Collaboration Execution Mode (solo/team), role realization guide |
 | 1.2.0 | Onboarding / decision integrity / enforcement self-improvement (1.2.0) — teammate onboarding runbook (F-08), decision reversal / drift detection (F-09), session discipline enforcement hooks (F-10) |
 | 1.3.0 | Verification-fallout / open-question-divergence self-improvement (1.3.0) — end-to-end re-verification after a gate or invariant change (F-11), divergence-over-an-open-question check (F-12) |
+| 1.4.0 | Field-driven improvements (1.4.0) — measurable state budgets and R1/R2 cleanup, shared-state entrypoint links, scoped verification evidence, and learning provenance |
 <!-- CUMULATIVE:END -->

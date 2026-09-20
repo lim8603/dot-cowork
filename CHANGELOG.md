@@ -4,6 +4,18 @@ All notable changes to `cowork-context-framework` will be documented in this fil
 
 The project follows semantic versioning.
 
+## [1.4.0] - 2026-09-20
+
+### Changed
+- Tightened R1/R2 to keep current values and short completion summaries while preserving constraints and raw evidence in existing detail documents or archives. Added configurable default live-state warnings of 24 KiB shared / 12 KiB per member and an 800-character row/paragraph review trigger.
+- Replaced phase/milestone copies in all Korean and English tool entrypoints with a shared-state reference.
+- Bound verification evidence to revisions, environments, scenarios, and executors; record deferred coverage and update evidence indexes when results change.
+- Shortened knowledge promotion to applicability, reusable rule, and evidence; require provenance and observed results for framework back-port candidates.
+
+### Added
+- Read-only `scripts/audit-cowork-state.ps1` for installed-project state size and long-line warnings, with an optional `-Check` exit status.
+- Field review of dot-probe and dot-tools in `docs/field-review-2026-09.md`, including limits and follow-up validation criteria. Includes the 1.3.0 → 1.4.0 upgrade delta with MERGE handling for project-owned data and entrypoints.
+
 ## [1.3.0] - 2026-07-25
 
 Third self-improvement release (P3). Closes two classes of failure that the existing checklists never ask about: fallout from a tightened gate landing somewhere other than the tightening code, and documents hardening around different answers to a still-open question. Both were promoted from real instance operation. Applies to `frameworks/ko` and `frameworks/en` on the same release line.

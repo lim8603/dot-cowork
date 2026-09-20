@@ -128,8 +128,7 @@ Let's continue TASK-003.
 - **Tech Stack:**
 - **Primary Language:**
 - **Core Documents:**
-- **Current Phase:**
-- **Milestone:**
+- **Current phase / milestones / next action:** read `.cowork/06_evolution/project_state.md`; do not maintain a status copy here.
 
 ---
 

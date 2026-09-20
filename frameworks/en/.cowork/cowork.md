@@ -170,7 +170,7 @@ flowchart TD
 - Load detail documents like `INT-*`, `MS-*`, `TASK-*`, and `ADR-*` only when deeper context is needed.
 - `templates/`, `imported_context/`, and `state_archive.md` are not default-loading targets.
 - Imported context should remain only as supporting evidence after the required facts are extracted into registries, canonical documents, or instance documents.
-- **Live state-document size budget (F-05).** The health metric for document hygiene is *not* the "docs-to-code ratio" (session logs and archives accumulate independently of code, so that ratio misleads). The real metric is the **absolute size of the live state documents that are always loaded every session** — `project_state.md` + the active `my_state.md`. These two must stay thin even as the context window grows, for signal density, cost, and human readability. Self-check this size at session start, and if it exceeds the budget (recommended: the net body of each file, excluding headers, is noticeably swollen), run the R1/R2 harvest first. The detailed check procedure is in the `session_protocol.md` session-start checklist.
+- **Measurable size budget (F-05).** Use the entire UTF-8 file size, including headers: 24 KiB for `project_state.md` and 12 KiB for each active `my_state.md` as default warning thresholds. These are initial operating defaults, not token counts or a quality guarantee. Record project-specific budgets and reasons in the state document. Measure at session start and close; use R1/R2 when exceeded. Size alone does not block work or release. Follow R1/R2 in `session_protocol.md` for details.
 
 ---
 

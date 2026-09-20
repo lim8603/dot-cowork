@@ -29,6 +29,13 @@ This document organizes evidence created during Verify into the **canonical evid
 
 ## Operating Principles
 
+- Identify evidence applicability by **target commit/build, execution date, environment/configuration, and scenario**. Link the command/procedure and results, identify AI or Human execution, and describe dirty-worktree changes when applicable.
+- Do not generalize a test count or local Pass to the entire product or other environments. For configuration, permission, or packaged-artifact changes, check the path from declaration through consuming code to actual use. For example, a setting-scope change may require affected single/multi-workspace and post-install reload scenarios.
+- When related code, contracts, or environments change, retain the previous Pass as history and mark current coverage for re-verification or as unverified. Unrelated changes do not require repeating the full suite.
+- When deferring CI/manual verification, record **last verified revision, unverified scope, owner, and rerun date/trigger** in `Open Evidence Gaps`. Cost-based deferral is not Pass. Shared state retains only the gap ID and link.
+- Separate Task completion, project health, and release readiness. Green is not evidence of a gate passing. Judge gates using applicable evidence for the target and required scope; record the approver, reason, and follow-up conditions for accepted exceptions.
+- At the end of an execution cycle that changes verification results or deferral conditions, update the relevant EV/GAP and current Gate summary. Label historical Gate decisions by version/date to distinguish them from current decisions.
+
 - This document is the **evidence summary index** for Verify / Release decisions.
 - Detailed procedures and expected results belong in `test_strategy.md`, `test_case.md`, `review_checklist.md`, and related `TASK-*` documents.
 - Keep raw execution logs, external reports, and measurement results in their original location, and write only what they prove and where they live in this document.
@@ -50,9 +57,9 @@ This document organizes evidence created during Verify into the **canonical evid
 
 ## Evidence Index
 
-| EV ID | Type | Verification Target / Scope | Result | Related Gate | Raw Evidence Location | Last Updated | Notes |
+| EV ID | Type | Verification Target / Scope | Result | Related Gate | Raw Evidence Location | Last Updated | Target Revision / Environment / Executor |
 |-------|------|-----------------------------|--------|-------------|----------------------|-------------|------|
-| EV-001 | Review / Unit / Integration / E2E / NFR / Release | | Pass / Fail / Partial / Deferred | Gate 4 / Gate 5 | | YYYY-MM-DD | |
+| EV-001 | Review / Unit / Integration / E2E / NFR / Release | | Pass / Fail / Partial / Deferred | Gate 4 / Gate 5 | | YYYY-MM-DD | commit/build; OS/config; AI/Human |
 
 ---
 
@@ -67,6 +74,6 @@ This document organizes evidence created during Verify into the **canonical evid
 
 ## Open Evidence Gaps
 
-| ID | Item | Missing Evidence | Next Action | Status |
+| ID | Item / Last Verified Revision | Unverified Scope | Owner / Rerun Date or Trigger | Status |
 |----|------|------------------|------------|--------|
 | GAP-001 | | | | Open / Resolved / Deferred |

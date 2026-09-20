@@ -26,6 +26,8 @@ Do not update it for routine content edits inside the mapped documents.
 4. Open instance documents only for the active `INT-*`, `US-*`, `ADR-*`, `MS-*`, or `TASK-*` items.
 5. Treat templates, imported context, proposals, and older logs as on-demand material rather than default reading.
 
+Entrypoints contain shared-state links rather than phase/milestone copies. Keep current state and constraints in resume indexes; link detailed history and evidence. Update `verification_evidence.md` when execution results or deferral conditions change, including during Build, rather than waiting for a phase transition.
+
 ## Session Start Anchors
 
 | Document or path | Lives at | Created when | Updated when | Referenced when |

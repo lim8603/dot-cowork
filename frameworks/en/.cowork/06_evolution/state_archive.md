@@ -8,7 +8,7 @@
 ## Purpose / Operating Rules
 
 - This document is the **harvest target** of **diet rule R1** (-> `session_protocol.md` §Shared State Index Management, `project_state.md` §Writing / Maintenance Rules).
-- On `wrap up`, **move the raw text** of the narrative completion history (the ✅-done and AI handoff blocks) in `project_state.md` / `my_state.md` that is **beyond the last N sessions (default 3)** here. Leave only a one-line pointer in the body.
+- At session start and close, apply R1/R2 to **relocate raw completion detail** here. State documents keep at most three recent one-sentence session summaries with evidence links. Reuse links rather than duplicating raw text already in a log/archive.
 - The move is **append-only** — here we do not summarize or delete; we accumulate the raw text as-is. Refinement and summarization happen only on the `project_state.md` body side.
 - The unit of the move is a session (#NNN) or a harvest round. Add a `### #NNN harvest` section (or round) under `## Harvest` below.
 - Even when this document itself grows excessively large, **do not compress it** — the role of an archive is to preserve the raw text. If needed, split the file by round/period (`state_archive_YYYY.md`, and so on), but do so only after Human approval.

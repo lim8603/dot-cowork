@@ -116,6 +116,7 @@ The `docs/` folder contains supplementary guides that help you adopt, navigate, 
 - [Document Map](docs/document-map.md): shows where the major framework documents live and when each one is typically created, updated, and referenced.
 - [Adoption Guide](docs/adoption-guide.md): explains how to start in a new or existing project and what the minimum first-session setup looks like.
 - [Use Case Scenarios](docs/use-case-scenarios.md): shows realistic flows for solo use, brownfield recovery, team collaboration, tool switching, release preparation, and clean handoff.
+- [Field Review: September 2026](docs/field-review-2026-09.md): Korean review of two installed projects, the evidence behind the current improvements, and follow-up criteria.
 
 If you are new to the framework, a practical reading order is:
 
@@ -134,6 +135,16 @@ If you are new to the framework, a practical reading order is:
 At the start of each session, the AI reads the entrypoint file together with the current project state and latest session log. That lets the tool recover the active phase, open tasks, recent decisions, and carry-over items without relying on chat history.
 
 The stable session flow and the tool/environment-specific operating details are intentionally separated so the core protocol can stay compact even as tool settings and upgrade paths evolve.
+
+Entrypoints link to shared phase/milestone state instead of maintaining status copies. Live-state warnings default to 24 KiB for shared state and 12 KiB per member; these adjustable limits trigger review, not release failure. Current constraints and evidence links survive cleanup. Verification evidence identifies its target revision, environment, and uncovered scope rather than treating project health as release readiness.
+
+From this maintenance repository, inspect an installed project without modifying it:
+
+```powershell
+./scripts/audit-cowork-state.ps1 -ProjectRoot ../my-project
+```
+
+Use `-ProjectStateBytes`, `-MemberStateBytes`, and `-MaxLineCharacters` to match project budgets. `-Check` returns 1 for warnings and 0 when clear; invalid input fails. The script checks all existing member states and long physical lines (a proxy for long rows/paragraphs). It does not validate meaning or archive content and is not bundled into consumer archives.
 
 ### Automatic document accumulation
 
