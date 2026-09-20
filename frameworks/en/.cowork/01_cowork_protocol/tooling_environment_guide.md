@@ -45,6 +45,9 @@
 
 ## 2. Entrypoint Synchronization Rules
 
+Keep stable project identity, document paths, and tool-specific instructions in entrypoints. Read phase, active tasks, next milestone, and deployed version from `project_state.md` without copying them into entrypoints. Use `tech_stack.md` for the actual technology stack. On resume, reconcile conflicting summaries with their sources and replace stale summaries with links.
+
+
 - The four entrypoint files are thin wrappers that expose the same shared `.cowork/` source documents to different tools.
 - Review all four entrypoints together whenever any of the following changes:
   - project name, core documents, or primary/document language policy

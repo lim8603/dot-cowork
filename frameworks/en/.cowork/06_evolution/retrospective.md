@@ -53,6 +53,8 @@ State the scope first, then record what worked and what should improve.
 
 ### Back-Port Trigger
 
+- Each candidate records **origin project, session/evidence link, failure condition, proposed change, observed result or unvalidated status, and queue status**. Preserve provenance for copied candidates/history; do not count copies as independent validation. When a real-use defect or repeated Human correction updates the KB, apply the criteria below; if no candidate is warranted, record one line explaining why in that session log.
+
 When the instance produces a new operating rule, document structure, diet rule, tripwire, and so on during a session, the AI asks itself:
 
 - Is this rule **specific to this project**, or **generally valid for other projects too**?

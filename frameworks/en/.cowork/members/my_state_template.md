@@ -1,5 +1,7 @@
 # My State - <user name>
 
+> In solo mode, keep personal carryover, current task IDs, the shared-state link, and the latest log. Do not duplicate shared narratives/backlog. Follow size budgets and R1/R2 in `01_cowork_protocol/session_protocol.md`.
+
 > Personal work-state index: the first personal document the AI reads for my sessions
 
 ---

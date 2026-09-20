@@ -6,6 +6,8 @@
 
 ## Gate-Application Principles
 
+- Judge Gate 4/5 using evidence applicable to the target revision, environment, and required scenarios. Follow the scope and gap rules in `verification_evidence.md`. Task Done, project Green, or a previous version passing does not substitute for current release approval.
+
 - Template files are not source documents for gate decisions.
 - Registry documents define status and links; detailed evidence must be checked in canonical documents or instance documents.
 - `session_logs/` and `imported_context/` are supporting evidence only. If required facts are not reflected into source documents, the gate is not considered satisfied.

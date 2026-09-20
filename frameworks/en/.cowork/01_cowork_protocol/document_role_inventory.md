@@ -159,7 +159,7 @@
 | Path | Class | Accumulation Scale | Notes |
 |------|------|--------------------|------|
 | `06_evolution/knowledge_base.md` | Canonical | High | Consider topic-based split if real items exceed 15 or recent sessions repeatedly reference only the same topic |
-| `06_evolution/project_state.md` | Canonical | Medium | Default-loading target. Narrative completion history stays in-body for the last 3 sessions only (R1) |
+| `06_evolution/project_state.md` | Canonical | Medium | Default-loading target. Keep at most three one-sentence completion summaries with links (R1); relocate detail |
 | `06_evolution/state_archive.md` | Log / Archive | High (cumulative) | R1 harvest target. Append-only, not a default-loading target, never compressed |
 | `06_evolution/retrospective.md` | Canonical | Medium to High | Consider split by round or scope when accumulation patterns appear |
 | `06_evolution/templates/session_log_template.md` | Template | Low | Real logs are created under `members/<name>/workspace/session_logs/` |
@@ -190,4 +190,4 @@
 - Among the remaining documents, the first candidates for renewed structure review are `functional_spec.md`, `ui_spec.md`, `test_case.md`, `knowledge_base.md`, `release_note.md`, and `team_board.md`.
 - Register-like documents such as `risk_register.md` and `tech_stack.md` usually work well as a single canonical document.
 - Keep raw accumulated logs in `members/<name>/workspace/session_logs/`, `imported_context/`, and `06_evolution/state_archive.md`, and keep the rule that only refined results are promoted into canonical documents.
-- `project_state.md` and `my_state.md` are loading documents where completion narratives easily accumulate append-only. Continuously manage their loading size with the triggered diet rules (R1: keep the last 3 sessions in-body + on `wrap up` move the overflow to `state_archive.md`; R2: when a table cell swells, split the detail into a detail document or a session-log pointer). Details in `session_protocol.md` §Shared State Index Management.
+- `project_state.md` and `my_state.md` are current-state indexes. R1 limits recent completion summaries to at most 3 sessions of one sentence each; R2 separates detail while retaining current constraints, next actions, and links. Follow Shared State Index Management in `session_protocol.md` for size budgets and lossless relocation.

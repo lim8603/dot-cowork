@@ -150,6 +150,10 @@ That model is supported by adjacent artifacts such as requirements, ADRs, verifi
 
 ## Collaboration and Session Model
 
+Live state is a bounded resume index: current values replace old values, recent completion history is limited to three one-sentence summaries with links, and detailed evidence lives in existing source documents or archives. R2 preserves active constraints and next actions while moving narrative detail; relevance is no longer an exemption from summary discipline. Initial warning thresholds are 24 KiB shared / 12 KiB per member, adjustable per project. They are operational defaults awaiting longitudinal validation, not token estimates or release gates.
+
+Tool entrypoints reference shared phase/milestone state. Verification indexes identify the revision, environment, and scenario actually checked, track deferred coverage, and distinguish historical verdicts from current readiness. Knowledge and back-port records preserve reusable rules and provenance without copying session narratives. The read-only maintenance script `scripts/audit-cowork-state.ps1` makes size drift visible without rewriting consumer content.
+
 The framework is designed around resumable work sessions.
 
 At the start of a session, the assistant is expected to:

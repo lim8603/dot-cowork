@@ -20,6 +20,8 @@ Check against: root entrypoint files, `cowork.md`, `06_evolution/project_state.m
 - [ ] Start: Immediately after session start, the AI can begin from the minimum core documents designated by the entrypoint instead of reading the entire repository.
 - [ ] Behavior: Based on the current phase and the scope of the question, it loads logs, templates, and imported material only when needed.
 - [ ] Result: A short initial restoration is enough to explain the current state and propose the next action, without causing context saturation.
+- [ ] Behavior: Measure shared/member UTF-8 file sizes against the documented budgets; inspect long rows/paragraphs even if only three sessions remain. Preserve active constraints and evidence links when relocating detail.
+- [ ] Result: Current fields contain current values; history pointers and solo-member summaries do not duplicate the shared narrative. Size warnings alone do not block work.
 
 ### Document role model
 Check against: `01_cowork_protocol/document_role_inventory.md`
@@ -38,6 +40,15 @@ Check against: root entrypoint files, `.cowork/`, `.github/copilot-instructions.
 - [ ] Start: The documentation consistently establishes that Codex, Claude Code, Gemini, and Copilot all read the same `.cowork/` state.
 - [ ] Behavior: Even when the tool changes, the AI does not create separate tool-specific memory and continues working from the same document state.
 - [ ] Result: After a tool switch, session restoration, progress state, and next-action suggestions can be reproduced at nearly the same quality.
+- [ ] Result: Switching tools cannot revive an old phase/milestone from an entrypoint copy; entrypoints link to shared state.
+
+### Evidence applicability and learning feedback
+Check against: `05_verification/verification_evidence.md`, `05_verification/quality_gate.md`, `06_evolution/knowledge_base.md`, `06_evolution/retrospective.md`
+- [ ] Start: Identify the revision, environment/configuration, and scenarios affected by a change.
+- [ ] Behavior: Update EV/GAP entries after results or deferral conditions change; retain historical evidence and identify current unverified scope, owner, and rerun trigger.
+- [ ] Result: Local Pass, Task Done, and project Green do not imply release readiness. Current gate summaries agree with evidence for the target release.
+- [ ] Behavior: When a real-use defect or repeated Human correction produces a lesson, summarize applicability, reusable rule, and evidence; assess whether it belongs in the back-port queue.
+- [ ] Result: Candidates preserve their source project/session and observed or unvalidated outcome; copied history is not counted as independent validation.
 
 ## Every Session Start
 

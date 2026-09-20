@@ -17,6 +17,8 @@ Keep core insights, patterns, and anti-patterns so that **knowledge accumulated 
 
 ## Accumulation / Split Criteria
 
+- Keep each item to 1–3 sentences: **applicability → reusable rule → evidence link**. Review splitting rows/paragraphs over 800 characters regardless of item count. Link debugging history, conversations, and completion narratives to their logs/archives; link rules already incorporated into source documents to that location.
+
 - This document should keep only **reusable summaries**. When the same topic is discovered repeatedly, update the existing entry or compress it into a combined summary instead of endlessly appending new rows.
 - Length trigger: start reviewing consolidation or split when the real entries exceed **15** total items.
 - Recent-reference trigger: if **2 or more of the last 3 sessions** repeatedly reference only the same topic, `INT-*`, or `MS-*`, review splitting that cluster into a topic document.
