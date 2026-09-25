@@ -8,8 +8,8 @@
 
 | Item | Value |
 |------|------|
-| Version | 1.5.0 |
-| From | 1.4.0 |
+| Version | 1.5.1 |
+| From | 1.5.0 |
 | Date | 2026-09-25 |
 > The `ADD` table under `## File Classification` below is still the full list for a **fresh baseline install** (including the 1.1.0 new file `state_archive.md`).
 > A sequential `1.0.0 -> 1.1.0` upgrade follows the `## 1.1.0 Upgrade (from 1.0.0)` delta table.
@@ -19,6 +19,7 @@
 
 ## Change Summary
 
+- Carryover trigger watch restored (1.5.1) — arrived carryover triggers are raised in one line even in a session with a specified task
 - Request-driven harness cleanup (1.5.0) — shorter entrypoints, task-specific context loading, authority-based approval, logs when needed, and intent-based document creation
 - Field-driven improvements (1.4.0) — measurable state budgets and R1/R2 cleanup, shared-state entrypoint links, scoped verification evidence, and learning provenance
 
@@ -154,6 +155,26 @@
 | `.cowork/members/proposal_template.md` | ADD | Proposal template |
 | `.cowork/members/my_state_template.md` | ADD | Personal-state template |
 | `.cowork/members/team_board.md` | ADD | Team board |
+
+---
+
+## 1.5.1 Upgrade (from 1.5.0)
+
+> Restores the carryover trigger-watch duty that 1.5.0 dropped together with the mandatory briefing. Arrived triggers are raised in one line even in a session with a specified task.
+
+### 1.5.1 File Classification
+
+| File | Class | Change |
+|------|-------|--------|
+| `AGENTS.md` | MERGE | Add only the one-line arrived-trigger notice to the first start-and-resume item |
+| `CLAUDE.md` | MERGE | Same as above |
+| `GEMINI.md` | MERGE | Same as above |
+| `.github/copilot-instructions.md` | MERGE | Same as above |
+| `.cowork/01_cowork_protocol/session_protocol.md` | REPLACE | Restore the trigger-watch duty in quick execution rule 1 and the §1D carryover paragraph |
+| `.cowork/01_cowork_protocol/tooling_environment_guide.md` | REPLACE | F-02 check also covers arrived triggers |
+| `.cowork/06_evolution/project_state.md` | MERGE | Add only the trigger-watch sentence to the Carryover Backlog preamble; preserve the table and project data |
+
+> Sentence additions only. If a `REPLACE` document is customized, merge just the added sentence.
 
 ---
 
@@ -319,4 +340,5 @@
 | 1.3.0 | Verification-fallout / open-question-divergence self-improvement (1.3.0) — end-to-end re-verification after a gate or invariant change (F-11), divergence-over-an-open-question check (F-12) |
 | 1.4.0 | Field-driven improvements (1.4.0) — measurable state budgets and R1/R2 cleanup, shared-state entrypoint links, scoped verification evidence, and learning provenance |
 | 1.5.0 | Request-driven harness cleanup (1.5.0) — shorter entrypoints, task-specific context loading, authority-based approval, logs when needed, and intent-based document creation |
+| 1.5.1 | Carryover trigger watch restored (1.5.1) — arrived carryover triggers are raised in one line even in a session with a specified task |
 <!-- CUMULATIVE:END -->

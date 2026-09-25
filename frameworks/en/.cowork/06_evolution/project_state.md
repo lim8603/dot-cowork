@@ -76,7 +76,7 @@ For a clear request, open only the related registries, canonical documents, and 
 
 ## Carryover Backlog
 
-> **The single source for carryovers.** Manage carryover items here. Include them in a briefing when no task is specified; for a specific task, check only related items. Update when items are added, resolved, or handed off. Keep background in the source session log.
+> **The single source for carryovers.** Manage carryover items here. Include them in a briefing when no task is specified; for a specific task, check only related items. Update when items are added, resolved, or handed off. Keep background in the source session log. Watching carryover triggers is the AI's responsibility — before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work and raises arrived triggers on its own.
 
 **Ready to start on request (no trigger)**
 

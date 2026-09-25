@@ -4,7 +4,7 @@ This is the project entrypoint for GitHub Copilot. Prioritize the user's current
 
 ## Start and resume
 
-- If the requested task is clear, check active work and constraints in `.cowork/06_evolution/project_state.md`, read only the relevant registries, canonical documents, and instances, and proceed. Do not require a general briefing or another task selection.
+- If the requested task is clear, check active work and constraints in `.cowork/06_evolution/project_state.md`, read only the relevant registries, canonical documents, and instances, and proceed. Do not require a general briefing or another task selection. Still raise, in one line, any carryover item whose trigger has arrived, even if it is unrelated to the current task (watching carryover triggers is the AI's responsibility).
 - If no task is specified, briefly present the active Intent, Milestone, Task, next starting point, and carryover items from `project_state.md`, then ask the user to choose work.
 - For project setup or resumption work, ask only necessary `.cowork/01_cowork_protocol/session_protocol.md` §1A questions when state is empty or core information conflicts. Do not onboard for a read-only request.
 - Read the relevant personal `my_state.md`, latest session log, or accepted ADR only when earlier decisions or unfinished work require that evidence. Follow the Context Loading Guide in `project_state.md` for details.

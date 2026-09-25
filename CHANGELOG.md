@@ -4,6 +4,11 @@ All notable changes to `cowork-context-framework` will be documented in this fil
 
 The project follows semantic versioning.
 
+## [1.5.1] - 2026-09-25
+
+### Fixed
+- Restored the carryover trigger-watch duty that 1.5.0 removed along with the mandatory briefing: the AI raises any carryover item whose trigger has arrived, in one line, even when a task was specified (Korean and English entrypoints, session protocol, project state template, F-02 check).
+
 ## [1.5.0] - 2026-09-25
 
 ### Changed

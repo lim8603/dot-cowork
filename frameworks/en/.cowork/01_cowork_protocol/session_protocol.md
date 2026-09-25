@@ -6,7 +6,7 @@
 
 ## Quick execution rules
 
-1. For a clear task, check current constraints in `project_state.md`, read only the relevant documents, and proceed. Skip a general briefing and repeated task selection.
+1. For a clear task, check current constraints in `project_state.md`, read only the relevant documents, and proceed. Skip a general briefing and repeated task selection, but still raise any carryover item whose trigger has arrived in one line (§1D).
 2. If no task is specified, briefly present active work and carryover items, then ask the user to choose. Use §1A onboarding only for missing or conflicting essential information.
 3. Obtain a Human decision or approval for H/J decisions; perform A-level work and report the result. Do not request approval again for an already approved scope.
 4. When work changes state or decisions, update the relevant source document and state index. Do not create a log or member file for a read-only request alone.
@@ -194,7 +194,7 @@ If the Human requests a concrete task, briefly check relevant state and proceed.
 
 The AI reads the available source documents discovered during Session Start (`project_state.md`, `team_board.md` for team projects, `my_state.md` when it exists, and the latest session log) and prints the briefing in the following form.
 
-Take carryover items from the `Carryover Backlog` in `project_state.md`. Show items that affect the current work concisely; use a table when several items matter. Raise a triggered item when it relates to the task.
+Take carryover items from the `Carryover Backlog` in `project_state.md`. Show items that affect the current work concisely; use a table when several items matter. Watching carryover triggers is the AI's responsibility: before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work and raises on its own any trigger that has arrived or any item now ready to start. In a session with a specified task, do not show the whole table; raise only the arrived items in one line.
 
 **Shown to a Master:**
 ```text

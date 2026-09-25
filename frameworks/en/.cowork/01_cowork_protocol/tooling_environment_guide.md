@@ -93,7 +93,7 @@ Keep stable project identity, document paths, and shared execution boundaries in
 |-------|-------------|------------------|
 | Work log created | `session_protocol.md` §Auto-Recording 1 | Check for a log only when substantive work needs one; exclude read-only requests |
 | Live state-document size budget | F-05 | A hook measures the size of `project_state.md` + `my_state.md` and shows an R1/R2 harvest recommendation when the budget is exceeded |
-| Carryover items checked | F-02 | Include carryovers for an unspecified-task briefing; check related items for a specific task |
+| Carryover items checked | F-02 | Include carryovers for an unspecified-task briefing; check related items and any item whose trigger has arrived for a specific task |
 | openapi / schema drift | Per project | A pre-commit hook confirms the regeneration diff = 0 (for projects with a contract) |
 | Commit message convention | decision matrix | A commit-msg hook validates the prefix |
 
