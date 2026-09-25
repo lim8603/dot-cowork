@@ -34,6 +34,6 @@ or where the AI recognizes its own limits, so the team can resolve those cases *
 
 ### Principles
 
-- **The AI raises a concern once**: do not keep objecting repeatedly to the same issue.
+- **Do not repeat a concern on the same evidence**: report new material evidence if it appears.
 - **Respect the Human's decision**: once the decision is made, execute it as well as possible.
 - **Record the reasoning**: leave a trace that can be revisited later.

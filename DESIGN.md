@@ -52,11 +52,11 @@ Session continuity should come from files such as `project_state.md`, session lo
 
 ### Plan -> Approve -> Execute
 
-The default working contract is simple:
+The authority matrix determines the approval point:
 
-1. The AI proposes a plan.
-2. The Human approves or adjusts it.
-3. Execution follows the approved direction.
+1. The AI plans the requested work and checks the existing approved scope.
+2. The Human decides H-level choices and approves J-level proposals.
+3. The AI performs A-level work and reports the result. It does not request approval again for an already approved scope.
 
 This keeps the workflow collaborative without making the assistant either passive or overly autonomous.
 
@@ -136,7 +136,7 @@ frameworks/
 Inside `.cowork/`, the framework organizes project knowledge by role and lifecycle stage.
 The structure is meant to support both ongoing execution and later recovery.
 
-Within the governance layer, the design keeps stable session rules separate from tool- and environment-dependent operating instructions so entrypoint behavior and upgrade mechanics can evolve without bloating the core session protocol.
+Within the governance layer, the session protocol starts with a short execution summary and keeps tool and environment instructions in a separate guide.
 
 At a high level, the framework tracks work through this chain:
 
@@ -156,13 +156,7 @@ Tool entrypoints reference shared phase/milestone state. Verification indexes id
 
 The framework is designed around resumable work sessions.
 
-At the start of a session, the assistant is expected to:
-
-- read the entrypoint file
-- restore the current project state
-- inspect the latest session history
-- identify active work and carry-over items
-- continue from the documented state rather than from chat history
+At work start, the assistant uses its entrypoint and `project_state.md` to identify current constraints and next actions. It reads history and other documents only when the task needs them. If the user specifies a task, work begins without a general briefing; otherwise the assistant briefly presents active work and carryover items. A read-only request does not create a session log or member workspace.
 
 This model supports both solo work and team collaboration.
 

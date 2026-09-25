@@ -8,9 +8,9 @@
 
 | 항목 | 내용 |
 |------|------|
-| Version | 1.4.0 |
-| From | 1.3.0 |
-| 날짜 | 2026-09-20 |
+| Version | 1.5.0 |
+| From | 1.4.0 |
+| 날짜 | 2026-09-25 |
 > 아래 `## 파일 분류`의 `ADD` 표는 여전히 **신규 프레임워크 기준선 설치용** 전체 목록이다(1.1.0 신규 파일 `state_archive.md` 포함).
 > `1.0.0 → 1.1.0` 순차 업그레이드는 `## 1.1.0 업그레이드 (from 1.0.0)` 델타 표를 따른다.
 > 이미 임의의 `.cowork/` 구조가 존재하는 프로젝트에 신규 도입할 때는 자동 업그레이드가 아니라 **마이그레이션**으로 취급하고 Human 확인을 거친다.
@@ -19,6 +19,7 @@
 
 ## 변경 요약
 
+- 요청 중심 하네스 정리(1.5.0) — 진입점 간소화·선택적 컨텍스트 로딩·권한별 승인·필요 시 로그·의도 기반 문서 생성
 - 실사용 기반 개선(1.4.0) — 상태 문서 크기 예산과 R1/R2 정리·진입점 상태 중복 제거·검증 근거 유효 범위·학습 출처 강화
 
 - 검증 낙진·미결 분기 자기개선(1.3.0) — 게이트·불변식 변경의 종단 재검증 의무(F-11)·미결 위의 분기 점검(F-12)
@@ -156,6 +157,37 @@
 
 ---
 
+## 1.5.0 업그레이드 (from 1.4.0)
+
+> 기존 프로젝트의 상태·승인·담당·산출물 결정을 보존하면서 하네스 실행 규칙을 간소화한다.
+
+### 1.5.0 파일 분류
+
+| 파일 | 분류 | 변경 내용 |
+|------|------|----------|
+| `AGENTS.md` | MERGE | 공통 실행 규칙을 짧게 정리. 프로젝트명·언어·도구별 지시 보존 |
+| `CLAUDE.md` | MERGE | 위와 동일 |
+| `GEMINI.md` | MERGE | 위와 동일 |
+| `.github/copilot-instructions.md` | MERGE | 위와 동일 |
+| `.cowork/README.md` | MERGE | 요청 기반 시작 예시와 조건부 브리핑 안내 병합 |
+| `.cowork/cowork.md` | REPLACE | 권한별 실행과 선택적 컨텍스트 로딩 원칙 |
+| `.cowork/01_cowork_protocol/communication_convention.md` | REPLACE | 질문·옵션 제시 기준 간소화 |
+| `.cowork/01_cowork_protocol/decision_authority_matrix.md` | REPLACE | H/J/A 적용 범위와 승인된 작업 내 구현 자율성 명확화 |
+| `.cowork/01_cowork_protocol/escalation_policy.md` | REPLACE | 새롭고 중대한 근거가 있을 때만 우려 재제기 |
+| `.cowork/01_cowork_protocol/role_realization.md` | REPLACE | 독립 검토의 효과에 대한 과도한 단정 제거 |
+| `.cowork/01_cowork_protocol/session_protocol.md` | REPLACE | 빠른 실행 기준, 조건부 브리핑·로그, ADR 승격 기준, 의도 기반 요청 처리 |
+| `.cowork/01_cowork_protocol/tooling_environment_guide.md` | REPLACE | 도구별 예시 위치와 진입점 동기화 규칙 정리 |
+| `.cowork/04_implementation/templates/task_template.md` | MERGE | 모든 Task에 일괄 승인을 요구하지 않도록 설명 갱신 |
+| `.cowork/06_evolution/project_state.md` | MERGE | 작업별 읽기 순서만 병합. 활성 ID·제약·이월·승인·프로젝트 데이터 보존 |
+| `.cowork/07_delivery/export_spec.md` | MERGE | ADR와 기준 문서의 충돌 조정 규칙만 병합. 산출물 결정 보존 |
+| `.cowork/members/my_state_template.md` | MERGE | 로그가 없는 첫 세션의 참조 필드 처리. 개인 상태 파일은 교체하지 않음 |
+| `.cowork/members/proposal_template.md` | MERGE | 단어만으로 제안을 생성하지 않는 안내 병합 |
+| `.cowork/members/team_board.md` | MERGE | 역할 슬롯 승인 기준만 병합. 기존 배정과 작업 상태 보존 |
+
+> `MERGE`는 기존 프로젝트 데이터와 커스터마이징을 보존한다. `REPLACE` 문서에 프로젝트별 수정이 있으면 MERGE로 전환하고 충돌을 확인한다. 읽기 전용 요청만으로 로그·멤버 파일을 만들지 않는다.
+
+---
+
 ## 1.4.0 업그레이드 (from 1.3.0)
 
 > 상태·검증 기록을 보존하면서 운영 규칙을 갱신하는 순차 업그레이드다.
@@ -286,4 +318,5 @@
 | 1.2.0 | 온보딩·결정 무결성·강제 자기개선(1.2.0) — 동료 온보딩 런북(F-08)·결정 반전/드리프트 감지(F-09)·세션 규율 강제 훅(F-10) |
 | 1.3.0 | 검증 낙진·미결 분기 자기개선(1.3.0) — 게이트·불변식 변경의 종단 재검증 의무(F-11)·미결 위의 분기 점검(F-12) |
 | 1.4.0 | 실사용 기반 개선(1.4.0) — 상태 문서 크기 예산과 R1/R2 정리·진입점 상태 중복 제거·검증 근거 유효 범위·학습 출처 강화 |
+| 1.5.0 | 요청 중심 하네스 정리(1.5.0) — 진입점 간소화·선택적 컨텍스트 로딩·권한별 승인·필요 시 로그·의도 기반 문서 생성 |
 <!-- CUMULATIVE:END -->

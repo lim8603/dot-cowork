@@ -76,11 +76,10 @@ This file is the repository maintenance context that GitHub Copilot reads automa
 - Keep all four root entrypoint files in sync.
 - When framework structure, release policy, or upgrade behavior changes, reflect that in both `README.md` and `DESIGN.md`.
 
-## Typical Workflow
+## Maintenance Workflow
 
 1. Edit `frameworks/ko/` first.
 2. Sync `frameworks/en/` when the change affects published framework behavior or install wording.
 3. Update root docs or scripts only when the framework contract or release workflow changes.
-4. Run `./scripts/release.ps1 prepare -Version <MAJOR.MINOR.PATCH>` to refresh metadata and verify the branch.
-5. Open and merge the release PR into `main`.
-6. Publish by tagging the merged commit with `./scripts/release.ps1 publish -Version <MAJOR.MINOR.PATCH>`.
+
+For an explicit `!build` or `!release` request, follow the keyword contract above. Routine edits and reviews do not prepare or publish a release.

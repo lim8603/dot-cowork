@@ -53,22 +53,22 @@ Check against: `05_verification/verification_evidence.md`, `05_verification/qual
 ## Every Session Start
 
 ### Session state restore
-Check against: root entrypoint file, `06_evolution/project_state.md`, `02_project_definition/deliverable_plan.md`, relevant `members/<name>/workspace/my_state.md`, latest session log, `cowork.md`
-- [ ] Start: At session start, the AI can easily find the core documents it should read first, the contributor-specific resume document, and the location of the latest log.
-- [ ] Behavior: The AI can restore and briefly explain the current phase, active work, deliverable constraints, recent decisions, and carry-over items.
+Check against: root entrypoint file, `06_evolution/project_state.md`, documents relevant to the requested work
+- [ ] Start: The AI can find current constraints and next actions in the shared state index.
+- [ ] Behavior: It reads deliverable, personal, log, and governance documents only when the task needs them.
 - [ ] Result: The human and AI start from the same project picture instead of losing time re-explaining previous conversation.
 
 ### Session briefing
-Check against: `06_evolution/project_state.md`, latest session log, active registries
+Check against: `06_evolution/project_state.md`, active registries
 - [ ] Start: Enough up-to-date information remains to briefly explain the current phase and the active Intent, Milestone, and Task.
-- [ ] Behavior: Instead of dumping documents at length, the AI concisely presents the current state, priorities, and the very next action to start.
-- [ ] Result: Session start becomes an immediately actionable brief, and early alignment cost stays low.
+- [ ] Behavior: When no task is specified, the AI concisely presents active work and carryovers. For a clear task it proceeds without a general briefing.
+- [ ] Result: The user can select work when needed without delaying a specified task.
 
 ### Phase-aware loading
-Check against: `06_evolution/project_state.md`, `02_project_definition/deliverable_plan.md`, phase source documents, loading guidance in entrypoint files
+Check against: `06_evolution/project_state.md`, task source documents, loading guidance in entrypoint files
 - [ ] Start: The current active phase is clearly visible in `project_state.md` and the entrypoints.
-- [ ] Behavior: The AI expands loading first into only the registry and canonical documents relevant to the phase, and defers unrelated areas.
-- [ ] Result: The reading scope stays focused and repeatable, so restoration quality is consistently similar within the same phase.
+- [ ] Behavior: The AI reads registries and canonical documents relevant to the requested task, and defers unrelated documents even within the same phase.
+- [ ] Result: Reading scope stays focused on the work.
 
 ### Language alignment
 Check against: root entrypoint files, project context fields, delivery planning docs
@@ -85,19 +85,19 @@ Check against: `members/<name>/workspace/session_logs/`, `members/<name>/workspa
 ### Session log bootstrap
 Check against: `members/<name>/workspace/session_logs/`, `06_evolution/templates/session_log_template.md`
 - [ ] Start: The path and template for opening or creating a new session log are ready.
-- [ ] Behavior: Before full execution begins, the AI establishes the current session log as the default capture point and leaves a trace of work.
+- [ ] Behavior: The AI creates a session log when substantive work needs a continuity record; read-only requests do not create logs.
 - [ ] Result: Temporary judgments, notes, and follow-up cleanup are kept together as a single session-level record instead of scattering.
 
 ### Session log ignore hygiene
 Check against: `.gitignore`, session log path rules
 - [ ] Start: The policy and path rules for excluding local session logs from tracking are clear.
-- [ ] Behavior: The AI checks for or suggests a missing ignore rule once, and keeps session logs from creating noisy diffs.
+- [ ] Behavior: The AI checks the ignore rule when creating the first session log.
 - [ ] Result: Session records can accumulate sufficiently without dirtying normal working branches with unnecessary changes.
 
 ### Pending proposal surfacing
 Check against: `members/*/proposals/`, authority rules
-- [ ] Start: Unresolved proposal locations and approval owners are visible at session start.
-- [ ] Behavior: The AI surfaces unresolved proposals first and does not bypass them without approval.
+- [ ] Start: The AI can locate unresolved proposals and their approval owners when they affect the task.
+- [ ] Behavior: The AI surfaces related proposals before dependent work and does not bypass required approval.
 - [ ] Result: Decision debt is visible, and important structural changes do not proceed under missing approval.
 
 ## In-Session Automation
@@ -126,16 +126,16 @@ Check against: `06_evolution/project_state.md`
 - [ ] Behavior: The AI synchronizes the resume index to the latest state when a major status change occurs.
 - [ ] Result: The next session resumes from the real latest state rather than from stale information.
 
-### Keyword-triggered automation
-Check against: entrypoint keyword tables, `01_cowork_protocol/tooling_environment_guide.md`, proposal paths, gate docs, release and upgrade docs
-- [ ] Start: Keywords such as `finish`, `proposal`, `phase transition`, `release`, and `upgrade`, and the actions connected to them, are documented.
-- [ ] Behavior: When the AI hears a keyword, it connects it to a structured framework procedure instead of reacting ad hoc every time.
+### Intent-based workflow routing
+Check against: `01_cowork_protocol/session_protocol.md`, proposal paths, gate docs, delivery and upgrade docs
+- [ ] Start: Procedures for handoff, Proposal submission, phase transition, deliverable generation, and upgrade are documented.
+- [ ] Behavior: The AI follows a procedure when the user requests the action in context; mentioning a keyword alone does not create or publish anything.
 - [ ] Result: Frequently repeated transition work becomes faster and more consistent, and the same pattern can be reproduced across tools.
 
 ### Change proposal capture
 Check against: `members/*/proposals/`, proposal templates, session log
 - [ ] Start: The path and template for entering proposal mode are prepared.
-- [ ] Behavior: The AI turns conversational ideas into proposal artifacts that structure scope, reason, and approval needs.
+- [ ] Behavior: The AI creates a Proposal artifact when the user asks to submit a shared-area change through that process.
 - [ ] Result: Proposals do not disappear as floating conversation fragments and remain as reviewable objects.
 
 ### External context intake with extracted facts only
@@ -397,6 +397,6 @@ Check against: `scripts/release.ps1`, `dist/`, Git tags and releases
 ## Quick Judgment Guide
 
 - If `Start` items are blocked: fix the trigger, prerequisite documents, approval boundary, and file location first.
-- If `Behavior` items are blocked: check document role conflicts, excessive phase loading, missing records, and missing keyword mappings first.
+- If `Behavior` items are blocked: check document role conflicts, excessive loading, missing records, and incorrect request-intent routing first.
 - If `Result` items are blocked: check output destination errors, unsynchronized `project_state.md`, and missing gate/evidence records first.
 - If multiple items are blocked in sequence: do not re-check only that phase; revisit `Always-Loaded Common` and `Every Session Start` first.

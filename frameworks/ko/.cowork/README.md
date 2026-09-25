@@ -18,10 +18,10 @@ AI 코딩 도구는 세션이 끊기면 맥락을 잃기 쉽다.
 
 ## 이 프레임워크가 하는 일
 
-- 세션 시작 시 AI가 `project_state.md`, `deliverable_plan.md`, 관련 `my_state.md`, 최신 세션 로그를 읽고 브리핑한다.
+- 작업을 시작할 때 AI가 `project_state.md`에서 현재 상태를 확인하고 필요한 문서만 추가로 읽는다. 작업이 지정되지 않았을 때 브리핑한다.
 - 작업 중 결정은 목록 문서, 기준 본문, 상세 문서에 맞는 위치로 누적한다.
 - 현재 Phase에 맞는 문서만 우선 로드해 컨텍스트를 효율적으로 사용한다.
-- 릴리즈 시 `docs/`에 활성화된 기본 추천 14종과 승인된 확장 산출물(15+)을 생성한다.
+- 공식 산출물 생성 요청 시 `deliverable_plan.md`에서 승인된 활성 항목을 `docs/`에 생성한다.
 
 ---
 
@@ -29,7 +29,7 @@ AI 코딩 도구는 세션이 끊기면 맥락을 잃기 쉽다.
 
 1. `.cowork/`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md`를 프로젝트 루트에 복사한다.
 2. 사용하는 AI 도구에서 해당 진입점 파일을 읽게 한다.
-3. AI가 프로젝트 브리핑을 출력하면 이번 세션에서 할 작업을 선택한다.
+3. 원하는 작업을 바로 요청한다. 작업을 지정하지 않으면 AI가 현재 상태를 브리핑한다.
 
 ---
 
@@ -37,20 +37,19 @@ AI 코딩 도구는 세션이 끊기면 맥락을 잃기 쉽다.
 
 | 도구 | 시작 방법 |
 |------|-----------|
-| OpenAI Codex | `AGENTS.md를 읽고 project_state.md, deliverable_plan.md, 내 my_state.md, 최신 세션 로그를 확인한 뒤 오늘 세션을 시작해줘.` |
-| Cursor | `AGENTS.md를 읽고 project_state.md, deliverable_plan.md, 내 my_state.md, 최신 세션 로그를 확인한 뒤 오늘 작업을 시작해줘.` |
+| OpenAI Codex | `AGENTS.md를 읽고 project_state.md의 현재 상태에서 이번 작업을 이어서 해줘.` |
+| Cursor | `AGENTS.md를 읽고 project_state.md의 현재 상태에서 이번 작업을 이어서 해줘.` |
 | Claude Code | `claude "CLAUDE.md를 읽고 오늘 세션을 시작해줘"` |
-| Gemini Code Assist | `GEMINI.md를 읽고 project_state.md, deliverable_plan.md, 내 my_state.md, 최신 세션 로그를 확인한 뒤 오늘 세션을 시작해줘.` |
+| Gemini Code Assist | `GEMINI.md를 읽고 project_state.md의 현재 상태에서 이번 작업을 이어서 해줘.` |
 | GitHub Copilot | Copilot Chat을 열고 대화를 시작하면 `.github/copilot-instructions.md`가 자동으로 로드된다. |
 
 ---
 
 ## 세션에서 기대하는 흐름
 
-1. AI가 `project_state.md`, `deliverable_plan.md`, 관련 `my_state.md`, 필요한 목록 문서/기준 본문, 최신 세션 로그를 확인한다.
-2. AI가 프로젝트 현황과 활성 Intent / Milestone / Task를 브리핑으로 먼저 보여준다.
-3. Human이 작업을 선택하거나 목적을 말한다.
-4. AI가 `Plan → Approve → Execute` 사이클로 작업을 진행한다.
+1. AI가 `project_state.md`에서 현재 상태를 확인하고 요청과 관련된 문서를 읽는다.
+2. 요청한 작업이 명확하면 진행한다. 작업이 지정되지 않았으면 활성 작업을 브리핑하고 선택을 받는다.
+3. H/J 결정은 Human 승인 후 실행하고, A 범위의 작업은 수행 후 결과를 보고한다.
 
 세부 절차와 자동화 규칙은 [session_protocol.md](01_cowork_protocol/session_protocol.md)를, 도구·환경 의존 운영은 [tooling_environment_guide.md](01_cowork_protocol/tooling_environment_guide.md)를 기준으로 본다.
 
@@ -86,22 +85,21 @@ AI 코딩 도구는 세션이 끊기면 맥락을 잃기 쉽다.
 
 ---
 
-## 자주 쓰는 키워드
+## 요청 예시
 
-| 키워드 | 동작 |
+| 요청 의도 | 동작 |
 |--------|------|
-| `~로 가자` / `~로 결정` | 설계 결정을 ADR 파일로 자동 기록 |
-| `제안` | Change Proposal 생성 |
+| 설계 방향 확정 | 영향도를 판단해 ADR 또는 관련 기준 문서에 기록 |
+| 공유 영역 변경을 Proposal로 제출 | Change Proposal 생성 |
 | `~단계로 넘어가자` | 현재 단계 문서 보완 후 quality gate 점검 |
 | `마무리` | 세션 종료 처리와 이월 항목 점검 |
-| `릴리즈` / `문서 생성` / `export` | Gate 5 점검 후 공식 산출물 생성 |
+| 공식 산출물 생성 | Gate 5 점검 후 승인된 활성 산출물 생성 |
 
 ---
 
 ## 릴리즈와 문서 생성
 
-`릴리즈`, `문서 생성`, `export`를 요청하면 AI는 `deliverable_plan.md`와 `export_spec.md`를 기준으로
-활성화된 기본 추천 14종과 승인된 확장 산출물(15+)을 생성한다.
+공식 산출물 생성을 요청하면 AI는 `deliverable_plan.md`와 `export_spec.md`를 기준으로 승인된 활성 항목을 생성한다. 단어를 언급한 것만으로 생성하지 않는다.
 
 - 산출물 품질은 그 이전까지 기준 문서에 얼마나 충실히 축적되었는지에 비례한다.
 - 확장 산출물은 필요 시 AI가 제안하고 Human이 승인해 추가한다.

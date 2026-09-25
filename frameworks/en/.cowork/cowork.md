@@ -13,7 +13,7 @@ This framework defines the rules and deliverable system for software development
 | # | Principle | Description |
 |---|---|---|
 | 1 | **Artifact Is Memory** | Artifacts are the AI's memory. Every decision and every piece of context must be written down. |
-| 2 | **Plan -> Approve -> Execute** | The AI plans, the Human approves, and the AI executes. |
+| 2 | **Plan -> Approve -> Execute** | Obtain a Human decision or approval for H/J decisions; plan and perform A-level work, then report the result. |
 | 3 | **Mutual Respect** | Respect the AI's analysis, and treat the Human's judgment as the final authority. |
 | 4 | **Progressive Enrichment** | Each deliverable becomes context for the next step. Keep traceability intact. |
 | 5 | **Minimal Ceremony** | Prefer substance over ceremony, but always leave what is necessary. |
@@ -29,7 +29,7 @@ This framework defines the rules and deliverable system for software development
 - `.cowork/` documents are the project's shared source documents.
 - Record confirmed facts, working assumptions, and open items separately.
 - Major decisions and release deliverables must leave traceable evidence.
-- **No untriggered accumulation (F-04).** Every accumulating loading document (state index, KB, retrospective, completion narratives, and so on) **must declare an explicit harvest/split trigger**. A triggerless rule such as "clean it up when it gets long" never actually fires, so the document swells append-only. Each document carries a rule of the form "when what is true, move what to where" (for example, completion narratives R1, table cells R2, KB 15 items, retrospectives 4). The goal of hygiene is not "never accumulate" (impossible) but "always have a trigger that pays it down".
+- **Cleanup conditions for growing documents (F-04).** State indexes, the KB, and retrospectives declare when to shorten or split content and where details move. Preserve current constraints and evidence during cleanup; follow each document's maintenance rules.
 
 ### AI Discretion Area
 
@@ -40,12 +40,12 @@ This framework defines the rules and deliverable system for software development
 
 ### Collaboration Execution Mode (F-06)
 
-Separate the **definition** of a role seat (a Role-ID such as Forge/Lux/Sage) from the per-session **bookkeeping**. Keep a `Collaboration Execution Mode = solo | team` field in `project_state.md`.
+Separate the definition of a role seat (a Role-ID such as Forge/Lux/Sage) from per-session status records. Keep a `Collaboration Execution Mode = solo | team` field in `project_state.md`.
 
-- **team** — real people are assigned to multiple seats. Run all team bookkeeping: per-role `my_state.md`, `team_board.md`, upward sync, and so on.
-- **solo** — one person covers multiple seats, or the project runs on AI personas. **Keep the seat definitions (role boundaries, authority, ownership areas)**, but skip per-session per-role bookkeeping and run simply, centered on `project_state.md`. The seats are preserved as scaffolding for onboarding future teammates (when a person joins, they are assigned directly to that seat).
+- **team** — real people are assigned to multiple seats. Maintain per-role `my_state.md`, `team_board.md`, and state synchronization.
+- **solo** — one person covers multiple seats, or the project runs on AI personas. Keep role and authority definitions, but skip per-session per-role records and work primarily from `project_state.md`.
 
-The point: the value of a seat is in "the definition exists", not in "recording it as a role every session". A solo project with no realistic near-term joiner running team bookkeeping every session is just paying premiums. For detailed boundaries and transition rules, see `decision_authority_matrix.md` §Collaboration Execution Mode.
+For transition and per-role record rules, see `decision_authority_matrix.md` §Collaboration Execution Mode.
 
 ---
 
@@ -165,12 +165,12 @@ flowchart TD
 
 ## Context Loading Principles
 
-- At session start, load `project_state.md`, `deliverable_plan.md`, the relevant registries, and the latest session log first.
+- At work start, check current state in `project_state.md` and read the registries and canonical documents relevant to the request. Add `deliverable_plan.md` or the latest log only when deliverable scope or prior decisions matter.
 - `project_state.md` is the shared resume index that is always loaded, so keep narrative sections short and keep tables focused on active or recent key items.
 - Load detail documents like `INT-*`, `MS-*`, `TASK-*`, and `ADR-*` only when deeper context is needed.
 - `templates/`, `imported_context/`, and `state_archive.md` are not default-loading targets.
 - Imported context should remain only as supporting evidence after the required facts are extracted into registries, canonical documents, or instance documents.
-- **Measurable size budget (F-05).** Use the entire UTF-8 file size, including headers: 24 KiB for `project_state.md` and 12 KiB for each active `my_state.md` as default warning thresholds. These are initial operating defaults, not token counts or a quality guarantee. Record project-specific budgets and reasons in the state document. Measure at session start and close; use R1/R2 when exceeded. Size alone does not block work or release. Follow R1/R2 in `session_protocol.md` for details.
+- **Size warnings (F-05).** Check the full UTF-8 file size against 24 KiB for `project_state.md` and 12 KiB for each active `my_state.md`. On state update or handoff, apply R1/R2 if exceeded. Size alone does not block work or release.
 
 ---
 

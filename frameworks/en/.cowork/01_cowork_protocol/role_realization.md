@@ -13,7 +13,7 @@ A role seat (for example, Forge=backend / Lux=frontend / Sage=review) can be exe
 |-------------|-------------------------|-------|
 | **Person** | A real team member | Genuine independent judgment and accountability (team mode) |
 | **AI persona** | One AI switching hats | Context switching and role framing. But errors are correlated |
-| **Independent sub-agent** | An AI with a separate system prompt / model / context | Errors are decorrelated — a genuine second pair of eyes |
+| **Independent sub-agent** | An AI that may use separate instructions, model, and context | May help independent review; verify the effect in results |
 
 ---
 
@@ -23,10 +23,10 @@ A role seat (for example, Forge=backend / Lux=frontend / Sage=review) can be exe
 - What produces value is the **behavioral contract** the persona carries. For example, Sage = "verify adversarially, default to disproof, run an independent pass".
 - So when creating a seat, define **the seat's behavioral contract (what it produces, in what attitude)** before its name.
 
-## Why An Independent Sub-Agent (Error Decorrelation)
+## When independent review helps
 
-- When the same AI plays multiple roles with the same context and same model, **all roles share the same blind spots** — errors are correlated and the review waves its own mistakes through.
-- Running a seat as an independent sub-agent with a **separate system prompt + (where possible) a different model + a separate context window** decorrelates errors, raising the chance that one entity catches another's mistake. This is the only real basis on which multi-agent produces value.
+- When one AI generates and reviews work using the same evidence, it may miss the same assumptions twice.
+- A reviewer with separate instructions, evidence, and validation criteria may find those blind spots. Independence or a different model does not guarantee fewer errors; evaluate cost and actual review findings.
 - **Adversarial verification** (Sage-style review) benefits most from independent execution. If the generating entity and the verifying entity share context, verification becomes a formality.
 
 ---
@@ -43,8 +43,8 @@ A role seat (for example, Forge=backend / Lux=frontend / Sage=review) can be exe
 ## Materialization Execution Rules
 
 1. Fix the seat's **behavioral contract** in a sentence first (what, in what attitude, with what default).
-2. When running as an independent sub-agent, give it **a different model / different context from the main execution** where possible to maximize decorrelation.
-3. Frame adversarial verification not as "do you agree?" but as "**disprove it; when uncertain, default to rejection**".
+2. For independent review, provide distinct evidence and validation criteria where possible, and evaluate the defects actually found.
+3. Compare claims with evidence and look for counterexamples. When evidence is insufficient, mark the unverified scope rather than defaulting to rejection.
 4. When there is multi-faceted failure, use verifiers with **different lenses** rather than N identical verifiers (diversity over duplication).
 5. Realization (persona/independent) and the model used vary by tool capability, so for the concrete execution means consult the current tool's entrypoint document (`CLAUDE.md`, and so on) together with `tooling_environment_guide.md`.
 

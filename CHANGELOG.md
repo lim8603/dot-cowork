@@ -4,6 +4,15 @@ All notable changes to `cowork-context-framework` will be documented in this fil
 
 The project follows semantic versioning.
 
+## [1.5.0] - 2026-09-25
+
+### Changed
+- Shortened Korean and English tool entrypoints to prioritize the current request, task-specific loading, and H/J/A authority boundaries.
+- Made briefing, onboarding, session logs, and handoff records conditional on the work instead of mandatory at every session start.
+- Replaced word-triggered ADR, proposal, deliverable, and upgrade actions with intent-based routing and ADR impact criteria.
+- Moved practical loading guidance toward the front of `project_state.md` and the session protocol; aligned shared docs and softened unsupported claims about context detection and independent reviewers.
+- Clarified root maintenance entrypoints so routine edits do not trigger release preparation.
+
 ## [1.4.0] - 2026-09-20
 
 ### Changed

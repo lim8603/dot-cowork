@@ -8,9 +8,9 @@
 
 | Item | Value |
 |------|------|
-| Version | 1.4.0 |
-| From | 1.3.0 |
-| Date | 2026-09-20 |
+| Version | 1.5.0 |
+| From | 1.4.0 |
+| Date | 2026-09-25 |
 > The `ADD` table under `## File Classification` below is still the full list for a **fresh baseline install** (including the 1.1.0 new file `state_archive.md`).
 > A sequential `1.0.0 -> 1.1.0` upgrade follows the `## 1.1.0 Upgrade (from 1.0.0)` delta table.
 > If you newly introduce it into a project that already contains an arbitrary `.cowork/` structure, treat that as a **migration**, not an automatic upgrade, and confirm with the Human first.
@@ -19,6 +19,7 @@
 
 ## Change Summary
 
+- Request-driven harness cleanup (1.5.0) — shorter entrypoints, task-specific context loading, authority-based approval, logs when needed, and intent-based document creation
 - Field-driven improvements (1.4.0) — measurable state budgets and R1/R2 cleanup, shared-state entrypoint links, scoped verification evidence, and learning provenance
 
 - Verification-fallout / open-question-divergence self-improvement (1.3.0) — end-to-end re-verification after a gate or invariant change (F-11), divergence-over-an-open-question check (F-12)
@@ -156,6 +157,37 @@
 
 ---
 
+## 1.5.0 Upgrade (from 1.4.0)
+
+> Simplifies harness execution while preserving existing project state, approvals, assignments, and deliverable decisions.
+
+### 1.5.0 File Classification
+
+| File | Class | Change |
+|------|-------|--------|
+| `AGENTS.md` | MERGE | Shorten shared execution rules; preserve project identity, language, and tool-specific instructions |
+| `CLAUDE.md` | MERGE | Same as above |
+| `GEMINI.md` | MERGE | Same as above |
+| `.github/copilot-instructions.md` | MERGE | Same as above |
+| `.cowork/README.md` | MERGE | Merge request-based startup examples and conditional briefing guidance |
+| `.cowork/cowork.md` | REPLACE | Authority-based execution and task-specific context loading |
+| `.cowork/01_cowork_protocol/communication_convention.md` | REPLACE | Simplified questions and option presentation |
+| `.cowork/01_cowork_protocol/decision_authority_matrix.md` | REPLACE | Clarified H/J/A scope and autonomy within approved work |
+| `.cowork/01_cowork_protocol/escalation_policy.md` | REPLACE | Raise a concern again only on new material evidence |
+| `.cowork/01_cowork_protocol/role_realization.md` | REPLACE | Remove overconfident claims about independent review |
+| `.cowork/01_cowork_protocol/session_protocol.md` | REPLACE | Quick execution rules, conditional briefing and logs, ADR criteria, and intent-based request handling |
+| `.cowork/01_cowork_protocol/tooling_environment_guide.md` | REPLACE | Tool-example placement and entrypoint synchronization rules |
+| `.cowork/04_implementation/templates/task_template.md` | MERGE | Remove blanket approval wording for every Task |
+| `.cowork/06_evolution/project_state.md` | MERGE | Merge task-specific reading order only; preserve active IDs, constraints, carryovers, approvals, and project data |
+| `.cowork/07_delivery/export_spec.md` | MERGE | Merge ADR/source-document reconciliation rules; preserve deliverable decisions |
+| `.cowork/members/my_state_template.md` | MERGE | Handle a missing log in the first session; do not replace existing personal-state files |
+| `.cowork/members/proposal_template.md` | MERGE | Do not generate proposals from word mentions alone |
+| `.cowork/members/team_board.md` | MERGE | Merge role-slot approval rules; preserve current assignments and task state |
+
+> `MERGE` preserves existing project data and customizations. Treat a customized `REPLACE` document as MERGE and resolve conflicts before applying. Do not create logs or member files for a read-only request alone.
+
+---
+
 ## 1.4.0 Upgrade (from 1.3.0)
 
 > Sequential upgrade that updates operating rules while preserving project state and verification records.
@@ -286,4 +318,5 @@
 | 1.2.0 | Onboarding / decision integrity / enforcement self-improvement (1.2.0) — teammate onboarding runbook (F-08), decision reversal / drift detection (F-09), session discipline enforcement hooks (F-10) |
 | 1.3.0 | Verification-fallout / open-question-divergence self-improvement (1.3.0) — end-to-end re-verification after a gate or invariant change (F-11), divergence-over-an-open-question check (F-12) |
 | 1.4.0 | Field-driven improvements (1.4.0) — measurable state budgets and R1/R2 cleanup, shared-state entrypoint links, scoped verification evidence, and learning provenance |
+| 1.5.0 | Request-driven harness cleanup (1.5.0) — shorter entrypoints, task-specific context loading, authority-based approval, logs when needed, and intent-based document creation |
 <!-- CUMULATIVE:END -->

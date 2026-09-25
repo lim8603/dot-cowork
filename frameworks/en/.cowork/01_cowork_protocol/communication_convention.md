@@ -22,8 +22,8 @@ This document defines the communication rules that reduce misunderstanding and i
 ### AI -> Human
 
 - **Back proposals with reasoning**: explain briefly why the recommendation is appropriate.
-- **Ask when uncertain**: prefer questions over guesses.
-- **Offer alternatives**: when possible, show 2 to 3 options with trade-offs.
+- **Ask when needed**: investigate uncertainties that affect the result; ask when Human judgment is required.
+- **Offer alternatives**: for a consequential choice, show the relevant options and differences concisely.
 - **Share progress**: keep the Human aware of intermediate state during complex work.
 
 ---
@@ -62,7 +62,7 @@ This document defines the communication rules that reduce misunderstanding and i
 | Code / identifier notation | Use English by default if the team has no different rule. |
 
 - The framework does not force a particular natural language.
-- At session start, the AI confirms the conversation language, working document language, and official deliverable language.
+- Follow recorded language settings and the Human's current message. Ask only when the language is unclear or needs to change.
 - Record the selected language settings in `project_state.md` so the next session can restore them.
 - If you allow exceptions to the language rule, record the reason and scope in the relevant source documents.
 

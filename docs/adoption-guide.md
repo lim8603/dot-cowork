@@ -61,7 +61,7 @@ For the first real session, these are the minimum pieces that should exist and b
 | `.cowork/06_evolution/project_state.md` | Gives the session a shared resume index | Present with at least project type, active phase, language settings, and a short current-state summary |
 | `.cowork/02_project_definition/deliverable_plan.md` | Prevents delivery scope from staying implicit | Present, even if still incomplete |
 | One contributor workspace | Gives the session a personal working area without polluting shared canon | `.cowork/members/<name>/workspace/` exists or is prepared to be created during the first session |
-| One live session log | Gives the session a default temporary capture point | A new `session_*.md` log is opened at session start |
+| A session log when needed | Captures decisions and handoff details from substantive work | Open `session_*.md` when the work needs a continuity record; omit it for read-only requests |
 
 These can usually wait until later:
 
@@ -88,14 +88,14 @@ Use this path when the project is new enough that the framework can establish th
 - Confirm the project archetype and scope shape
 - Capture the initial project purpose in the Define area
 - Record at least the first working assumptions and open questions
-- Open the session log and leave a clean next-start point
+- Open a session log when useful and leave a clean next-start point
 - Leave `project_state.md` in a resumable state for the next session
 
 ### Greenfield prompt example
 
 ```text
 Read AGENTS.md and start a greenfield adoption session from the current framework state.
-Set up the minimum shared state for a first working session, open a session log, and propose the next approved step.
+Set up the minimum shared state for a first working session and propose the next step. Open a session log if the work needs one.
 ```
 
 ## Brownfield Adoption
@@ -112,7 +112,7 @@ The goal is to recover where the project actually is and place only the missing 
 3. Point the AI at the existing high-value artifacts such as the project README, active backlog, current specs, architecture notes, and recent implementation areas.
 4. Let the AI perform reverse discovery to identify current intent, probable milestones, active tasks, and missing shared documents.
 5. Promote only the durable findings into the framework documents and keep raw outside material separate.
-6. End the session with a clear current phase, one live session log, and explicit next actions.
+6. End the work with a clear current phase and explicit next actions; keep a session log when it contains useful handoff detail.
 
 ### What the first brownfield session should achieve
 
@@ -168,7 +168,7 @@ By the end of the first session, you should usually have:
 - the active phase recorded in `project_state.md`
 - conversation, working-document, and export language aligned
 - a contributor workspace identified
-- a fresh session log opened
+- a session log when substantive work needs a continuity record
 - a first pass at deliverable scope in `deliverable_plan.md`
 - enough Define or recovery state to know what the next session should do
 

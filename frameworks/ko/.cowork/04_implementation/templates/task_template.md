@@ -1,6 +1,6 @@
 # Task Template
 
-> 작업 분해 명세 — Plan → Approve → Execute 사이클의 단위
+> 작업 분해 명세 — H/J 결정에는 승인 기준을 적용하고 A 범위는 진행 후 보고한다
 
 ---
 

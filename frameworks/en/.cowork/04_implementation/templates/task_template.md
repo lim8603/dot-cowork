@@ -1,6 +1,6 @@
 # Task Template
 
-> Work-breakdown specification: the unit of the Plan -> Approve -> Execute cycle
+> Work-breakdown specification: apply approval rules to H/J decisions and report A-level work afterward
 
 ---
 
