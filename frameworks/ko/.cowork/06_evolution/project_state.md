@@ -68,11 +68,15 @@
 
 1. 없음
 
+### 이번 작업에서 다음에 읽을 문서
+
+요청한 작업이 명확하면 관련 목록 문서·기준 본문·활성 상세 문서만 연다. 이전 결정이나 개인 담당의 근거가 필요할 때만 `my_state.md`, 최신 세션 로그, ADR을 추가한다. 작업이 지정되지 않았으면 위 상태와 아래 이월 항목으로 짧게 브리핑한다. 단계별 후보는 아래 `컨텍스트 로딩 가이드`를 참조한다.
+
 ---
 
 ## 이월 백로그 (Carryover Backlog)
 
-> **이월의 단일 SSOT.** 흩어진 이월 메모(다음 시작점·my_state·세션 로그)를 이 표 하나로 모은다. 매 세션 브리핑(§1D)에 포함하고, 항목 추가/해소 시 및 `마무리` 시 이 표를 갱신한다. 상세 배경은 출처 세션 로그. 이월 트리거 감시는 AI의 책임이다 — Human이 찾아 지시하기 전에 브리핑·작업 중 이 표를 대조해 먼저 꺼낸다.
+> **이월의 단일 기준.** 이월 항목은 이 표에서 관리한다. 작업 미지정 시 브리핑에 포함하고, 특정 작업에서는 관련 항목만 확인한다. 항목이 추가·해소되거나 작업을 인계할 때 갱신한다. 상세 배경은 출처 세션 로그에 둔다.
 
 **지금 지시만 하면 착수 가능 (트리거 없음)**
 
@@ -159,24 +163,23 @@
 
 ### 핵심 규칙
 
-- 항상 로드: 이 문서(`project_state.md`), `02_project_definition/deliverable_plan.md`, `members/<이름>/workspace/my_state.md` (1인 프로젝트도 동일 경로), 최신 세션 로그
-- 팀 프로젝트에서는 `members/team_board.md`도 함께 로드한다.
-- 현재 Phase 관련 목록 문서를 먼저 읽고, 필요한 기준 본문과 상세 문서를 추가한다.
+- 작업 시작 시 이 문서(`project_state.md`)에서 현재 제약과 다음 시작점을 확인한다. 산출물 범위가 관련되면 `02_project_definition/deliverable_plan.md`를 읽는다.
+- 개인 담당이나 이전 맥락이 필요하면 `members/<이름>/workspace/my_state.md`와 최신 세션 로그를 읽는다. 팀 배정이 관련되면 `members/team_board.md`를 읽는다.
+- 현재 작업과 관련된 목록 문서를 먼저 읽고 필요한 기준 본문과 상세 문서를 추가한다. 같은 Phase의 문서를 일괄 로드하지 않는다.
 - `templates/`, `imported_context/`, `06_evolution/state_archive.md`, 오래된 세션 로그는 기본적으로 로드하지 않는다.
 - `06_evolution/state_archive.md`는 과거 세션 완료 서사·핸드오프 이력 아카이브(Log/Archive)다. 이 문서의 요약이 포인터로 가리키며, 특정 과거 세션 맥락이 필요할 때만 해당 `#NNN 이관분` 섹션을 연다.
-- `cowork.md`, `session_protocol.md` 등 규칙 문서는 첫 세션 숙지 후 필요할 때만 관련 섹션을 참조한다.
+- `cowork.md`, `session_protocol.md` 등 규칙 문서는 현재 작업에서 관련 규칙이 필요할 때 해당 섹션을 참조한다.
 - imported context는 필요한 사실을 추출해 기준 문서에 반영한 뒤 보조 근거로만 활용한다.
 
 ### 권장 로딩 순서
 
-1. `project_state.md` -> `deliverable_plan.md`
-2. `members/<이름>/workspace/my_state.md` + 최신 세션 로그
-3. 현재 Phase 관련 목록 문서 / 기준 본문
-4. 필요한 상세 문서 (`INT-*`, `MS-*`, `TASK-*`, `ADR-*`)
+1. `project_state.md`에서 현재 상태와 다음 시작점 확인
+2. 현재 작업과 관련된 목록 문서·기준 본문, 필요한 상세 문서 확인
+3. 산출물 범위·개인 담당·과거 결정이 관련될 때만 `deliverable_plan.md`, `my_state.md`, 최신 로그, ADR 추가
 
 ### 단계별 로딩 맵 (Phase Map)
 
-| Phase | 즉시 로드 | 필요 시 참조 |
+| Phase | 작업과 관련될 때 우선 참조 | 필요 시 참조 |
 |-------|----------|-------------|
 | **Define** | `02_project_definition/intent_registry.md`, `02_project_definition/user_story_registry.md`, `02_project_definition/requirement_spec.md`, `02_project_definition/functional_spec.md`, `02_project_definition/risk_register.md`, `02_project_definition/deliverable_plan.md` | `02_project_definition/intents/INT-*.md`, `02_project_definition/user_stories/US-*.md`, `02_project_definition/domain_glossary.md` |
 | **Design** | `03_design_artifacts/adr_registry.md`, `03_design_artifacts/domain_model.md`, `03_design_artifacts/interface_contract.md`, `03_design_artifacts/data_model.md`, `03_design_artifacts/tech_stack.md` | `03_design_artifacts/adrs/ADR-*.md`, `02_project_definition/requirement_spec.md`, `02_project_definition/functional_spec.md`, `03_design_artifacts/ui_spec.md` |
@@ -197,5 +200,5 @@
 - 세션 로그의 raw 메모, 미확정 가설, 1회성 디버깅 흔적은 그대로 복사하지 않는다.
 - R1: 핵심 필드는 현재 값으로 교체한다. 최근 완료 요약은 최대 3세션 × 한 문장 + 링크만 유지한다. 상세는 원문을 보존하여 `state_archive.md`로 이관하며 이미 보관된 내용은 재복제하지 않는다.
 - **R2 — 현재 제약은 보존하고 상세는 분리.** 현재 작업에 필요한 내용도 긴 서사 그대로 유지하지 않는다. 각 활성 항목에는 ID, 상태, 현재 제약/블로커, 다음 행동, 근거 링크를 남기고 상세는 기존 Task/ADR/기준 문서로 연결한다. 단일 표 행 또는 문단이 800자를 넘으면 분리 검토한다. 미해결 조건·승인·검증 공백을 삭제하거나 완료로 바꾸지 않는다. 이관 후 대상과 링크를 확인한다.
-- **측정 가능한 크기 예산 (F-05).** UTF-8 파일 전체 크기(헤더 포함)를 기준으로 `project_state.md` 24 KiB, 활성 `my_state.md` 각 12 KiB를 기본 경고선으로 삼는다. 이는 초기 운영값이며 토큰 수나 품질 보증이 아니다. 프로젝트가 조정하면 예산과 이유를 상태 문서에 기록한다. 세션 시작·마감에 측정하고 초과 시 R1/R2로 정리한다. 크기만으로 작업·릴리즈를 차단하지 않는다.
+- **크기 경고선 (F-05).** UTF-8 파일 전체 크기를 기준으로 `project_state.md` 24 KiB, 활성 `my_state.md` 각 12 KiB를 기본 경고선으로 삼는다. 상태 문서를 갱신하거나 인계할 때 확인하고 초과 시 R1/R2에 따라 정리한다. 크기만으로 작업·릴리즈를 차단하지 않는다.
 - `최근 변경 파일 / 산출물`, `Human 확인 필요 사항`, `주요 리스크`는 항목이 없더라도 `없음` 상태를 명시한다.

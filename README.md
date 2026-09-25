@@ -28,14 +28,14 @@ This framework keeps that context in persistent files so any compatible tool can
 
 - **Tool-agnostic**: Codex, Cursor, Claude Code, Gemini, and Copilot can all read the same `.cowork/` workspace.
 - **Structured lifecycle**: The workflow follows Define -> Design -> Build -> Verify -> Evolve -> Deliver.
-- **Persistent project memory**: Intent, milestones, ADRs, tasks, and session logs stay in versioned files instead of chat history.
+- **Persistent project memory**: Versioned state, Intent, milestones, ADRs, and tasks preserve durable context; local session logs can hold supporting detail.
 - **Progressive enrichment**: Important details are harvested into the right documents as work proceeds.
 - **Verification evidence index**: Review, test, NFR, and release-readiness evidence can accumulate in a dedicated canonical verification document.
 - **Quality gates**: Phase transitions can check for missing artifacts before the team moves forward.
 - **Flexible delivery outputs**: Export can start from a recommended 14-document baseline and extend with approved project-specific deliverables.
 - **Brownfield-friendly**: Existing projects can adopt the framework through reverse discovery and phase alignment.
 - **Manifest-based upgrades**: Framework updates can preserve project-specific data while refreshing shared structure.
-- **Stable vs environment-specific rules**: Shared session protocol stays compact while tool-specific execution and upgrade mechanics are documented separately.
+- **Stable vs environment-specific rules**: A short execution summary leads the session protocol; tool-specific execution and upgrade mechanics live in a separate guide.
 - **Team-ready collaboration**: Shared state and personal workspaces can coexist without losing traceability.
 
 ---
@@ -101,10 +101,10 @@ Read AGENTS.md and start this session from the current project state.
 
 The normal working loop is:
 
-1. Restore context.
-2. Confirm the active phase and current tasks.
-3. Plan and approve the next unit of work.
-4. Execute and record the important results back into `.cowork/`.
+1. Check current state and read the documents relevant to the request.
+2. If the task is clear, proceed; otherwise brief active work and ask the user to choose.
+3. Obtain Human approval for H/J decisions. Perform A-level work and report the result.
+4. Record meaningful state and decision changes in `.cowork/`.
 
 ---
 
@@ -132,9 +132,9 @@ If you are new to the framework, a practical reading order is:
 
 ### Context restoration
 
-At the start of each session, the AI reads the entrypoint file together with the current project state and latest session log. That lets the tool recover the active phase, open tasks, recent decisions, and carry-over items without relying on chat history.
+At work start, the AI uses its entrypoint and `project_state.md` to find current constraints and next actions. It opens the latest session log, personal state, or other source documents only when they matter to the request. A general briefing is used when the user has not specified a task.
 
-The stable session flow and the tool/environment-specific operating details are intentionally separated so the core protocol can stay compact even as tool settings and upgrade paths evolve.
+The session protocol opens with task routing and approval rules, then provides detailed procedures for work that needs them. Tool and environment settings live in a separate guide.
 
 Entrypoints link to shared phase/milestone state instead of maintaining status copies. Live-state warnings default to 24 KiB for shared state and 12 KiB per member; these adjustable limits trigger review, not release failure. Current constraints and evidence links survive cleanup. Verification evidence identifies its target revision, environment, and uncovered scope rather than treating project health as release readiness.
 
@@ -151,10 +151,10 @@ Use `-ProjectStateBytes`, `-MemberStateBytes`, and `-MaxLineCharacters` to match
 Approved work is written back into the relevant phase documents.
 
 - Requirements -> `requirement_spec.md`
-- Design decisions -> ADRs
+- Durable design decisions -> ADRs when they meet the promotion criteria; smaller decisions -> relevant source documents
 - Verification evidence -> `verification_evidence.md`
 - Project state changes -> `project_state.md`
-- Session outcomes -> session logs and evolution documents
+- Meaningful handoff details -> session logs when a work session needs them
 
 ### Progressive enrichment
 

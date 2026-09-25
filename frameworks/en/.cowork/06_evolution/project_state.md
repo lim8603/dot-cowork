@@ -68,11 +68,15 @@
 
 1. None
 
+### Documents to read next for this task
+
+For a clear request, open only the related registries, canonical documents, and active instances. Add `my_state.md`, the latest session log, or an ADR only when personal ownership or prior decisions matter. If no task is specified, use the state above and carryover items below for a brief overview. See the Context Loading Guide for phase-specific candidates.
+
 ---
 
 ## Carryover Backlog
 
-> **The single SSOT for carry-overs.** Gather scattered carry-over notes (Next Starting Point, my_state, session logs) into this one set of tables. Include it in every session's briefing (§1D), and update it when items are added or resolved and on `wrap up`. Keep detailed background in the source session log. Watching carry-over triggers is the AI's responsibility — before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work and raises them on its own.
+> **The single source for carryovers.** Manage carryover items here. Include them in a briefing when no task is specified; for a specific task, check only related items. Update when items are added, resolved, or handed off. Keep background in the source session log.
 
 **Ready to start on request (no trigger)**
 
@@ -159,24 +163,23 @@
 
 ### Core Rules
 
-- Always load this document (`project_state.md`), `02_project_definition/deliverable_plan.md`, `members/<name>/workspace/my_state.md` (same path even in solo projects), and the latest session log.
-- In team projects, load `members/team_board.md` as well.
-- Read the registries related to the current phase first, then add needed canonical documents and detail documents.
+- At the start of work, check current constraints and next actions in this document (`project_state.md`). Read `02_project_definition/deliverable_plan.md` when deliverable scope matters.
+- Read `members/<name>/workspace/my_state.md` and the latest session log when personal ownership or prior context matters. Read `members/team_board.md` when team assignments matter.
+- Read registries related to the current task first, then add needed canonical and detail documents. Do not load every document for the phase.
 - Do not load `templates/`, `imported_context/`, `06_evolution/state_archive.md`, or old session logs by default.
 - `06_evolution/state_archive.md` is an archive (Log/Archive) of past-session completion narratives and handoff history. This document's summary points to it, and you open the relevant `#NNN harvest` section only when you need a specific past-session context.
-- Rule documents such as `cowork.md` and `session_protocol.md` should be learned once in the first session and re-opened only when the relevant sections are needed.
+- Open relevant sections of rule documents such as `cowork.md` and `session_protocol.md` when this task needs them.
 - Imported context should be used only as supporting evidence after needed facts are extracted into source documents.
 
 ### Recommended Load Order
 
-1. `project_state.md` -> `deliverable_plan.md`
-2. `members/<name>/workspace/my_state.md` + latest session log
-3. registries / canonical documents for the current phase
-4. required detail documents (`INT-*`, `MS-*`, `TASK-*`, `ADR-*`)
+1. Check current state and next actions in `project_state.md`.
+2. Read registries, canonical documents, and detail documents related to the current task.
+3. Add `deliverable_plan.md`, `my_state.md`, the latest log, or ADRs only when deliverables, personal ownership, or prior decisions matter.
 
 ### Phase Loading Map
 
-| Phase | Load Immediately | Refer When Needed |
+| Phase | Prioritize when relevant to the task | Refer When Needed |
 |-------|------------------|-------------------|
 | **Define** | `02_project_definition/intent_registry.md`, `02_project_definition/user_story_registry.md`, `02_project_definition/requirement_spec.md`, `02_project_definition/functional_spec.md`, `02_project_definition/risk_register.md`, `02_project_definition/deliverable_plan.md` | `02_project_definition/intents/INT-*.md`, `02_project_definition/user_stories/US-*.md`, `02_project_definition/domain_glossary.md` |
 | **Design** | `03_design_artifacts/adr_registry.md`, `03_design_artifacts/domain_model.md`, `03_design_artifacts/interface_contract.md`, `03_design_artifacts/data_model.md`, `03_design_artifacts/tech_stack.md` | `03_design_artifacts/adrs/ADR-*.md`, `02_project_definition/requirement_spec.md`, `02_project_definition/functional_spec.md`, `03_design_artifacts/ui_spec.md` |
@@ -197,5 +200,5 @@
 - Do not copy raw notes, unconfirmed hypotheses, or one-off debugging traces from the session log into this document.
 - R1: replace core fields with current values. Keep at most 3 session summaries of one sentence plus a link each. Preserve raw detail in `state_archive.md`; do not duplicate already archived material.
 - **R2 — preserve current constraints, separate detail.** Relevance to current work does not justify retaining a long narrative. Each active item retains its ID, status, current constraint/blocker, next action, and evidence link; details belong in existing Task/ADR/source documents. Review splitting any table row or paragraph over 800 characters. Never drop unresolved conditions, approvals, or evidence gaps, or mark them complete during cleanup. Verify destinations and links after moving content.
-- **Measurable size budget (F-05).** Use the entire UTF-8 file size, including headers: 24 KiB for `project_state.md` and 12 KiB for each active `my_state.md` as default warning thresholds. These are initial operating defaults, not token counts or a quality guarantee. Record project-specific budgets and reasons in the state document. Measure at session start and close; use R1/R2 when exceeded. Size alone does not block work or release.
+- **Size warnings (F-05).** Use the full UTF-8 file size: 24 KiB for `project_state.md` and 12 KiB for each active `my_state.md` as default warnings. Check when updating state or handing work off; use R1/R2 when exceeded. Size alone does not block work or release.
 - Keep `Recently Changed Files / Deliverables`, `Items Requiring Human Confirmation`, and `Key Risks` explicitly marked as `None` when there are no items.

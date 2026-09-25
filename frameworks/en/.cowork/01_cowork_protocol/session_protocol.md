@@ -4,6 +4,18 @@
 
 ---
 
+## Quick execution rules
+
+1. For a clear task, check current constraints in `project_state.md`, read only the relevant documents, and proceed. Skip a general briefing and repeated task selection.
+2. If no task is specified, briefly present active work and carryover items, then ask the user to choose. Use §1A onboarding only for missing or conflicting essential information.
+3. Obtain a Human decision or approval for H/J decisions; perform A-level work and report the result. Do not request approval again for an already approved scope.
+4. When work changes state or decisions, update the relevant source document and state index. Do not create a log or member file for a read-only request alone.
+5. Open phase-transition, official-deliverable, or framework-upgrade procedures only when the user requests the action. A word's appearance alone is not a trigger.
+
+Details: see §1 and §1D for starting and resuming, §3 for decisions, §6 for phase gates, §11 for deliverables, and §12 for document updates.
+
+---
+
 ## Purpose
 
 AI session memory resets between sessions. This protocol defines context-preservation and handoff rules so the team can **continue work from any point**.
@@ -28,24 +40,9 @@ AI session memory resets between sessions. This protocol defines context-preserv
 
 ---
 
-## Document Role Operating Rules
+## Document role operating rules
 
-| Role | Representative Examples | Operating Rule |
-|---|---|---|
-| Governance | `cowork.md`, `session_protocol.md`, `quality_gate.md` | Use only as rule documents, not as storage for project data |
-| Canonical | `requirement_spec.md`, `domain_model.md`, `deliverable_plan.md`, `project_state.md` | Accumulate updates directly in the same path |
-| Registry | `intent_registry.md`, `adr_registry.md`, `milestone_registry.md`, `task_registry.md` | Load first at session start and keep status / link summaries concise |
-| Instance | `intents/INT-*.md`, `user_stories/US-*.md`, `adrs/ADR-*.md`, `milestones/MS-*.md`, `tasks/TASK-*.md` | Create a new file whenever a new object appears |
-| Template | `templates/*_template.md` | Copy only; never use directly as the working record |
-| Log / Archive | `members/<name>/workspace/session_logs/`, `imported_context/` | Append-only evidence store that is not loaded by default |
-
-### Default Operating Rules
-
-- Only files ending in `_template.md` are copy templates.
-- `Phase` is the framework's fixed stage; `Milestone` is a project-specific intermediate completion unit.
-- `Intent -> Milestone -> Task` is the work-breakdown axis, while `User Story` and `ADR` act as cross-reference axes.
-- Imported context should be reflected into source documents only after the required facts are extracted.
-- Tool-specific approval models, entrypoint sync, and network / download-dependent behavior follow `tooling_environment_guide.md` together with the current tool's entrypoint document.
+Follow `document_role_inventory.md` for document classification and update rules. Read the relevant registries and canonical documents first, and open instances only for active items. Templates, logs, and archives are not loaded by default. See `tooling_environment_guide.md` for tool-specific execution constraints.
 
 ---
 
@@ -53,32 +50,16 @@ AI session memory resets between sessions. This protocol defines context-preserv
 
 ### 1. Session Start
 
-- [ ] Check project existence, current phase, active intent, active milestone, open questions, and next starting point in `.cowork/06_evolution/project_state.md`.
-- [ ] Confirm project type, team-setup mode, conversation language, working document language, and official deliverable language in `project_state.md`.
-- [ ] Check whether the current user's `.cowork/members/<name>/` folder and workspace exist.
-- [ ] **Member confirmation and initialization**: if the current user folder does not exist, confirm the user's name / identifier and create `profile.md`, `workspace/`, `my_state.md`, and `session_logs/` first. In a team project, confirm role and ownership area; in a solo project, apply the solo default.
-- [ ] If the current user workspace already exists, restore personal work context from `members/<name>/workspace/my_state.md`.
-- [ ] If the current user workspace already exists, restore prior context from the latest session log.
-- [ ] In a team project, review role and task assignment status in `.cowork/members/team_board.md`.
-- [ ] Check confirmed deliverables and missing data in `deliverable_plan.md`.
-- [ ] **Selective context loading**: according to the Context Loading Guide in `project_state.md`, load the registries and canonical documents needed for the current phase first. Rule documents such as `cowork.md` and `session_protocol.md` are learned once in the first session and then reopened only when needed.
-- [ ] **Live-state size check (F-05)** — measure total UTF-8 size against R1/R2 budgets (default warnings: shared 24 KiB / member 12 KiB) and inspect long rows. Preserve constraints and evidence during cleanup. See Shared State Index Management.
-- [ ] **Collaboration Execution Mode check (F-06)**: confirm the `Collaboration Execution Mode` (solo/team) in `project_state.md`. In solo, skip per-role bookkeeping and run centered on project_state, but keep the seat definitions (§`decision_authority_matrix.md` Collaboration Execution Mode).
-- [ ] The session-start self-checks above (log creation, size budget, mode) rely on voluntary compliance, so hard-to-undo items can be mechanically enforced with tool hooks (F-10, §`tooling_environment_guide.md` Session Discipline Enforcement).
-- [ ] Review `06_evolution/imported_context/` only when necessary, and extract the needed facts rather than using raw text as a source document.
-- [ ] **Automatically create the session log file** only after member confirmation and prior-log review are complete: `members/<name>/workspace/session_logs/session_YYYY-MM-DD_NNN.md`.
-- [ ] **Automatically configure `.gitignore`** if the session-log ignore rule is missing.
-- [ ] **Check proposals**: if `members/*/proposals/` contains `Pending` proposals, notify a Master-authority user.
-- [ ] **Check tool execution constraints**: confirm tool-specific environment limits such as approval flow, whether file/shell execution is available, and whether network access is available through the current tool's entrypoint and `tooling_environment_guide.md`.
-- [ ] **Decide the start path**: if the session has enough information to resume, enter through the briefing directly. If essential project information is missing or contradictory, run the short onboarding in §1A first.
-- [ ] **Announce the available keywords** briefly.
-- [ ] **Automatically print the session briefing** with project status, active Intent / Milestone, active Task list, and carry-over items in a role-based view. (§1D)
-- [ ] **Select work and determine mode** by matching the Human's response or opening utterance against the briefing. (§1D)
-- [ ] Draft the work plan (AI proposes -> Human approves).
+- [ ] Check current state, active IDs, constraints, and next starting point in `project_state.md`. Load only the registries and canonical documents relevant to the request.
+- [ ] For a clear task, check the approved scope and H/J/A authority, then proceed. Use the §1D briefing only when no task is specified.
+- [ ] Ask only necessary §1A questions when state is missing or contradictory. Prefer recorded role and language settings.
+- [ ] Read `my_state.md`, the latest log, or ADRs only when personal work or prior decisions matter. Read `team_board.md` when team assignment matters.
+- [ ] For substantive work that needs a log, confirm the member and create the log. Check `.gitignore` when creating the first log. Do not create files for a read-only request.
+- [ ] Check state size warnings and solo/team rules when they affect this task. Notify a Master of Pending proposals when they affect the next work choice.
 
 ### 1A. Project Archetype Kickoff
 
-If session-start diagnosis matches one of the cases below, the AI should lock the minimum context with the onboarding questions below before printing the briefing.
+When actually starting or resuming project work, ask only the needed onboarding questions if a condition below applies. Do not initialize a member workspace for a read-only request.
 
 - `project_state.md` does not exist or its core fields are empty enough that a resume point cannot be identified.
 - The current user workspace was newly created and core project information is still insufficient.
@@ -207,20 +188,13 @@ Before moving from Define to Design, verify that the source documents answer the
 
 ### 1D. Session Briefing And Mode Selection
 
-The first response of the session follows this order: **show the session-start diagnosis -> run short onboarding if needed -> print the briefing and match the opening utterance (or ask the Human to choose)**.
-
-- If resumable information is already sufficient, print the briefing first.
-- If core project information is missing, run the minimum onboarding in §1A first and then continue into the briefing immediately once the answers are clear.
-- In other words, the briefing is the default, but it never comes before the minimum information needed to work.
-
-No matter how the Human starts the session (`let's start`, `continue the auth API`, `let's do TASK-003`, and so on),
-the AI first determines the start path, then matches the utterance after the briefing.
+If the Human requests a concrete task, briefly check relevant state and proceed. A general briefing or Task reconfirmation is unnecessary. If no task is specified, use the briefing below to help choose. Ask only necessary §1A questions when essential information is missing or contradictory.
 
 #### Briefing Structure
 
 The AI reads the available source documents discovered during Session Start (`project_state.md`, `team_board.md` for team projects, `my_state.md` when it exists, and the latest session log) and prints the briefing in the following form.
 
-The briefing's `Carry-over` line is drawn from the **`Carryover Backlog` table (single SSOT)** in `project_state.md`. If there are multiple carry-over items or any trigger-waiting entries, do not shrink them to a one-line summary — **include the table itself in the briefing**. Watching carry-over triggers is the AI's responsibility: before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work, and **raises on its own** any trigger that has arrived or any item now ready to start.
+Take carryover items from the `Carryover Backlog` in `project_state.md`. Show items that affect the current work concisely; use a table when several items matter. Raise a triggered item when it relates to the task.
 
 **Shown to a Master:**
 ```text
@@ -271,10 +245,10 @@ What would you like to work on?
 | Human Utterance | AI Action |
 |---|---|
 | vague start such as `let's start` | briefing -> `What would you like to work on?` |
-| mentions a concrete piece of work | briefing -> match -> `Is this the Task you mean?` |
-| direct `TASK-ID` | briefing -> confirm immediately -> proceed |
-| no match found | briefing -> `No such Task exists. Would you like to register it as a new Task?` |
-| number only (`number 3`) | briefing -> match against the Task list -> confirm -> proceed |
+| mentions a concrete piece of work | check the related Task and proceed; ask only if ambiguous |
+| direct `TASK-ID` | read the Task and its constraints, then proceed |
+| no match found | analyze the request and propose a new Task only if needed |
+| number only (`number 3`) | match the prior briefing; ask only if ambiguous |
 
 #### Working-Mode Decision
 
@@ -304,11 +278,11 @@ In a solo project, the briefing is simplified.
 
 ### 2. Session In-Progress
 
-- Work proceeds through the `Plan -> Approve -> Execute` cycle.
+- Plan the work. Obtain Human approval for H/J decisions; perform A-level work and report the result.
 - During Execute, the AI records significant decisions, changed files, blockers, and approval or rejection results in the session log.
 - When information satisfies the current phase's Phase Document Map, the AI reflects it into the relevant source documents immediately or at the end of the Execute cycle.
 - If work splits across multiple Tasks, keep the active Task summary in `project_state.md`, `task_registry.md`, and the related Task detail documents aligned.
-- When a blocker, major risk, or approval point appears, pause and ask the Human rather than guessing.
+- Investigate code and documents first when uncertainty affects the outcome. Ask the Human when their judgment is needed.
 - **When you tighten a gate or invariant, write down its consumers on the spot (F-11)** — a change that strengthens a verification rule, gate, invariant, or contract does not only change itself; it changes **the meaning of the existing paths that already run through that gate**. At the moment of tightening, list "what has to pass this judgment" in the session log, and confirm that list with end-to-end verification before the session closes (§4). Details: `05_verification/quality_gate.md` — End-To-End Re-Verification After A Gate Or Invariant Change.
 
 ### 3. Session Pause
@@ -319,7 +293,7 @@ In a solo project, the briefing is simplified.
 
 ### 4. Session End
 
-- When the Human says `wrap up`, run the Session End Enrichment Check first.
+- On a session-end request or work handoff, run the relevant Session End Enrichment Check first.
 - **End-to-end re-verification after a gate or invariant change (F-11)** — if this session tightened a verification rule, gate, invariant, or contract, take the **consumer list** written in §2, re-run the end-to-end suite (E2E / integration), and report the result per consumer. Passing unit tests does not substitute for this item — the fallout of a tightened judgment usually lands not in the tightening code but in **the other paths that run through that gate**. If it could not be run, record explicitly **what remains unverified** in the session log and in the `project_state.md` carry-over (silence is not an option).
 - Close the current session log with summary, carry-over items, decisions, and next-session context.
 - Sync `project_state.md` — replace current values, shorten completion summaries, relocate details, and remeasure size (R1/R2).
@@ -342,8 +316,9 @@ Instead:
 
 ### 1. Session Logs And State Indexes
 
-- Create the session log automatically at session start.
-- Record major decisions, file changes, approval / rejection, blockers, and next actions without waiting for a separate request.
+- Create a session log when substantive work needs a continuity record. Do not create logs or member files for a read-only request alone.
+- Record major decisions, meaningful file changes, approval / rejection, blockers, and next actions during that work.
+- Check the session-log ignore rule in `.gitignore` when creating the first log.
 - Treat `project_state.md`, `my_state.md`, and `team_board.md` as synchronized indexes rather than independent narrative documents.
 - Keep raw activity detail in session logs; keep shared resume information in the state indexes.
 
@@ -359,8 +334,8 @@ Instead:
 - Keep only the high-signal summary there; push deeper context into registries, detail documents, or session logs.
 - **R1 — replace with current state.** Core fields and next actions contain current values only. Keep completion summaries for at most 3 sessions across the whole document, one sentence and evidence link per session. Do not append previous versions or archive pointers to date, status, or active-task cells. Move completion detail as raw text into `state_archive.md` and keep one pointer in the history section. If the same text already exists in a log/archive, link it instead of duplicating it.
 - **R2 — preserve current constraints, separate detail.** Relevance to current work does not justify retaining a long narrative. Each active item retains its ID, status, current constraint/blocker, next action, and evidence link; details belong in existing Task/ADR/source documents. Review splitting any table row or paragraph over 800 characters. Never drop unresolved conditions, approvals, or evidence gaps, or mark them complete during cleanup. Verify destinations and links after moving content.
-- **Measurable size budget (F-05).** Use the entire UTF-8 file size, including headers: 24 KiB for `project_state.md` and 12 KiB for each active `my_state.md` as default warning thresholds. These are initial operating defaults, not token counts or a quality guarantee. Record project-specific budgets and reasons in the state document. Measure at session start and close; use R1/R2 when exceeded. Size alone does not block work or release.
-- In solo mode, `my_state.md` contains personal carryover, current task IDs, a shared-state link, and the latest log. Do not duplicate shared narratives or the backlog.
+- **Size warnings (F-05).** Use the full UTF-8 file size: 24 KiB for `project_state.md` and 12 KiB for each active `my_state.md` as default warnings. Check when updating state or handing work off; use R1/R2 when exceeded. Size alone does not block work or release.
+- In solo mode, `my_state.md` contains personal carryover, current task IDs, a shared-state link, and the latest log if one exists. Do not duplicate shared narratives or the backlog.
 
 #### Imported Context Management (`imported_context/`)
 
@@ -382,13 +357,13 @@ Instead:
 
 #### Context Window Guard
 
-When context-window quality starts to degrade, the AI should guide the work into a clean handoff rather than continuing blindly.
+When the AI actually loses an earlier agreement or source constraint, reopen the relevant documents and summarize remaining work. Recommend a handoff if rereading does not restore continuity. Do not assume precise detection of remaining context capacity.
 
 ##### Detection Signs
 
 - the same source documents need to be reopened repeatedly because working memory is unstable
 - the conversation starts looping or losing important constraints
-- too many unresolved branches accumulate in the same session
+- a long conversation still loses constraints after the sources are reopened
 - the AI cannot keep the current active Task, next action, and approval state clearly aligned
 
 ##### AI Action
@@ -412,15 +387,15 @@ When context-window quality starts to degrade, the AI should guide the work into
 
 ### 2. Automatic Changed-File Tracking
 
-- Whenever a file is created, updated, or deleted, add it to the changed-files section of the current session log.
+- During work that needs a session log, record meaningful file changes in its changed-files section.
 - Record the change type and a one-line summary of why the file changed.
-- For large work, keep the session-log change list updated as work progresses rather than reconstructing it at the end.
+- Record them during work or handoff; minor intermediate edits may be combined into the final change.
 
 ### 3. Automatic ADR Creation
 
-- When the Human uses phrasing such as `let's go with ...` or `decide on ...`, or when a major design decision is clearly approved, create the ADR automatically.
+- When a design decision is confirmed, regardless of phrasing, check whether it meets the ADR promotion criteria. A mention or working hypothesis is not a decision.
 - Register the ADR in `adr_registry.md` and link it to related Intent, Milestone, and source documents.
-- Do not promote every design note to ADR; follow the ADR need criteria in the ADR template.
+- Use an ADR for decisions with lasting, hard-to-reverse effects or multiple interacting concerns. Record smaller decisions in the related source document or session log. Ask only when the decision itself is unclear.
 
 ### 4. Automatic ID Assignment
 
@@ -465,7 +440,7 @@ When context-window quality starts to degrade, the AI should guide the work into
 
 ### 9. Automatic Member Profile Management
 
-- If the current user's folder does not exist under `.cowork/members/` at the first session start:
+- If substantive collaboration work needs a personal workspace and the current user's folder does not exist under `.cowork/members/`:
   - confirm the name and the identifier to use as the folder name
   - in a team project, ask for role and ownership area
   - in a solo project, use `Authority = Master`, `Role = Project Owner`, and `Ownership Area = Whole Project` as defaults
@@ -477,16 +452,16 @@ When context-window quality starts to degrade, the AI should guide the work into
 
 ### 10. Change Proposal Management
 
-- When a team member needs to change the shared area (`01~07/`), they use the `proposal` keyword.
+- Use this procedure when a team member requests a Change Proposal for the shared area (`01~07/`). Mentioning `proposal` alone does not create a file.
 - The AI creates `.cowork/members/<name>/proposals/PROP-NNN_[summary].md` from `proposal_template.md`.
 - IDs are assigned automatically by scanning the members folders.
-- At the start of a Master session, pending proposals are announced automatically.
+- Notify a Master of pending proposals when they affect the work choice.
   - Approved: the AI reflects the change into the shared area and updates the Proposal status to `Approved`.
   - Rejected: the AI records the reason and updates the Proposal status to `Rejected`.
 
 ### 11. Automatic Official Deliverable Generation
 
-When the Human says `release`, `generate docs`, or `export`, proceed in the following order.
+When the Human requests official deliverable generation, proceed in the following order. Discussion of a release or documents alone does not start generation.
 
 1. **Pre-Release Harvest**: run the same harvesting idea as §12 across all phases to fill source documents as much as possible.
 2. **Quality Gate 5 check**: verify release readiness against `quality_gate.md`. If something is missing, warn the Human and proceed only with explicit confirmation.
@@ -500,7 +475,7 @@ When the Human says `release`, `generate docs`, or `export`, proceed in the foll
 
 ### 12. Phase-Bound Progressive Enrichment
 
-The AI automatically adds information that appears during the conversation into the source documents that belong to the **current phase**, even without a manual request.
+When actual work establishes facts or decisions, reflect them in the relevant source documents for the current phase. Do not promote hypotheses or read-only review comments automatically.
 
 #### Phase Document Map
 
@@ -530,7 +505,7 @@ The AI automatically adds information that appears during the conversation into 
 
 #### Passive Extraction
 
-- After each Execute cycle completes, if the work produced information that matches the collection conditions above, reflect it into the relevant source document immediately.
+- At the end of execution work, reflect confirmed information that meets the collection conditions into the relevant source document.
 - Do not copy the whole conversation. Record only the decided facts in structured form.
 - In a registry + instance structure, put list information into the registry and detail content into the detail document.
 - When a source document is updated, announce it to the Human in a short line such as `updated [file] - [summary]`.
@@ -539,7 +514,7 @@ The AI automatically adds information that appears during the conversation into 
 
 #### Pre-Gate Harvest
 
-Before a Quality Gate check triggered by `let's move to ... phase`:
+When the Human requests a phase transition, before its Quality Gate check:
 
 1. scan the current phase's source documents against the Phase Document Map
 2. if there are blank core items, backfill from the session log or ADRs where possible
@@ -547,10 +522,10 @@ Before a Quality Gate check triggered by `let's move to ... phase`:
 
 #### Session End Enrichment Check
 
-Before the session ends on `wrap up`:
+On a session-end request or work handoff, check unfinished items in relevant documents. Do not apply this to a read-only session with no recorded changes:
 
 - scan the current phase's source documents for still-empty core items
-- if empty items remain, add them to the carry-over list and ask the Human whether to fill them now or later
+- add missing required items related to this work to carryover; ask the Human only if an immediate decision is needed
 - synchronize the next starting point, Human confirmation items, and key risks in `project_state.md`
 - synchronize assigned work, next starting point, carry-over items, and referenced session log in the member's `my_state.md`
 - **Completion-narrative harvest (R1/R2)** — retain at most 3 session summaries of one sentence plus a link each, preserving raw details elsewhere. Check current fields, long rows, duplicate pointers, and file sizes (Shared State Index Management).
@@ -558,13 +533,13 @@ Before the session ends on `wrap up`:
 
 ### 13. Proactive Elicitation
 
-The AI should naturally ask for information that is still missing from the current phase's source documents even when the Human does not ask first.
+Ask only for missing information needed to complete the current task or judge a relevant gate. Do not interrupt the task to fill unrelated document blanks.
 
 #### Conditions
 
-- there are still blank or weak items in the current phase's Phase Document Map
-- the Execute cycle just completed, or the Human is asking what to do next
-- keep it limited to **2 to 3 questions maximum per session** so it does not feel like a question barrage
+- a relevant source document lacks information that cannot be found through code or document inspection
+- ask blocking questions first; propose optional data collection when the Human discusses next work
+- ask only what is needed and do not reconfirm approved scope
 
 #### Question Priority
 
@@ -594,15 +569,15 @@ Fill the current phase's source documents in the following order.
 
 #### Trigger
 
-- when a technology choice appears in conversation (`let's use TypeScript`, `let's use gRPC`, and so on)
+- when a technology choice is confirmed in context, regardless of phrasing
 - when existing technology is identified during brownfield Reverse Discovery
 
 #### AI Automatic Actions (Tech Stack)
 
-1. **Automatic ADR creation**: create `adrs/ADR-NNN_tech_[area]_[technology].md` when a technology is selected or changed.
-2. **Tech-stack registry update**: register the confirmed technology in `03_design_artifacts/tech_stack.md` and link the selection ADR.
+1. **ADR decision**: apply §3 promotion criteria; create `adrs/ADR-NNN_tech_[area]_[technology].md` only when the confirmed choice meets them.
+2. **Tech-stack registry update**: register the confirmed technology in `03_design_artifacts/tech_stack.md` and link an ADR if one exists.
 3. **Dynamic coding-convention composition**: keep only conventions that match confirmed technologies in `coding_convention.md`. Remove unused technology sections and propose new ones for newly selected technology.
-4. **Entrypoint sync review**: whenever the tech stack changes, review whether the four entrypoint files and `tooling_environment_guide.md` should also be updated.
+4. **Entrypoint sync review**: keep the current stack values in `tech_stack.md`. Change the four entrypoints only if their paths or shared contract change.
 
 ### 15. Team State Sync
 
@@ -635,7 +610,7 @@ Framework upgrade often depends on tools and network conditions, so the session 
 
 #### Trigger
 
-- The Human says the `upgrade` keyword.
+- The Human requests a framework upgrade; mentioning the word alone is insufficient.
 
 #### Source Documents
 
@@ -669,11 +644,11 @@ The key question is: **did the purpose change, or was only the expression wrong?
 
 ### Automatic Actions On Change
 
-1. **Classify the change**: the AI proposes the change type first and asks for confirmation.
+1. **Classify the change**: the AI classifies the request into one of the five types above. Ask for confirmation only when scope or direction is unclear.
 2. **Update documents**: record the type and reason in the relevant Intent registry, detail Intent document, and session log.
 3. **Check downstream impact**: scan requirements, user stories, Tasks, and other deliverables that reference the Intent, then report the impact range.
 4. **For Pivot / Split**: change the old Intent status, create the new Intent document, update the active Intent in `project_state.md`, and realign the active Milestone if the old one is no longer valid.
-5. **Create an ADR**: for Pivot or Split, automatically record the decision basis as an ADR.
+5. **Check ADR need**: assess the lasting or hard-to-reverse impact of a Pivot or Split under §3. Record the basis in an ADR when it qualifies, or in the relevant source document otherwise.
 
 ### Intent State Transition
 
@@ -688,39 +663,24 @@ Draft -> Approved -> Closed
 
 ---
 
-## Keyword Guide
+## Request examples
 
-If the following keywords appear in conversation, the AI automatically performs the matching action.
-Natural language is enough; no special prefix is required.
+Interpret the action and target requested by the user, not the presence of a word. If the action is unclear, clarify its meaning before executing it.
 
-| Keyword | Automatic Action |
+| Requested intent | Procedure |
 | --- | --- |
-| `wrap up` / `done for today` / `that's it for today` | Enrichment Check -> session end handling (summary, carry-over items, next context) |
-| `let's go with ...` / `decide on ...` | ADR automatically created |
-| `proposal` | Change Proposal created (inside the personal proposals folder) |
-| `let's move to ... phase` | Pre-Gate Harvest -> automatic Quality Gate check |
-| `release` / `generate docs` / `export` | Pre-Release Harvest -> Gate 5 check -> official deliverable generation into `docs/` |
-| `upgrade` | framework update based on `tooling_environment_guide.md` + `upgrade_manifest.md` |
-
-> This list is announced briefly at the start of every session.
+| Finish and hand off work | Session-end check and next starting point |
+| Confirm a design direction | Apply §3 ADR criteria, then record the decision |
+| Submit a shared-area change as a Proposal | Create a Change Proposal under §10 |
+| Transition phases | Run Pre-Gate Harvest and the Quality Gate |
+| Generate official deliverables | Generate only approved active deliverables under §11 |
+| Upgrade the framework | Plan and apply under §16 and `tooling_environment_guide.md` |
 
 ---
 
 ## Context Handoff Checklist
 
-At the start of a new session, the AI automatically checks the following.
-
-1. current phase, active Intent, active Milestone, and next starting point in `project_state.md`
-2. project type, team setup mode, conversation language, working document language, and official deliverable language in `project_state.md`
-3. whether the current user's `members/<name>/` workspace exists
-4. if the workspace does not exist, create `profile.md`, `my_state.md`, and `session_logs/` first
-5. if the workspace exists, restore personal work context from `my_state.md`
-6. if the workspace exists, read the `Next-Session Context` section in the latest session log
-7. if it is a team project, review role and Task assignment status in `members/team_board.md`
-8. review missing data and required deliverable state in `deliverable_plan.md`
-9. load the registries and canonical documents needed for the current phase according to the Context Loading Guide in `project_state.md`
-10. if information is missing or contradictory, run the minimum onboarding in §1A
-11. then print the briefing, receive the Human's work choice, and determine the working mode (§1D)
+Apply the §1 start path. First check current constraints and next actions in `project_state.md`; add only the personal state, logs, registries, and detail documents needed for this task. Use the §1D briefing only when no task is specified.
 
 ---
 

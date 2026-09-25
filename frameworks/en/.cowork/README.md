@@ -18,10 +18,10 @@ The core idea is simple.
 
 ## What This Framework Does
 
-- At session start, the AI reads `project_state.md`, `deliverable_plan.md`, the relevant `my_state.md`, and the latest session log, then gives a briefing.
+- At work start, the AI checks current state in `project_state.md` and reads only the additional documents needed. It gives a briefing when no task is specified.
 - During the session, decisions are accumulated into the right registry, canonical document, or detail document.
 - The framework loads only the documents that match the current phase first so the context window is used efficiently.
-- At release time, it generates the active default 14 deliverables and approved extension deliverables (15+) into `docs/`.
+- On an official-deliverable request, it generates the approved active items in `deliverable_plan.md` into `docs/`.
 
 ---
 
@@ -29,7 +29,7 @@ The core idea is simple.
 
 1. Copy `.cowork/`, `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, and `.github/copilot-instructions.md` into the project root.
 2. Point the AI tool you use at the matching entrypoint file.
-3. Once the AI prints the project briefing, choose the work you want to do in this session.
+3. Request the work directly. If no task is specified, the AI briefs you on the current state.
 
 ---
 
@@ -37,20 +37,19 @@ The core idea is simple.
 
 | Tool | How To Start |
 |------|--------------|
-| OpenAI Codex | `Read AGENTS.md, then check project_state.md, deliverable_plan.md, my my_state.md, and the latest session log before starting today's session.` |
-| Cursor | `Read AGENTS.md, then check project_state.md, deliverable_plan.md, my my_state.md, and the latest session log before starting today's work.` |
+| OpenAI Codex | `Read AGENTS.md and continue the current task from project_state.md.` |
+| Cursor | `Read AGENTS.md and continue the current task from project_state.md.` |
 | Claude Code | `claude "Read CLAUDE.md and start today's session"` |
-| Gemini Code Assist | `Read GEMINI.md, then check project_state.md, deliverable_plan.md, my my_state.md, and the latest session log before starting today's session.` |
+| Gemini Code Assist | `Read GEMINI.md and continue the current task from project_state.md.` |
 | GitHub Copilot | Open Copilot Chat and start the conversation; `.github/copilot-instructions.md` is loaded automatically. |
 
 ---
 
 ## Expected Session Flow
 
-1. The AI reads `project_state.md`, `deliverable_plan.md`, the relevant `my_state.md`, the required registry/canonical documents, and the latest session log.
-2. The AI first shows a briefing with the project status and the active Intent / Milestone / Task list.
-3. The Human chooses work or explains the goal.
-4. The AI continues through the `Plan -> Approve -> Execute` cycle.
+1. The AI checks current state in `project_state.md` and reads documents relevant to the request.
+2. For a clear task it proceeds; otherwise it briefs active work and asks for a choice.
+3. It obtains Human approval for H/J decisions and reports A-level work after performing it.
 
 Use [session_protocol.md](01_cowork_protocol/session_protocol.md) for the detailed procedure and automation rules, and use [tooling_environment_guide.md](01_cowork_protocol/tooling_environment_guide.md) for tool- and environment-dependent operation.
 
@@ -86,22 +85,21 @@ For the full structure and lifecycle, read [cowork.md](cowork.md).
 
 ---
 
-## Frequently Used Keywords
+## Request Examples
 
-| Keyword | Action |
+| Requested Intent | Action |
 |--------|--------|
-| `let's go with ...` / `decide on ...` | Record the design decision as an ADR |
-| `proposal` | Create a Change Proposal |
+| Confirm a design direction | Decide whether it needs an ADR, then record it |
+| Submit a shared-area change as a Proposal | Create a Change Proposal |
 | `let's move to ... phase` | Complete the current phase documents and check the quality gate |
 | `wrap up` | Run session end handling and carry-over review |
-| `release` / `generate docs` / `export` | Check Gate 5, then generate official deliverables |
+| Generate official deliverables | Check Gate 5, then generate approved active deliverables |
 
 ---
 
 ## Release And Document Generation
 
-When the Human requests `release`, `generate docs`, or `export`, the AI uses `deliverable_plan.md` and `export_spec.md`
-to generate the active default 14 deliverables and approved extension deliverables (15+).
+When the Human requests official deliverable generation, the AI uses `deliverable_plan.md` and `export_spec.md` to generate approved active items. Mentioning the topic alone does not start generation.
 
 - Deliverable quality depends on how faithfully the source documents were accumulated before that point.
 - The AI can propose extension deliverables when needed, and the Human approves them before they are added.

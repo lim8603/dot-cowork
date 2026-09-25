@@ -8,7 +8,7 @@
 
 - `session_protocol.md` keeps only the session-wide flow and invariant rules.
 - This document covers **tool- and environment-dependent operating instructions** such as auto-approval, entrypoint synchronization, and upgrades.
-- Tool-specific commands, UI settings, and examples belong in each tool's entrypoint document. This guide defines only placement rules and shared operating criteria.
+- Tool-specific startup examples belong in `.cowork/README.md`; entrypoints keep only the minimum task guidance.
 
 ---
 
@@ -17,7 +17,7 @@
 | Topic | Primary Source Document | Notes |
 |------|-------------------------|------|
 | Session start, briefing, mode selection, end | `session_protocol.md` | Shared protocol across tools |
-| Tool-specific startup prompts, setting examples, approval UX | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` | Follow only the document for the tool currently in use |
+| Tool-specific startup prompts and examples | `.cowork/README.md` | Entrypoints keep shared execution boundaries |
 | How role seats are realized (persona / independent sub-agent), model used | `role_realization.md` + current tool entrypoint document | Independent sub-agent and multi-model support vary by tool capability |
 | Sync rules across the four entrypoints | `tooling_environment_guide.md` | Review together when shared context changes |
 | Framework upgrade execution path | `tooling_environment_guide.md` | Includes network/offline branching |
@@ -29,33 +29,22 @@
 
 - Automatic approval is not a required assumption. If a tool does not support it or the Human does not want it, continue with manual approval flow.
 - Even when the session is constrained by the tool, keep the shared protocol intact. What must be confirmed is the approval model, whether file/shell execution is available, whether network access is available, and whether there are long-running execution limits.
-- Put tool-specific setting examples only in the **entrypoint for the current tool**. Do not copy one tool's command or UI option into shared documents such as `session_protocol.md`.
+- Keep tool-specific setting examples in the relevant `.cowork/README.md` item, not in the shared protocol.
 - Even when automatic approval or a similar setting is recommended, ask only once. If the Human declines, do not repeat the request.
-
-### Where Tool-Specific Examples Live
-
-| Tool | Document | Notes |
-|------|----------|------|
-| OpenAI Codex / Cursor | `AGENTS.md` | Project context and shared automation triggers |
-| Claude Code | `CLAUDE.md` | CLI startup flow and setting examples |
-| Gemini Code Assist | `GEMINI.md` | IDE chat startup flow |
-| GitHub Copilot | `.github/copilot-instructions.md` | IDE / agent usage flow |
-
----
 
 ## 2. Entrypoint Synchronization Rules
 
-Keep stable project identity, document paths, and tool-specific instructions in entrypoints. Read phase, active tasks, next milestone, and deployed version from `project_state.md` without copying them into entrypoints. Use `tech_stack.md` for the actual technology stack. On resume, reconcile conflicting summaries with their sources and replace stale summaries with links.
+Keep stable project identity, document paths, and shared execution boundaries in entrypoints. Read phase, active tasks, next milestone, and deployed version from `project_state.md` without copying them into entrypoints. Use `tech_stack.md` for the actual technology stack. On resume, reconcile conflicting summaries with their sources and replace stale summaries with links.
 
 
-- The four entrypoint files are thin wrappers that expose the same shared `.cowork/` source documents to different tools.
+- The four entrypoint files are short guides to the shared `.cowork/` documents. Do not copy current state or stack values into them.
 - Review all four entrypoints together whenever any of the following changes:
   - project name, core documents, or primary/document language policy
-  - phase labels, briefing flow, or shared keyword behavior
-  - tech-stack summary, core workflow, or upgrade/release guidance
+  - phase labels, briefing flow, or intent-based execution rules
+  - tech-stack source-document path, core workflow, or upgrade/release guidance
   - automation text that must be shared across tools
-- If only a tool-specific example changes, update only that entrypoint. Update the other three only when the shared contract changes.
-- When entrypoints change, leave a note in the session log or release record that the change was an entrypoint-sync change.
+- Keep tool-specific startup examples in `.cowork/README.md`. Sync all four entrypoints when the shared contract changes.
+- When entrypoints change, record the reason in a session log for work that needs one, or in the release record.
 
 ---
 
@@ -63,7 +52,7 @@ Keep stable project identity, document paths, and tool-specific instructions in 
 
 ### Trigger
 
-- The Human says the `upgrade` keyword.
+- The Human requests a framework upgrade; mentioning the word alone is insufficient.
 
 ### Source Documents
 
@@ -102,9 +91,9 @@ Keep stable project identity, document paths, and tool-specific instructions in 
 
 | Check | Source Rule | Enforcement Idea |
 |-------|-------------|------------------|
-| Session log created | `session_protocol.md` §Auto-Recording 1 | A session-start hook confirms today's `session_logs/session_*.md` exists, and creates / warns if missing |
+| Work log created | `session_protocol.md` §Auto-Recording 1 | Check for a log only when substantive work needs one; exclude read-only requests |
 | Live state-document size budget | F-05 | A hook measures the size of `project_state.md` + `my_state.md` and shows an R1/R2 harvest recommendation when the budget is exceeded |
-| Carryover Backlog table in briefing | F-02 | Lint the briefing output for the presence of the `Carryover Backlog` table |
+| Carryover items checked | F-02 | Include carryovers for an unspecified-task briefing; check related items for a specific task |
 | openapi / schema drift | Per project | A pre-commit hook confirms the regeneration diff = 0 (for projects with a contract) |
 | Commit message convention | decision matrix | A commit-msg hook validates the prefix |
 

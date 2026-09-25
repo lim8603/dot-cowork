@@ -46,11 +46,11 @@ The goal of official deliverable generation in this framework is **better tracea
 
 Use the following priority when interpreting source documents for official deliverable generation.
 
-1. approved canonical documents
-2. registry + instance combinations
-3. approved ADRs
-4. latest session log
-5. imported context
+1. currently valid approved decisions (ADRs) and approved canonical, registry, and instance documents
+2. latest session log, as supporting evidence for gaps in the source documents
+3. imported context, as raw evidence before extraction
+
+- If an approved ADR conflicts with a source document, do not choose one silently. Check the decision date and scope, reconcile the documents, then generate the deliverable.
 
 - `templates/*_template.md` are not source documents for official deliverable generation.
 - `session_logs/` and `imported_context/` are supporting evidence only when higher-priority source documents are empty.

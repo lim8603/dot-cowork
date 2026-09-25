@@ -17,7 +17,7 @@ and what the current progress and dependencies look like.
 ## Team Setup Mode
 
 - [ ] **Established Team**: real team members already exist -> assign roles directly
-- [ ] **Role-Slot Planning**: team members are not finalized -> the AI creates role slots first and assigns Tasks -> later match real members to those roles
+- [ ] **Role-Slot Planning**: team members are not finalized -> the AI proposes role slots and Task assignments -> register them after Human approval -> later match real members to those roles
 
 > Even in Established Team mode, if the AI judges that more people are needed based on workload analysis,
 > it may propose additional virtual role slots. Register them only after Human approval.
@@ -30,7 +30,7 @@ and what the current progress and dependencies look like.
 |---------|-----------|----------------|----------------|-----------------|--------|
 | Role-A | | | | (unassigned) / name | unassigned / assigned |
 
-> **Role-Slot Planning**: the AI automatically creates role slots based on tech-stack and feature analysis.
+> **Role-Slot Planning**: the AI proposes role slots based on tech-stack and feature analysis; register them after Human approval.
 > **Established Team**: assign roles directly to the real team members who fit them.
 
 ---

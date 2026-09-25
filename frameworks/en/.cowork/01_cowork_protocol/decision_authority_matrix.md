@@ -31,7 +31,8 @@ This document makes authority levels explicit so the team can **reduce unnecessa
 | **Requirements** | Scope confirmation | H | |
 | | Requirement elaboration | J | AI drafts, Human validates |
 | | Acceptance criteria writing | J | |
-| **Implementation** | Algorithm / logic choice | J | |
+| **Implementation** | Core algorithm / user-visible logic change | J | Approval when deciding scope and approach |
+| | Implementation details within the approved approach | A | Follow conventions and acceptance criteria |
 | | Variable names / function signatures | A | Assuming conventions are followed |
 | | Error-handling strategy | J | |
 | | Refactoring | A | When behavior does not change |
@@ -41,6 +42,13 @@ This document makes authority levels explicit so the team can **reduce unnecessa
 | | Writing or editing document content | A | With Human review expected |
 | **Version Control** | Branch strategy | H | |
 | | Commit message | A | Must follow the convention |
+
+### Applying the levels
+
+- H/J applies when a new decision is needed. Do not request approval again for each step within an already approved scope.
+- Perform A-level reading, editing, and verification, then report the result. Ordinary content edits and work-file creation are not structural document changes.
+- Treat a new canonical document, a new registry structure, or registry promotion as structural document changes (H).
+- Do not repeat a concern on the same evidence. Report new material evidence if it appears.
 
 ---
 

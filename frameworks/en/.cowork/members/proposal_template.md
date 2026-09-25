@@ -1,6 +1,6 @@
 # Change Proposal
 
-> Shared-area change proposal automatically created when the `proposal` keyword is used
+> Template to copy when a shared-area change is requested as a Change Proposal
 
 ---
 

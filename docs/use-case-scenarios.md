@@ -187,7 +187,7 @@ The framework only works if all three sessions feel like the same project rather
 
 ### What happens
 
-1. Codex begins by restoring from `AGENTS.md`, `.cowork/cowork.md`, `.cowork/06_evolution/project_state.md`, and the latest session log.
+1. Codex uses `AGENTS.md` and `.cowork/06_evolution/project_state.md` to identify the active task, then reads the latest session log only if its handoff detail matters.
 2. During the session, meaningful outcomes are written back into the right phase documents instead of staying trapped in the Codex conversation alone.
 3. When Mina later opens Gemini, Gemini reads `GEMINI.md` but lands on the same `.cowork/` state, not on a Gemini-specific memory store.
 4. The same active phase, active task, language settings, and next-start point appear again because they live in files, not only in the previous assistant's context window.

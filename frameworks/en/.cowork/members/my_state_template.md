@@ -1,6 +1,6 @@
 # My State - <user name>
 
-> In solo mode, keep personal carryover, current task IDs, the shared-state link, and the latest log. Do not duplicate shared narratives/backlog. Follow size budgets and R1/R2 in `01_cowork_protocol/session_protocol.md`.
+> In solo mode, keep personal carryover, current task IDs, the shared-state link, and the latest log if one exists. Do not duplicate shared narratives/backlog. Follow size budgets and R1/R2 in `01_cowork_protocol/session_protocol.md`.
 
 > Personal work-state index: the first personal document the AI reads for my sessions
 
@@ -14,7 +14,7 @@
 - Update the result column of the Session Intent table with the real end-of-session result.
 - In a solo project, put the confirmed user identifier in `Name`, use `Project Owner` for `Role (Role ID)`, and start `Active Milestone` from the current active milestone in `project_state.md` or `None`.
 - If a solo project still has no individual Tasks, keep `Current Assigned Work` as `None` and keep the Session Intent target task as `Project Shared Work`.
-- At first creation, summarize-copy the current next starting point from `project_state.md` into `Next Starting Point`, and write the latest personal session log into `Reference Session Log`.
+- At first creation, summarize the current next starting point from `project_state.md` in `Next Starting Point`. In `Reference Session Log`, use the latest personal log if one exists; otherwise write `None`.
 
 ---
 

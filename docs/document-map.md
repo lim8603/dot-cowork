@@ -20,11 +20,10 @@ Do not update it for routine content edits inside the mapped documents.
 
 ## Reading Order
 
-1. Start with the tool entrypoint, `.cowork/06_evolution/project_state.md`, `.cowork/02_project_definition/deliverable_plan.md`, the relevant `.cowork/members/<name>/workspace/my_state.md`, and the latest relevant session log.
-2. Use `.cowork/cowork.md` and other governance documents on the first session or when workflow rules need clarification.
-3. Move into the current phase's registry and canonical documents before opening instance documents.
-4. Open instance documents only for the active `INT-*`, `US-*`, `ADR-*`, `MS-*`, or `TASK-*` items.
-5. Treat templates, imported context, proposals, and older logs as on-demand material rather than default reading.
+1. Use the tool entrypoint and `.cowork/06_evolution/project_state.md` to identify current constraints and the requested task.
+2. Read registries and canonical documents relevant to that task, then open the needed active `INT-*`, `US-*`, `ADR-*`, `MS-*`, or `TASK-*` instances.
+3. Add `deliverable_plan.md`, personal `my_state.md`, the latest log, or a governance section only when the task needs that context.
+4. Treat templates, imported context, proposals, and older logs as on-demand material.
 
 Entrypoints contain shared-state links rather than phase/milestone copies. Keep current state and constraints in resume indexes; link detailed history and evidence. Update `verification_evidence.md` when execution results or deferral conditions change, including during Build, rather than waiting for a phase transition.
 
@@ -34,17 +33,17 @@ Entrypoints contain shared-state links rather than phase/milestone copies. Keep 
 | --- | --- | --- | --- | --- |
 | Tool entrypoints | `AGENTS.md`, `CLAUDE.md`, `GEMINI.md`, `.github/copilot-instructions.md` | Installed with the framework | Tool instructions, loading guidance, or shared workflow wording changes | Every session start, especially after tool switching |
 | Framework root guide | `.cowork/README.md` | Installed with the framework | The top-level explanation or onboarding path changes | First-time adoption and framework orientation |
-| Framework master guide | `.cowork/cowork.md` | Installed with the framework | The framework's core operating model or structure changes | First session, major workflow confusion, or rule lookup |
+| Framework master guide | `.cowork/cowork.md` | Installed with the framework | The framework's core operating model or structure changes | Framework orientation or relevant rule lookup |
 | Shared resume index | `.cowork/06_evolution/project_state.md` | Installed with the framework, then filled in during real use | Current phase, active work, next steps, language settings, or status changes | Every session start and every meaningful status change |
-| Delivery scope anchor | `.cowork/02_project_definition/deliverable_plan.md` | Early Define work | Deliverable scope, required outputs, or omission decisions change | Early session loading, Define, Deliver, export planning |
+| Delivery scope anchor | `.cowork/02_project_definition/deliverable_plan.md` | Early Define work | Deliverable scope, required outputs, or omission decisions change | Define, Deliver, or export planning when scope matters |
 | Personal resume index | `.cowork/members/<name>/workspace/my_state.md` | When a contributor workspace is initialized | Personal carry-over work, blockers, or individual next steps change | When a named contributor resumes work |
-| Session log | `.cowork/members/<name>/workspace/session_logs/session_*.md` | At the start of each working session | Throughout the session as raw notes and outcomes accumulate | Session restoration, cleanup, and handoff |
+| Session log | `.cowork/members/<name>/workspace/session_logs/session_*.md` | When substantive work needs a continuity record | Meaningful decisions, changes, or handoff details arise | Relevant history, cleanup, and handoff |
 
 ## Governance And Structure
 
 | Document or path | Lives at | Created when | Updated when | Referenced when |
 | --- | --- | --- | --- | --- |
-| Session protocol | `.cowork/01_cowork_protocol/session_protocol.md` | Installed with the framework | Session start, progress, finish, or gate behavior changes | First session, workflow disputes, automation checks |
+| Session protocol | `.cowork/01_cowork_protocol/session_protocol.md` | Installed with the framework | Session start, progress, finish, or gate behavior changes | Relevant workflow rule lookup |
 | Tooling environment guide | `.cowork/01_cowork_protocol/tooling_environment_guide.md` | Installed with the framework | Tool-specific operating guidance, entrypoint sync rules, or environment-sensitive upgrade paths change | Tool setup, entrypoint sync review, upgrade planning |
 | Decision authority matrix | `.cowork/01_cowork_protocol/decision_authority_matrix.md` | Installed with the framework | Approval boundaries or role ownership changes | Before structure changes, promotion, or approval-sensitive work |
 | Document role inventory | `.cowork/01_cowork_protocol/document_role_inventory.md` | Installed with the framework | Document types, routing rules, or role definitions change | Whenever a new document or destination is being chosen |
