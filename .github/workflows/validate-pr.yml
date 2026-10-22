@@ -10,6 +10,7 @@ on:
       - 'CHANGELOG.md'
       - 'README.md'
       - 'DESIGN.md'
+      - '.github/workflows/**'
 
 jobs:
   validate:
