@@ -4,6 +4,16 @@ All notable changes to `cowork-context-framework` will be documented in this fil
 
 The project follows semantic versioning.
 
+## [1.6.0] - 2026-10-22
+
+### Added
+- Carryover backlog IDs: `T*` (trigger-waiting, with an observable trigger) and `B*` (backlog: deferred, `later`, or newly surfaced work) in `project_state.md`, with a `Numbering` line, never-reused sequence numbers, registration and resolution rules, and a one-line resolution record (`T3 → TASK-012`, `B7 dropped: reason`). Replaces the three unnumbered carryover tables.
+- Task steps: an optional `Work Steps (Step, S)` section in the Task template for a large Task that cannot finish in one session and is hard to split further. Steps run in order, each ends in a hand-off-safe exit state, are referenced as `TASK-012/S2`, and lead the Task's `Next Action`.
+
+### Changed
+- `cowork.md` operating units, session protocol (§1D briefing, `later` handling, session-end sync), task registry, F-02 check, session log and `my_state` templates, and all Korean and English entrypoints refer to `T*`/`B*`/`S*`. The Task template work plan drops `Step N` labels in favor of a plain checklist.
+- Upgrade manifests include a 1.6.0 delta with a carryover migration procedure for existing projects.
+
 ## [1.5.1] - 2026-09-25
 
 ### Fixed

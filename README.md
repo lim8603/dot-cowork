@@ -163,7 +163,7 @@ It fills gaps at the right time through document harvest, end-of-session checks,
 
 ### Intent and milestone traceability
 
-Intent, Milestone, Task, and ADR relationships are tracked in explicit documents so the team can understand both current work and why it exists.
+Intent, Milestone, Task, and ADR relationships are tracked in explicit documents so the team can understand both current work and why it exists. A large Task can run as sequential steps (`TASK-012/S2`), and work that is not yet a Task stays in the carryover backlog as trigger-waiting `T*` or backlog `B*` items with stable IDs.
 
 ### Upgrade path
 

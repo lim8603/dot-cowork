@@ -146,6 +146,8 @@ Intent -> Milestone -> Task
 
 That model is supported by adjacent artifacts such as requirements, ADRs, verification records, and session logs.
 
+Below the Task, the framework keeps three lightweight IDs that need no files of their own. A large Task that cannot finish in one session and is hard to split further is run as sequential steps (`TASK-012/S2`), each ending in a state that is safe to hand off. Work that is not yet an execution unit lives in the carryover backlog of `project_state.md`: `T*` items wait on an observable trigger, `B*` items were deferred or simply came up. Both use never-reused sequence numbers and are promoted to a Task or a step when work starts, leaving a one-line resolution record.
+
 ---
 
 ## Collaboration and Session Model

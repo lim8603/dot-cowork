@@ -8,9 +8,9 @@
 
 | Item | Value |
 |------|------|
-| Version | 1.5.1 |
-| From | 1.5.0 |
-| Date | 2026-09-25 |
+| Version | 1.6.0 |
+| From | 1.5.1 |
+| Date | 2026-10-22 |
 > The `ADD` table under `## File Classification` below is still the full list for a **fresh baseline install** (including the 1.1.0 new file `state_archive.md`).
 > A sequential `1.0.0 -> 1.1.0` upgrade follows the `## 1.1.0 Upgrade (from 1.0.0)` delta table.
 > If you newly introduce it into a project that already contains an arbitrary `.cowork/` structure, treat that as a **migration**, not an automatic upgrade, and confirm with the Human first.
@@ -19,6 +19,7 @@
 
 ## Change Summary
 
+- Sub-Task management units (1.6.0) — stable carryover IDs (`T*` trigger-waiting, `B*` backlog) with registration and resolution rules, and sequential steps for large Tasks (`TASK-*/S*`)
 - Carryover trigger watch restored (1.5.1) — arrived carryover triggers are raised in one line even in a session with a specified task
 - Request-driven harness cleanup (1.5.0) — shorter entrypoints, task-specific context loading, authority-based approval, logs when needed, and intent-based document creation
 - Field-driven improvements (1.4.0) — measurable state budgets and R1/R2 cleanup, shared-state entrypoint links, scoped verification evidence, and learning provenance
@@ -155,6 +156,36 @@
 | `.cowork/members/proposal_template.md` | ADD | Proposal template |
 | `.cowork/members/my_state_template.md` | ADD | Personal-state template |
 | `.cowork/members/team_board.md` | ADD | Team board |
+
+---
+
+## 1.6.0 Upgrade (from 1.5.1)
+
+> Adds the management units below the Task that field use called for. Carryover backlog items get stable IDs (`T*` trigger-waiting, `B*` backlog) with registration and resolution rules, and a large Task that cannot finish in one session is split into sequential steps (`TASK-*/S*`). No new files.
+
+### 1.6.0 File Classification
+
+| File | Class | Change |
+|------|-------|--------|
+| `AGENTS.md` | MERGE | Add only a parenthesized `T*` after `carryover item` in the arrived-trigger sentence |
+| `CLAUDE.md` | MERGE | Same as above |
+| `GEMINI.md` | MERGE | Same as above |
+| `.github/copilot-instructions.md` | MERGE | Same as above |
+| `.cowork/cowork.md` | REPLACE | Step (`S*`) in the operating-unit table, carryover (`T*`/`B*`) promotion, lightweight ID rule |
+| `.cowork/01_cowork_protocol/session_protocol.md` | REPLACE | §1D carryover paragraph and briefing examples by `T*`/`B*`; resolution record and Task step sync at session end; `later` answers registered as `B*`/`T*` |
+| `.cowork/01_cowork_protocol/tooling_environment_guide.md` | REPLACE | F-02 check covers `T*`/`B*` and an ID-check idea |
+| `.cowork/04_implementation/task_registry.md` | MERGE | Add two light-operation sentences for steps (`S*`) and carryover registration; preserve the Task list |
+| `.cowork/04_implementation/templates/task_template.md` | REPLACE | Add `Work Steps (Step, S)`; Work Plan `Step N` labels become a plain checklist |
+| `.cowork/06_evolution/project_state.md` | MERGE | Replace the Carryover Backlog with the `Numbering` line + `T` table + `B` table + rules; move existing rows with the procedure below |
+| `.cowork/06_evolution/templates/session_log_template.md` | REPLACE | ID guidance comment in the carry-over section |
+| `.cowork/members/my_state_template.md` | REPLACE | Shared-ID reference sentence in carry-over items |
+
+### Carryover Backlog Migration
+
+1. Existing `Trigger-waiting` rows → `T` table, numbered from `T1` in order. If a trigger is unobservable (such as `later`), ask the Human for the condition or move it to `B`.
+2. Existing `Ready to start on request` rows → `B` table with `Class = Ready`; existing `Low-severity / recorded` rows → `B` table with `Class = Recorded`; number from `B1`.
+3. Set the `Numbering` line to the value after the last number. Use `None` when `Related` is unknown.
+4. Do not retrofit steps onto Tasks already in progress. Add `Work Steps` only to a Task that will not finish next session, after Human confirmation.
 
 ---
 
@@ -341,4 +372,5 @@
 | 1.4.0 | Field-driven improvements (1.4.0) — measurable state budgets and R1/R2 cleanup, shared-state entrypoint links, scoped verification evidence, and learning provenance |
 | 1.5.0 | Request-driven harness cleanup (1.5.0) — shorter entrypoints, task-specific context loading, authority-based approval, logs when needed, and intent-based document creation |
 | 1.5.1 | Carryover trigger watch restored (1.5.1) — arrived carryover triggers are raised in one line even in a session with a specified task |
+| 1.6.0 | Sub-Task management units (1.6.0) — stable carryover IDs (`T*` trigger-waiting, `B*` backlog) with registration and resolution rules, and sequential steps for large Tasks (`TASK-*/S*`) |
 <!-- CUMULATIVE:END -->

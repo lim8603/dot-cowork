@@ -194,7 +194,7 @@ If the Human requests a concrete task, briefly check relevant state and proceed.
 
 The AI reads the available source documents discovered during Session Start (`project_state.md`, `team_board.md` for team projects, `my_state.md` when it exists, and the latest session log) and prints the briefing in the following form.
 
-Take carryover items from the `Carryover Backlog` in `project_state.md`. Show items that affect the current work concisely; use a table when several items matter. Watching carryover triggers is the AI's responsibility: before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work and raises on its own any trigger that has arrived or any item now ready to start. In a session with a specified task, do not show the whole table; raise only the arrived items in one line.
+Take carryover items from the `Carryover Backlog` in `project_state.md` (`T*` trigger-waiting, `B*` backlog). Show items that affect the current work concisely with their IDs; use a table when several items matter. Watching carryover triggers is the AI's responsibility: before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work and raises on its own any `T*` whose trigger has arrived or any `B*` now ready to start. In a session with a specified task, do not show the whole table; raise only the arrived `T*` items in one line (for example `💡 T3 arrived — TASK-012 Done. Absorb it?`).
 
 **Shown to a Master:**
 ```text
@@ -208,7 +208,7 @@ Active Tasks:
   TASK-002  [Title]  [Linked MS]  [Assigned Role] ([Assignee])  [Status]
   ...
 
-Carry-over: [summary]
+Carry-over: [arrived T*, ready B* summary]
 Last session: [date]
 
 What would you like to work on?
@@ -226,7 +226,7 @@ My Tasks:
   TASK-004  [Title]  [Linked MS]  [Status]
 
 Overall Progress: [INT-NNN] / [MS-NNN] [N]% ([done/total] Tasks)
-Carry-over: [summary]
+Carry-over: [arrived T*, ready B* summary]
 Last session: [date]
 
 What would you like to work on?
@@ -297,7 +297,7 @@ In a solo project, the briefing is simplified.
 - **End-to-end re-verification after a gate or invariant change (F-11)** — if this session tightened a verification rule, gate, invariant, or contract, take the **consumer list** written in §2, re-run the end-to-end suite (E2E / integration), and report the result per consumer. Passing unit tests does not substitute for this item — the fallout of a tightened judgment usually lands not in the tightening code but in **the other paths that run through that gate**. If it could not be run, record explicitly **what remains unverified** in the session log and in the `project_state.md` carry-over (silence is not an option).
 - Close the current session log with summary, carry-over items, decisions, and next-session context.
 - Sync `project_state.md` — replace current values, shorten completion summaries, relocate details, and remeasure size (R1/R2).
-- Sync the `Carryover Backlog` table in `project_state.md` — remove resolved items, add new carry-overs / triggers.
+- Sync the `Carryover Backlog` table in `project_state.md` — remove resolved `T*`/`B*` items, add new ones under the next number. If a large Task's step (`S*`) changed, align the Task document and its `Next Action`.
 - Sync the member's `my_state.md` with assigned work, carry-over items, and referenced session log (harvest overflow completion narratives — R1).
 - In team projects, sync `team_board.md` as needed when task state or assignee state changed.
 
@@ -529,7 +529,8 @@ On a session-end request or work handoff, check unfinished items in relevant doc
 - synchronize the next starting point, Human confirmation items, and key risks in `project_state.md`
 - synchronize assigned work, next starting point, carry-over items, and referenced session log in the member's `my_state.md`
 - **Completion-narrative harvest (R1/R2)** — retain at most 3 session summaries of one sentence plus a link each, preserving raw details elsewhere. Check current fields, long rows, duplicate pointers, and file sizes (Shared State Index Management).
-- **Carryover Backlog table sync** — in the `Carryover Backlog` table of `project_state.md`, remove items resolved this session and add newly arisen carry-overs / triggers (§1D briefing's single SSOT).
+- **Carryover Backlog table sync** — in the `Carryover Backlog` of `project_state.md`, remove `T*`/`B*` items resolved this session and record each outcome in one line (`T3 → TASK-012`, `B7 dropped: reason`). Number new items with the next ID and add them (§1D briefing's single SSOT).
+- **Task step sync** — for a Task that uses `Work Steps (Step, S)`, update the current step's status and `Next Action` (`S2 — ...`). If the step is unfinished, leave the point where the next session picks up in the checklist.
 
 ### 13. Proactive Elicitation
 
@@ -557,7 +558,7 @@ Fill the current phase's source documents in the following order.
 - Do not open a separate interrogation session. Insert the question naturally into the current conversation flow.
 - Example after Execute: `Before we move on, is there any external interface that is still not confirmed? I'd like to capture it in interface_contract.md while it is fresh.`
 - Example during planning: `One quick thing before we continue: how will we know this feature is done? The acceptance criterion is still missing.`
-- If the Human responds with `later`, `I don't know yet`, or `skip it`, stop immediately and move the item into carry-over state.
+- If the Human responds with `later`, `I don't know yet`, or `skip it`, stop immediately and register the item as a `B*` in the carryover backlog. If it can be answered only after something else is unblocked, register it as a `T*` with that condition as its trigger.
 
 #### Offering Alternatives
 

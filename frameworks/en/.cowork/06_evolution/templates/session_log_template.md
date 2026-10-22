@@ -41,6 +41,7 @@
 - [ ]
 
 ## Incomplete / Carry-Over Items
+<!-- Record newly registered `T*`/`B*` and resolution outcomes (`T3 → TASK-012`, `B7 dropped: reason`) by ID. The current state lives in the `project_state.md` carryover backlog. -->
 - [ ]
 - [ ]
 

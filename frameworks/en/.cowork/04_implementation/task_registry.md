@@ -50,3 +50,5 @@
 - Long-running work, work with many approval points, or work that is likely to be resumed should get a `tasks/TASK-*.md` file.
 - In `deliverable_plan.md` and `export_spec.md`, use this document first as the WBS source.
 - Keep `Next Action` as a one-line instruction the next session can pick up immediately; move multi-step detailed plans into the detail Task document.
+- Split a Task that cannot finish in one session and is hard to split further into `Work Steps (Step, S)` in its detail document. Keep the step list only in the Task document, and start the registry `Next Action` with the current step (`S2 — ...`).
+- Do not pile work pushed out of scope, or work waiting on a precondition, into the Task document; register it in the `project_state.md` carryover backlog as `B*` / `T*`.

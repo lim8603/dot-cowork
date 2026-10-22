@@ -61,7 +61,8 @@ Check against: root entrypoint file, `06_evolution/project_state.md`, documents 
 ### Session briefing
 Check against: `06_evolution/project_state.md`, active registries
 - [ ] Start: Enough up-to-date information remains to briefly explain the current phase and the active Intent, Milestone, and Task.
-- [ ] Behavior: When no task is specified, the AI concisely presents active work and carryovers. For a clear task it proceeds without a general briefing.
+- [ ] Behavior: When no task is specified, the AI concisely presents active work and carryovers by ID (`T*` with arrived triggers, ready `B*`). For a clear task it proceeds without a general briefing but still raises an arrived `T*` in one line.
+- [ ] State: Carryover IDs are unique, the `Numbering` line is ahead of every used number, and a Task split into steps starts its `Next Action` with the current `S*`.
 - [ ] Result: The user can select work when needed without delaying a specified task.
 
 ### Phase-aware loading

@@ -76,25 +76,29 @@ For a clear request, open only the related registries, canonical documents, and 
 
 ## Carryover Backlog
 
-> **The single source for carryovers.** Manage carryover items here. Include them in a briefing when no task is specified; for a specific task, check only related items. Update when items are added, resolved, or handed off. Keep background in the source session log. Watching carryover triggers is the AI's responsibility — before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work and raises arrived triggers on its own.
+> **The single source for carryovers.** Manage carryover items in the `T` (trigger-waiting) and `B` (backlog) tables below. Include them in a briefing when no task is specified; for a specific task, check only related items. Update when items are added, resolved, or handed off. Keep background in the source session log. Watching carryover triggers is the AI's responsibility — before the Human hunts them down and asks, the AI cross-checks this table during the briefing and during work and raises arrived triggers on its own.
 
-**Ready to start on request (no trigger)**
+**Numbering:** next `T` = `T1` · next `B` = `B1`
 
-| # | Item | Detail | Source |
-|---|------|--------|--------|
-| None | - | - | - |
+**Trigger-waiting (T) — work that can start only after something else is unblocked**
 
-**Trigger-waiting (absorbed by the session where the trigger arrives)**
+| ID | Item | Trigger | Related | Source |
+|----|------|---------|---------|--------|
+| None | - | - | - | - |
 
-| # | Item | Trigger | Source |
-|---|------|---------|--------|
-| None | - | - | - |
+**Backlog (B) — work that could not be handled now, or that came up and was parked**
 
-**Low-severity / recorded (only on request)**
+| ID | Item | Detail | Class | Related | Source |
+|----|------|--------|-------|---------|--------|
+| None | - | - | - | - | - |
 
-| # | Item | Source |
-|---|------|--------|
-| None | - | - |
+- `ID`: `T{number}` / `B{number}`. Project-wide sequence numbers; resolved numbers are never reused. Advance `Numbering` above when registering.
+- `Trigger`: write an observable condition (for example `TASK-012 Done`, `ADR-004 decided`, `external API v2 released`, `after 2026-11-01`). `Later` or `when there is time` is not a trigger — with no precondition, register a `B` instead.
+- `Class`: `Ready` (starts as soon as requested) / `Recorded` (low severity, only on request).
+- `Related`: linked `INT-*` / `MS-*` / `TASK-*`, or `None`. `Source`: the session log or document where it was registered.
+- **Register**: work pushed out of scope during a task, a Human "later", or an idea that just came up goes in as a `B`; work that can start only after something else is unblocked goes in as a `T`. Register immediately.
+- **Resolve**: the AI raises a `T` whose trigger has arrived; on the Human's choice it is absorbed into a `TASK-*` or a step of an existing Task (`TASK-*/S*`), or converted to a `B`. A `B` that starts is promoted to a `TASK-*` or `TASK-*/S*`. Progress is not tracked in this table.
+- **Resolution record**: remove resolved rows and record the outcome in one line (`T3 → TASK-012`, `B5 → TASK-012/S3`, `B7 dropped: reason`) — in the session log if one is open, otherwise in `state_archive.md`.
 
 ---
 

@@ -72,6 +72,7 @@ this document summarizes **my assigned work state**.
 
 ## Carry-Over Items
 
+- Point to shared carryovers only by their `T*`/`B*` IDs in `project_state.md`; do not duplicate their content.
 -
 
 ---
