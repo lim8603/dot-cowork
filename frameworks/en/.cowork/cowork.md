@@ -88,6 +88,7 @@ Read and operate `.cowork` documents according to their role.
 - Files ending in `_template.md` are copy-only templates.
 - Regular files without that suffix are generally governance documents, canonical documents, or registries.
 - `INT-*`, `US-*`, `MS-*`, `TASK-*`, and `ADR-*` files are all instance documents.
+- `T*` (trigger-waiting), `B*` (backlog), and `S*` (step inside a Task) are lightweight IDs with no files of their own. `T*`/`B*` live in the `project_state.md` carryover backlog, `S*` lives in its `TASK-*.md`, and a step is referenced as `TASK-012/S2`.
 - Documents under `members/<name>/workspace/session_logs/` and `imported_context/` are supporting evidence stores, not direct source documents.
 - Official deliverable generation and gate decisions are based on canonical documents, registry documents, and instance documents, not templates.
 
@@ -102,10 +103,13 @@ This framework distinguishes `Phase` and `Milestone`.
 | Phase | DEFINE, DESIGN, BUILD, VERIFY, EVOLVE, DELIVER | Fixed lifecycle of the framework |
 | Milestone | Intermediate completion point for a specific project | Operating unit confirmed by Human approval |
 | Task | Actual unit of execution | Smallest unit of implementation, documentation, or verification |
+| Step (`S*`) | Sequential step for running a large Task across several sessions | Optional. Only for a Task that cannot finish in one session and is hard to split further |
 
 - `Phase` answers: "Which stage is the project in now?"
 - `Milestone` answers: "What counts as meaningfully complete?"
 - `Task` answers: "What are we doing right now?"
+- `Step` answers: "How far does this round of the Task go?"
+- Work that is not yet an execution unit stays in the carryover backlog: `T*` (trigger-waiting) when it waits on a precondition, `B*` (backlog) when it could not be handled now or just came up. It is promoted to a `TASK-*` or `TASK-*/S*` when started.
 
 ---
 
